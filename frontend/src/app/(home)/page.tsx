@@ -40,7 +40,6 @@ export default async function HomePage() {
                 Browse Products
               </Link>
             </div>
-            {/* <div className="flex-1 relative w-full h-64 sm:h-80 md:h-96"> */}
             < div className="flex-1 relative min-h-[16rem] w-full h-64 sm:h-80 md:h-96">
               <Image
                 src="https://picsum.photos/600/400?grayscale"
