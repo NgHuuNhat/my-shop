@@ -27,7 +27,7 @@ export default function Pagination({ items, limit = 10, children }: PaginationTy
             <div className="flex-1 flex flex-col items-center justify-center">
                 {isPending ? <Loading /> : children(itemsRender)}
             </div>
-            <div className="flex justify-center items-center gap-4 my-5">
+            <div className="flex justify-center items-center gap-4 my-10">
                 <button
                     onClick={handlePrev}
                     disabled={page === 1}
