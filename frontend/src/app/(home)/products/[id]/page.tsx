@@ -19,10 +19,10 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
     }
 
     return (
-        <div className="px-1 py-5 md:py-10 max-w-6xl mx-auto space-y-10">
+        <div className="px-1 pb-1 max-w-6xl mx-auto space-y-10">
 
             {/* Breadcrumb */}
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-gray-500 my-4">
                 <a href="/" className="hover:text-blue-600 transition">Trang chủ</a> /
                 <a href="/products" className="hover:text-blue-600 transition"> Sản phẩm</a> /
                 <span className="text-gray-700 font-medium"> {product.name}</span>
@@ -76,7 +76,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             {/* Sản phẩm tương tự */}
             <div>
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Sản phẩm tương tự</h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1">
                     {[...Array(4)].map((_, i) => (
                         <div key={i} className="cursor-pointer">
                             <div className="relative w-full pb-[100%] bg-gray-50 overflow-hidden">
