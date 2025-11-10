@@ -16,7 +16,7 @@ export default function ProductList({ products }: ProductListProps) {
     <div className="mt-10 flex-1 flex flex-col items-center justify-center w-full">
       <Pagination items={products} limit={20}>
         {(items: ProductType[]) => (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 px-1 w-full max-w-[1400px] mx-auto">
             {items.map((product: ProductType) => (
               <ProductCard key={product.id} product={product} />
             ))}

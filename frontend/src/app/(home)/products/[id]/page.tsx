@@ -19,7 +19,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
     }
 
     return (
-        <div className="p-4 md:p-8 max-w-6xl mx-auto space-y-10">
+        <div className="px-1 py-5 md:py-10 max-w-6xl mx-auto space-y-10">
 
             {/* Breadcrumb */}
             <div className="text-sm text-gray-500">
