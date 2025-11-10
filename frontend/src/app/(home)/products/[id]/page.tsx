@@ -1,40 +1,19 @@
-'use client'
+import { ProductDetailProps, ProductType } from '@/modules/product/types/productType'
+import Error from '@/shared/error/Error'
 
-import { useParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+export default async function ProductDetail({ params }: ProductDetailProps) {
+    const { id } = await params
 
-export default function ProductDetail() {
-    const params = useParams()
-    const { id } = params
-
-    const [product, setProduct] = useState<any>()
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        if (!id) return
-        fetch(`https://691078c77686c0e9c20a6dc4.mockapi.io/api/product/${id}`)
-            .then(res => res.json())
-            .then(data => {
-                setProduct(data)
-                console.log(product)
-            })
-            .catch(err => console.error(err))
-            .finally(() => setLoading(false))
-    }, [id])
-
-    if (loading) {
-        return (
-            <div className='flex-1 flex flex-col items-center justify-center'>
-                <p>Loading...</p>
-            </div>
-        )
-    }
+    const product: ProductType = await fetch(`https://691078c77686c0e9c20a6dc4.mockapi.io/api/product/${id}`, {
+        next: { revalidate: 60 }
+    })
+        .then(res => res.ok ? res.json() : null)
+        .then(data => data ? data : null)
+        .catch(() => null)
 
     if (!product) {
         return (
-            <div className='flex-1 flex flex-col items-center justify-center'>
-                <p>Không tìm thấy sản phẩm.</p>
-            </div>
+            <Error />
         )
     }
 

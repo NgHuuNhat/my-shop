@@ -1,4 +1,4 @@
-import Header from '@/components/Header'
+import Header from '@/shared/header/Header'
 import React from 'react'
 
 export default function layout({ children }: any) {
