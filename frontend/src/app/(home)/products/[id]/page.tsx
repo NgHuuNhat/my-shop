@@ -1,5 +1,6 @@
 import { ProductDetailProps, ProductType } from '@/modules/product/types/productType'
 import Error from '@/shared/error/Error'
+import Image from 'next/image'
 
 export default async function ProductDetail({ params }: ProductDetailProps) {
     const { id } = await params
@@ -18,14 +19,16 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
     }
 
     return (
-        <div className='p-4 max-w-4xl mx-auto'>
-            <img src={product.thumbnail} alt={product.name} className='w-full h-80 object-cover rounded-lg' />
-            <h1 className='mt-4 text-2xl font-bold'>{product.name}</h1>
-            <p className='mt-2 text-xl text-gray-700'>{product.price}₫</p>
-            {product.description && <p className='mt-4 text-gray-600'>{product.description}</p>}
-            <div className='flex gap-2 mt-4'>
-                <button className='px-4 py-2 bg-blue-500 text-white rounded'>Thêm vào giỏ hàng</button>
-                <button className='px-4 py-2 bg-green-500 text-white rounded'>Mua ngay</button>
+        <div className='p-4 max-w-4xl mx-auto flex flex-col gap-4'>
+            <div className="relative w-full pb-[60%] rounded-lg overflow-hidden">
+                <img src={product.thumbnail} alt={product.name} className='absolute inset-0 w-full h-full object-cover rounded-lg' />
+            </div>
+            <h1 className='text-2xl font-semibold text-gray-900'>{product.name}</h1>
+            <p className='text-xl text-gray-700'>{product.price}₫</p>
+            {product.description && <p className='text-gray-600'>{product.description}</p>}
+            <div className='flex gap-3 mt-4'>
+                <button className='flex-1 px-4 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition'>Thêm vào giỏ hàng</button>
+                <button className='flex-1 px-4 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition'>Mua ngay</button>
             </div>
         </div>
     )

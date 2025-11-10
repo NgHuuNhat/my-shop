@@ -27,17 +27,24 @@ export default function Pagination({ items, limit = 10, children }: PaginationTy
             <div className="flex-1 flex flex-col items-center justify-center">
                 {isPending ? <Loading /> : children(itemsRender)}
             </div>
-            <div className="flex gap-5">
-                <p>Tất cả {items.length} sản phẩm</p>
-                <div className="flex justify-center">
-                    <button onClick={handlePrev} disabled={page === 1} >
-                        <span>{`<`}</span>
-                    </button>
-                    <span> {page}/{totalPages} </span>
-                    <button onClick={handleNext} disabled={page === totalPages}   >
-                        <span>{`>`}</span>
-                    </button>
-                </div>
+            <div className="flex justify-center items-center gap-4 my-5">
+                <button
+                    onClick={handlePrev}
+                    disabled={page === 1}
+                    className={`cursor-pointer px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 transition ${page === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                    &lt;
+                </button>
+
+                <span className="text-gray-700 font-medium">{page}/{totalPages}</span>
+
+                <button
+                    onClick={handleNext}
+                    disabled={page === totalPages}
+                    className={`cursor-pointer px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 transition ${page === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                    &gt;
+                </button>
             </div>
         </div>
     )
