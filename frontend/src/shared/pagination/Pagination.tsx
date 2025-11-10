@@ -24,20 +24,20 @@ export default function Pagination({ items, limit = 10, children }: PaginationTy
 
     return (
         <div className="flex-1 flex flex-col items-center">
+            <div className="flex-1 flex flex-col items-center justify-center">
+                {isPending ? <Loading /> : children(itemsRender)}
+            </div>
             <div className="flex gap-5">
                 <p>Tất cả {items.length} sản phẩm</p>
                 <div className="flex justify-center">
-                    <button onClick={handlePrev}>
+                    <button onClick={handlePrev} disabled={page === 1} >
                         <span>{`<`}</span>
                     </button>
                     <span> {page}/{totalPages} </span>
-                    <button onClick={handleNext}>
+                    <button onClick={handleNext} disabled={page === totalPages}   >
                         <span>{`>`}</span>
                     </button>
                 </div>
-            </div>
-            <div className="flex-1 flex flex-col items-center justify-center">
-                {isPending ? <Loading /> : children(itemsRender)}
             </div>
         </div>
     )
