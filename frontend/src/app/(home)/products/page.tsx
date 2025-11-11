@@ -15,11 +15,14 @@ export default async function ProductPage({ searchParams }: ProductPageProps) {
     .then(data => Array.isArray(data) ? data : [])
     .catch(() => [])
 
+  const productsLenth = products.length
+  const isTest = productsLenth < currentLimit
+
   return (
     <div className='flex-1 flex flex-col items-center justify-center'>
       <Search />
       <ProductList products={products} />
-      <Pagination />
+      <Pagination isTest={isTest} />
     </div>
   )
 }
