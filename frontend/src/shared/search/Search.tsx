@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Search() {
+const Search = () => {
     return (
         <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-3 p-4">
 
@@ -42,3 +42,5 @@ export default function Search() {
         </div>
     )
 }
+
+export default React.memo(Search);

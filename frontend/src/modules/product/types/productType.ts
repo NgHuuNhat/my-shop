@@ -11,6 +11,13 @@ export interface ProductType {
   id: string
 }
 
+export interface ProductPageProps {
+  searchParams?: {
+    page?: string,
+    limit?: string,
+  }
+}
+
 export interface ProductListProps {
   products: ProductType[],
 }

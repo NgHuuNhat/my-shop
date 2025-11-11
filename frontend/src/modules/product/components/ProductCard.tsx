@@ -3,7 +3,7 @@ import { ProductCardProps } from '../types/productType'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const ProductCard = React.memo(({ product }: ProductCardProps) => {
+const ProductCard = (({ product }: ProductCardProps) => {
     return (
         <Link href={`/products/${product.id}`} className="group flex flex-col items-start cursor-pointer hover:scale-[1.03] transition-transform duration-300 w-full">
             <div className="relative w-full pb-[100%] overflow-hidden rounded-2xl shadow-lg">
@@ -15,4 +15,4 @@ const ProductCard = React.memo(({ product }: ProductCardProps) => {
     )
 })
 
-export default ProductCard;
+export default React.memo(ProductCard);

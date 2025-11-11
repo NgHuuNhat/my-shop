@@ -113,7 +113,7 @@ export default async function HomePage() {
           </section>
         </main>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

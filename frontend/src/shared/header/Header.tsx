@@ -23,6 +23,12 @@ export default function Header() {
                 >
                     Cart
                 </Link>
+                <Link
+                    href="/login"
+                    className="text-gray-800 font-medium hover:text-blue-600 transition-colors"
+                >
+                    Login
+                </Link>
             </nav>
         </header>
     )
