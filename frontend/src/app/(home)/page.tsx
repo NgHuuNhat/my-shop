@@ -1,6 +1,7 @@
 import ProductCard from "@/modules/product/components/ProductCard";
 import { ProductType } from "@/modules/product/types/productType";
-import Footer from "@/shared/components/footer/Footer";
+import Footer from "@/shared/components/Footer/Footer";
+import ImageCustom from "@/shared/components/ImageCustom/ImageCustom";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,7 +26,7 @@ export default async function HomePage() {
     <>
       <main className="px-6 py-16">
         <div className="flex flex-col items-center justify-center space-y-16 max-w-7xl mx-auto">
-          
+
           {/* Hero Section */}
           <section className="w-full flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1 text-center md:text-left space-y-4">
@@ -42,13 +43,18 @@ export default async function HomePage() {
                 Browse Products
               </Link>
             </div>
-            < div className="flex-1 relative min-h-[16rem] w-full h-64 sm:h-80 md:h-96 rounded-lg bg-gray-200">
-              <Image
+            < div className="flex-1 relative min-h-[16rem] w-full h-64 sm:h-80 md:h-96 rounded-2xl bg-gray-200">
+              {/* <Image
                 src="https://picsum.photos/600/400?grayscale"
                 alt="Hero Product"
                 fill
                 className="object-cover rounded-lg static"
                 unoptimized
+              /> */}
+              <ImageCustom
+                src="https://picsum.photos/600/400?grayscale"
+                alt="Hero Product"
+                className="static"
               />
             </div>
           </section>
