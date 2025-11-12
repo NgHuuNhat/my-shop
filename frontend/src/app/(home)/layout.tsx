@@ -1,6 +1,4 @@
-import Footer from '@/shared/components/footer/Footer'
 import Header from '@/shared/components/header/Header'
-import React from 'react'
 
 export default function layout({ children }: any) {
     return (

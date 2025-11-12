@@ -34,10 +34,14 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
 
                 {/* Ảnh sản phẩm */}
                 <div className="rounded-2xl cursor-pointer relative w-full pb-[100%] bg-gray-200 overflow-hidden">
-                    <img
-                        src={product.thumbnail}
-                        alt={product.name}
-                        className="rounded-2xl cursor-pointer absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    <Image
+                        src={product.thumbnail || "/images/no-image.png"}       // URL ảnh
+                        alt={product.name || "Product image"}            // alt text
+                        fill                          // thay thế cho w-full h-full + absolute
+                        className="rounded-2xl cursor-pointer object-cover transition-transform duration-300 hover:scale-105"
+                        sizes="100vw"                 // responsive
+                        unoptimized={true}           // nếu muốn tối ưu Next.js
+                    // loading="eager"
                     />
                 </div>
 
