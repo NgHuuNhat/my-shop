@@ -2,7 +2,7 @@ import React from 'react'
 
 const Search = () => {
     return (
-        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-3 p-4">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-3 p-4 py-10 max-w-7xl mx-auto">
 
             {/* Ô tìm kiếm */}
             <input

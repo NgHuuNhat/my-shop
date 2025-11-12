@@ -9,7 +9,6 @@ export default function layout({ children }: any) {
             <main className="flex-1 flex flex-col">
                 {children}
             </main>
-            {/* <Footer /> */}
         </div>
     )
 }

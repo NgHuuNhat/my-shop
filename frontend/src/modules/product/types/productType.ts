@@ -1,13 +1,13 @@
 export interface ProductType {
-  createdAt: string
-  name: string
-  thumbnail: string
-  price: string
-  description: string
-  slug: string
-  images: any[]
-  category: string
-  updatedAt: string
+  createdAt?: string
+  name?: string
+  thumbnail?: string
+  price?: string
+  description?: string
+  slug?: string
+  images?: any[]
+  category?: string
+  updatedAt?: string
   id: string
 }
 

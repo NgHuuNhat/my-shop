@@ -1,15 +1,18 @@
 'use client'
-import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/shared/constants/constan"
 import { useRouter, useSearchParams } from "next/navigation"
 import React, { useCallback, useMemo } from "react"
+import { PaginationProps } from "./paginationType"
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from "./paginationConstant"
 
-const Pagination = ({ isTest }: any) => {
+const Pagination = ({ items = [] }: PaginationProps) => {
     const router = useRouter()
     const searchParams = useSearchParams()
 
     // Lấy page và limit từ searchParams
     const currentPage = useMemo(() => Number(searchParams?.get("page")) || DEFAULT_PAGE, [searchParams])
     const currentLimit = useMemo(() => Number(searchParams?.get("limit")) || DEFAULT_LIMIT, [searchParams])
+
+    const isDisabledNext = items.length < currentLimit
 
     // Callback để tránh tạo hàm mới mỗi lần render
     const handlePageChange = useCallback(
@@ -22,7 +25,7 @@ const Pagination = ({ isTest }: any) => {
     )
 
     return (
-        <div className="flex justify-center items-center gap-4 my-10">
+        <div className="flex justify-center items-center gap-4 py-10 w-full max-w-7xl mx-auto">
             <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -35,8 +38,8 @@ const Pagination = ({ isTest }: any) => {
 
             <button
                 onClick={() => handlePageChange(currentPage + 1)}
-                disabled={isTest}
-                className={`cursor-pointer px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 transition ${isTest ? 'opacity-50 cursor-not-allowed' : ''}`}
+                disabled={isDisabledNext}
+                className={`cursor-pointer px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 transition ${isDisabledNext ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
                 &gt;
             </button>

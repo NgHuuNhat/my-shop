@@ -1,29 +1,31 @@
+import ProductCard from "@/modules/product/components/ProductCard";
 import { ProductType } from "@/modules/product/types/productType";
 import Footer from "@/shared/components/footer/Footer";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function HomePage() {
-  const featuredProducts = [
-    { id: '1', name: 'Product 1', price: 120000, thumbnail: 'https://picsum.photos/300?random=1' },
-    { id: '2', name: 'Product 2', price: 95000, thumbnail: 'https://picsum.photos/300?random=2' },
-    { id: '3', name: 'Product 3', price: 145000, thumbnail: 'https://picsum.photos/300?random=3' },
-    { id: '4', name: 'Product 4', price: 80000, thumbnail: 'https://picsum.photos/300?random=4' },
+  const featuredProducts: ProductType[] = [
+    { id: '1', name: 'Product 1', price: '120000', thumbnail: 'https://picsum.photos/300?random=1' },
+    { id: '2', name: 'Product 2', price: '95000', thumbnail: 'https://picsum.photos/300?random=2' },
+    { id: '3', name: 'Product 3', price: '145000', thumbnail: 'https://picsum.photos/300?random=3' },
+    { id: '4', name: 'Product 4', price: '80000', thumbnail: 'https://picsum.photos/300?random=4' },
   ]
 
-  const products: ProductType[] = await fetch('https://691078c77686c0e9c20a6dc4.mockapi.io/api/product?page=1&limit=4', {
-    next: { revalidate: 60 },
-  })
-    .then(res => res.ok ? res.json() : null)
-    .then(data => Array.isArray(data) ? data : [])
-    .catch(() => [])
+  const products: ProductType[] = await (
+    fetch(`https://691078c77686c0e9c20a6dc4.mockapi.io/api/product?page=${1}&limit=${4}`, { next: { revalidate: 60 } })
+      .then(res => res.ok ? res.json() : null)
+      .then(data => Array.isArray(data) ? data : [])
+      .catch(() => [])
+  );
 
   const productsRender = products ? products : featuredProducts
 
   return (
     <>
-      <div className="flex-1 flex flex-col items-center justify-center">
-        <main className="flex flex-col items-center justify-center px-6 py-12 space-y-16 max-w-7xl mx-auto">
+      <main className="px-6 py-16">
+        <div className="flex flex-col items-center justify-center space-y-16 max-w-7xl mx-auto">
+          
           {/* Hero Section */}
           <section className="w-full flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1 text-center md:text-left space-y-4">
@@ -71,20 +73,8 @@ export default async function HomePage() {
           <section className="w-full">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Products</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-              {productsRender.map(p => (
-                <Link key={p.id} href="/products" className="group flex flex-col items-start hover:scale-105 transition-transform duration-200">
-                  <div className="relative w-full pb-[100%] overflow-hidden rounded-lg bg-gray-200">
-                    <Image
-                      src={p.thumbnail}
-                      alt={p.name}
-                      fill
-                      className="object-cover rounded-lg transition-transform duration-200 group-hover:scale-110"
-                      unoptimized
-                    />
-                  </div>
-                  <h3 className="mt-2 text-sm font-medium text-gray-900 truncate">{p.name}</h3>
-                  <p className="mt-1 text-sm text-gray-500">{p.price}₫</p>
-                </Link>
+              {productsRender.map((p: ProductType) => (
+                <ProductCard key={p.id} product={p} />
               ))}
             </div>
           </section>
@@ -111,8 +101,8 @@ export default async function HomePage() {
               Start Shopping
             </Link>
           </section>
-        </main>
-      </div>
+        </div>
+      </main>
       <Footer />
     </>
   );

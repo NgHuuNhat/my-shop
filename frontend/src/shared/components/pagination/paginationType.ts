@@ -1,6 +1,3 @@
-import { ReactElement } from "react";
-
-export interface PaginationType {
-    currentPage: number
-    limit: number
+export interface PaginationProps {
+    items?: any[],
 }
