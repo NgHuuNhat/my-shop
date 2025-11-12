@@ -1,6 +1,7 @@
 import ProductCard from '@/modules/product/components/ProductCard'
 import { ProductDetailProps, ProductType } from '@/modules/product/types/productType'
 import Error from '@/shared/components/Error/Error'
+import ImageCustom from '@/shared/components/ImageCustom/ImageCustom'
 import Image from 'next/image'
 
 export default async function ProductDetail({ params }: ProductDetailProps) {
@@ -34,14 +35,23 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
 
                 {/* Ảnh sản phẩm */}
                 <div className="rounded-2xl cursor-pointer relative w-full pb-[100%] bg-gray-200 overflow-hidden">
-                    <Image
+                    {/* <Image
                         src={product.thumbnail || "/images/no-image.png"}       // URL ảnh
                         alt={product.name || "Product image"}            // alt text
                         fill                          // thay thế cho w-full h-full + absolute
                         className="rounded-2xl cursor-pointer object-cover transition-transform duration-300 hover:scale-105"
                         sizes="100vw"                 // responsive
                         unoptimized={true}           // nếu muốn tối ưu Next.js
-                    // loading="eager"
+                        loading="eager"
+                    /> */}
+                    <ImageCustom
+                        src={product.thumbnail || "/images/no-image.png"}       // URL ảnh
+                        alt={product.name || "Product image"}            // alt text
+                        // fill                          // thay thế cho w-full h-full + absolute
+                        // className="rounded-2xl cursor-pointer object-cover transition-transform duration-300 hover:scale-105"
+                        // sizes="100vw"                 // responsive
+                        // unoptimized={false}           // nếu muốn tối ưu Next.js
+                        // loading="eager"
                     />
                 </div>
 

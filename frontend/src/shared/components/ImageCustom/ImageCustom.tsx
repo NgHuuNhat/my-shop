@@ -18,8 +18,9 @@ export default function ImageCustom({ src, alt, className }: ImageCustomProps) {
       alt={alt || "Product image"}
       fill
       unoptimized
-      loading="eager"
-      className={`object-cover rounded-2xl transition-opacity duration-300 ${className || ''}`}
+      // loading="eager"
+      sizes="100vw"
+      className={`object-cover rounded-2xl transition-opacity duration-1000 ${className || ''}`}
       style={{
         opacity: loaded ? 1 : 0,
       }}
