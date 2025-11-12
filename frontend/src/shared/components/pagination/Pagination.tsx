@@ -1,4 +1,5 @@
 'use client'
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/shared/constants/constan"
 import { useRouter, useSearchParams } from "next/navigation"
 import React, { useCallback, useMemo } from "react"
 
@@ -7,8 +8,8 @@ const Pagination = ({ isTest }: any) => {
     const searchParams = useSearchParams()
 
     // Lấy page và limit từ searchParams
-    const currentPage = useMemo(() => Number(searchParams?.get("page")) || 1, [searchParams])
-    const currentLimit = useMemo(() => Number(searchParams?.get("limit")) || 10, [searchParams])
+    const currentPage = useMemo(() => Number(searchParams?.get("page")) || DEFAULT_PAGE, [searchParams])
+    const currentLimit = useMemo(() => Number(searchParams?.get("limit")) || DEFAULT_LIMIT, [searchParams])
 
     // Callback để tránh tạo hàm mới mỗi lần render
     const handlePageChange = useCallback(

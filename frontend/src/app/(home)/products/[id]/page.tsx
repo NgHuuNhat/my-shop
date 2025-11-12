@@ -1,6 +1,6 @@
 import ProductCard from '@/modules/product/components/ProductCard'
 import { ProductDetailProps, ProductType } from '@/modules/product/types/productType'
-import Error from '@/shared/error/Error'
+import Error from '@/shared/components/error/Error'
 import Image from 'next/image'
 
 export default async function ProductDetail({ params }: ProductDetailProps) {

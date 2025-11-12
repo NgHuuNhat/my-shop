@@ -1,5 +1,5 @@
-import Footer from '@/shared/footer/Footer'
-import Header from '@/shared/header/Header'
+import Footer from '@/shared/components/footer/Footer'
+import Header from '@/shared/components/header/Header'
 import React from 'react'
 
 export default function layout({ children }: any) {
