@@ -1,8 +1,8 @@
 import ProductList from "@/modules/product/components/ProductList"
 import { ProductPageProps, ProductType } from "@/modules/product/types/productType"
-import Pagination from "@/shared/components/Pagination/Pagination"
-import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/shared/components/Pagination/paginationConstant"
-import Search from "@/shared/components/Search/Search"
+import Pagination from "@/shared/components/pagination/Pagination"
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/shared/components/pagination/paginationConstant"
+import Search from "@/shared/components/search/Search"
 
 export default async function ProductsPage({ searchParams }: ProductPageProps) {
   const { page, limit }: any = await searchParams

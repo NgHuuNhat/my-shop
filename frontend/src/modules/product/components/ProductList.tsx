@@ -1,6 +1,6 @@
 import { ProductType, ProductListProps } from '../types/productType'
 import ProductCard from './ProductCard'
-import Error from '@/shared/components/Error/Error'
+import Error from '@/shared/components/error/Error'
 
 export default function ProductList({ products }: ProductListProps) {
 

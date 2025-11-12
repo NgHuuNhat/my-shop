@@ -1,7 +1,7 @@
 import React from 'react'
 import { ProductCardProps } from '../types/productType'
 import Link from 'next/link'
-import ImageCustom from '@/shared/components/ImageCustom/ImageCustom'
+import ImageCustom from '@/shared/components/imageCustom/ImageCustom'
 
 const ProductCard = (({ product }: ProductCardProps) => {
     return (

@@ -1,4 +1,4 @@
-import Header from '@/shared/components/Header/Header'
+import Header from '@/shared/components/header/Header'
 
 export default function layout({ children }: any) {
     return (

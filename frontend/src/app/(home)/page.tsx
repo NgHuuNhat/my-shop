@@ -1,8 +1,7 @@
 import ProductCard from "@/modules/product/components/ProductCard";
 import { ProductType } from "@/modules/product/types/productType";
-import Footer from "@/shared/components/Footer/Footer";
-import ImageCustom from "@/shared/components/ImageCustom/ImageCustom";
-import Image from "next/image";
+import Footer from "@/shared/components/footer/Footer";
+import ImageCustom from "@/shared/components/imageCustom/ImageCustom";
 import Link from "next/link";
 
 export default async function HomePage() {
