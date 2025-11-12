@@ -40,7 +40,7 @@ export default async function HomePage() {
                 Browse Products
               </Link>
             </div>
-            < div className="flex-1 relative min-h-[16rem] w-full h-64 sm:h-80 md:h-96">
+            < div className="flex-1 relative min-h-[16rem] w-full h-64 sm:h-80 md:h-96 rounded-lg bg-gray-200">
               <Image
                 src="https://picsum.photos/600/400?grayscale"
                 alt="Hero Product"
@@ -73,7 +73,7 @@ export default async function HomePage() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
               {productsRender.map(p => (
                 <Link key={p.id} href="/products" className="group flex flex-col items-start hover:scale-105 transition-transform duration-200">
-                  <div className="relative w-full pb-[100%] overflow-hidden rounded-lg">
+                  <div className="relative w-full pb-[100%] overflow-hidden rounded-lg bg-gray-200">
                     <Image
                       src={p.thumbnail}
                       alt={p.name}
