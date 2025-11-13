@@ -35,7 +35,7 @@ const Search = ({ value }: any) => {
                     placeholder="🔍 Tìm sản phẩm..."
                     className="flex-1 w-full px-4 py-2 rounded-lg focus:outline-none focus:border-gray-400 transition text-gray-700 placeholder-gray-400"
                 />
-                <button type="submit" className="border border-gray-200 px-4 py-2 rounded-lg cursor-pointer">
+                <button type="submit" className="border-l border-gray-200 py-2 px-4 rounded-lg cursor-pointer">
                     Tìm kiếm
                 </button>
             </form>
