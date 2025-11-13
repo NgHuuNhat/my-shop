@@ -1,37 +1,40 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 
-const Search = ({ value }: any) => {
-    const [keyword, setKeyword] = useState(value)
-    const router = useRouter()
-    // const [isTyping, setIsTyping] = useState(false)
-    // const inputRef = useRef<HTMLInputElement>(null)
+const Search = () => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const [value, setValue] = useState(searchParams.get("search") || "");
+    
+    // mỗi khi searchParams thay đổi → update value
+    useEffect(() => {
+        setValue(searchParams.get("search") || "");
+    }, [searchParams]);
 
-    const handleSearch = (e: React.FormEvent) => {
-        e.preventDefault()
-        const query = keyword.trim()
-        if (!query) {
-            router.push('/products') // reset về danh sách mặc định
-        } else {
-            router.push(`/products?search=${encodeURIComponent(query)}`)
-        }
-    }
+    // Debounce: cập nhật URL sau 300ms
+    useEffect(() => {
+        const delay = setTimeout(() => {
+            const params = new URLSearchParams(searchParams.toString());
+            if (value == '') {
+                router.push('/products')
+            } else {
+                params.set("search", value);
+                router.replace(`?${params.toString()}`, { scroll: false });
+            }
+        }, 500);
+        return () => clearTimeout(delay);
+    }, [value]);
 
     return (
         <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-3 p-4 py-10 max-w-7xl mx-auto">
 
             {/* Ô tìm kiếm */}
-            {/* <input
-                type="text"
-                placeholder="🔍 Tìm sản phẩm..."
-                className="flex-1 w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition text-gray-700 placeholder-gray-400"
-            /> */}
-            <form onSubmit={handleSearch} className="border border-gray-200 flex-1 flex gap-1 w-full rounded-lg focus:outline-none focus:border-gray-400 transition text-gray-700 placeholder-gray-400">
+            <form onSubmit={(e) => e.preventDefault()} className="border border-gray-200 flex-1 flex gap-1 w-full rounded-lg focus:outline-none focus:border-gray-400 transition text-gray-700 placeholder-gray-400">
                 <input
                     type="text"
-                    value={keyword}
-                    onChange={(e) => setKeyword(e.target.value)}
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
                     placeholder="🔍 Tìm sản phẩm..."
                     className="flex-1 w-full px-4 py-2 rounded-lg focus:outline-none focus:border-gray-400 transition text-gray-700 placeholder-gray-400"
                 />
@@ -68,7 +71,7 @@ const Search = ({ value }: any) => {
                 </select>
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">▾</span>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -11,7 +11,7 @@ const Pagination = ({ data = [] }: PaginationProps) => {
     // Lấy page và limit từ searchParams
     const currentPage = useMemo(() => Number(searchParams?.get("page")) || DEFAULT_PAGE, [searchParams])
     const currentLimit = useMemo(() => Number(searchParams?.get("limit")) || DEFAULT_LIMIT, [searchParams])
-    // const currentSearch = useMemo(() => searchParams.get("search") || "", [searchParams])
+    const currentSearch = useMemo(() => searchParams.get("search") || "", [searchParams])
 
     const isDisabledNext = data.length < currentLimit
 
@@ -34,8 +34,9 @@ const Pagination = ({ data = [] }: PaginationProps) => {
     //         params.set("limit", currentLimit.toString())
 
     //         // 👇 nếu có từ khóa search thì giữ nguyên
-    //         if (currentSearch) params.set("search", currentSearch)
-    //         else params.delete("search")
+    //         if (currentSearch) {
+    //             params.set("search", currentSearch)
+    //         } else params.delete("search")
 
     //         router.push(`/products?${params.toString()}`)
     //         router.refresh()
