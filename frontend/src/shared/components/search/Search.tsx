@@ -6,7 +6,7 @@ const Search = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [value, setValue] = useState(searchParams.get("search") || "");
-    
+
     // mỗi khi searchParams thay đổi → update value
     useEffect(() => {
         setValue(searchParams.get("search") || "");
@@ -17,8 +17,13 @@ const Search = () => {
         const delay = setTimeout(() => {
             const params = new URLSearchParams(searchParams.toString());
             if (value == '') {
-                router.push('/products')
+                // reset page về mặc định, xóa search param
+                params.delete("search");
+                router.replace(`?${params.toString()}`, { scroll: false });
+                // params.set("page", "1");
             } else {
+                params.delete("page");
+                params.delete("limit");
                 params.set("search", value);
                 router.replace(`?${params.toString()}`, { scroll: false });
             }
