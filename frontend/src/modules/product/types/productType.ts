@@ -15,6 +15,7 @@ export interface ProductPageProps {
   searchParams?: {
     page?: string,
     limit?: string,
+    search?: string,
   }
 }
 

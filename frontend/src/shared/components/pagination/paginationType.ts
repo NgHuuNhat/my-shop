@@ -1,3 +1,3 @@
 export interface PaginationProps {
-    items?: any[],
+    data?: any[],
 }

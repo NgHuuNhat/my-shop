@@ -5,12 +5,18 @@ import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/shared/components/pagination/pagi
 import Search from "@/shared/components/search/Search"
 
 export default async function ProductsPage({ searchParams }: ProductPageProps) {
-  const { page, limit }: any = await searchParams
+  const { page, limit, search }: any = await searchParams
   const currentPage = Number(page) || DEFAULT_PAGE
   const currentLimit = Number(limit) || DEFAULT_LIMIT
+  const currenSearch = search || ''
+  // &page=${currentPage}&limit=${currentLimit}
+
+  const urlApi = currenSearch
+    ? `https://691078c77686c0e9c20a6dc4.mockapi.io/api/product?search=${currenSearch}`
+    : `https://691078c77686c0e9c20a6dc4.mockapi.io/api/product?page=${currentPage}&limit=${currentLimit}`
 
   const products: ProductType[] = await (
-    fetch(`https://691078c77686c0e9c20a6dc4.mockapi.io/api/product?page=${currentPage}&limit=${currentLimit}`, { next: { revalidate: 60 } })
+    fetch(urlApi, { next: { revalidate: 60 } })
       .then(res => res.ok ? res.json() : null)
       .then(data => Array.isArray(data) ? data : [])
       .catch(() => [])
@@ -18,9 +24,10 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
 
   return (
     <div className='flex-1 flex flex-col'>
-      <Search />
+      <Search value={currenSearch} />
+      {currenSearch ? (<p className="w-full max-w-7xl mx-auto px-4 pb-2">Có {products.length} kết quả tìm kiếm...</p>) : ('')}
       <ProductList products={products} />
-      <Pagination items={products} />
+      {currenSearch ? (<div className="flex justify-center items-center gap-4 py-10 w-full max-w-7xl mx-auto"></div>) : (<Pagination data={products} />)}
     </div>
   )
 }

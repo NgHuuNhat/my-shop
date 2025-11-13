@@ -1,15 +1,44 @@
-import React from 'react'
+'use client'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useRef, useState } from 'react'
 
-const Search = () => {
+const Search = ({ value }: any) => {
+    const [keyword, setKeyword] = useState(value)
+    const router = useRouter()
+    // const [isTyping, setIsTyping] = useState(false)
+    // const inputRef = useRef<HTMLInputElement>(null)
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault()
+        const query = keyword.trim()
+        if (!query) {
+            router.push('/products') // reset về danh sách mặc định
+        } else {
+            router.push(`/products?search=${encodeURIComponent(query)}`)
+        }
+    }
+
     return (
         <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-3 p-4 py-10 max-w-7xl mx-auto">
 
             {/* Ô tìm kiếm */}
-            <input
+            {/* <input
                 type="text"
                 placeholder="🔍 Tìm sản phẩm..."
                 className="flex-1 w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition text-gray-700 placeholder-gray-400"
-            />
+            /> */}
+            <form onSubmit={handleSearch} className="flex-1 flex gap-1 w-full rounded-lg focus:outline-none focus:border-gray-400 transition text-gray-700 placeholder-gray-400">
+                <input
+                    type="text"
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    placeholder="🔍 Tìm sản phẩm..."
+                    className="flex-1 w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition text-gray-700 placeholder-gray-400"
+                />
+                {/* <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
+                    Tìm
+                </button> */}
+            </form>
 
             {/* Bộ lọc giá */}
             <div className="relative w-full md:w-full lg:w-[200px]">
