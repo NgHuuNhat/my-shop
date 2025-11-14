@@ -131,15 +131,17 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
 
                 {/* Paragraphs */}
                 <p className="text-gray-700 leading-relaxed mb-3">
-                    {`Sản phẩm được thiết kế với chất liệu cao cấp, độ bền cao và kiểu dáng hiện đại phù hợp với nhu cầu sử dụng hàng ngày.`}
+                    {"Sản phẩm được thiết kế với chất liệu cao cấp, độ bền cao và kiểu dáng hiện đại phù hợp với nhu cầu sử dụng hàng ngày."}
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-3">
-                    {`Công nghệ tiên tiến giúp sản phẩm vận hành mượt mà, tiết kiệm năng lượng và thân thiện với môi trường.`}
+                    {"Công nghệ tiên tiến giúp sản phẩm vận hành mượt mà, tiết kiệm năng lượng và thân thiện với môi trường."}
                 </p>
 
                 {/* List tính năng / thông số */}
                 <ul className="list-disc list-inside text-gray-700 mb-3">
-                    {`Chất liệu: Cao cấp", "Kích thước: 30x20x10cm", "Màu sắc: Đỏ, Xanh, Đen", "Bảo hành: 12 tháng.`}
+                    {(["Chất liệu: Cao cấp", "Kích thước: 30x20x10cm", "Màu sắc: Đỏ, Xanh, Đen", "Bảo hành: 12 tháng"]).map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                    ))}
                 </ul>
 
                 {/* Optional: chú thích nhỏ */}
