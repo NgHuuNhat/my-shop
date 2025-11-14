@@ -6,7 +6,7 @@ import ImageCustom from '@/shared/components/image/ImageCustom'
 const ProductCard = (({ product }: ProductCardProps) => {
     return (
         <Link href={`/products/${product.id}`} className="group flex flex-col items-start cursor-pointer hover:scale-[1.03] transition-transform duration-300 w-full">
-            <div className="relative w-full pb-[100%] overflow-hidden rounded-2xl shadow-lg bg-gray-200">
+            <div className="relative w-full pb-[100%] overflow-hidden rounded shadow-lg bg-gray-200">
                 <ImageCustom
                     src={product.thumbnail || "/images/no-image.png"}
                     alt={product.name || "Product image"}

@@ -17,16 +17,13 @@ const Search = () => {
         const delay = setTimeout(() => {
             const params = new URLSearchParams(searchParams.toString());
             if (value == '') {
-                // reset page về mặc định, xóa search param
                 params.delete("search");
-                router.replace(`?${params.toString()}`, { scroll: false });
-                // params.set("page", "1");
             } else {
                 params.delete("page");
                 params.delete("limit");
                 params.set("search", value);
-                router.replace(`?${params.toString()}`, { scroll: false });
             }
+            router.replace(`?${params.toString()}`, { scroll: false });
         }, 500);
         return () => clearTimeout(delay);
     }, [value]);

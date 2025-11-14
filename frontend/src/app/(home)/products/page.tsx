@@ -2,7 +2,6 @@ import ProductList from "@/modules/product/components/ProductList"
 import { ProductPageProps, ProductType } from "@/modules/product/types/productType"
 import Pagination from "@/shared/components/pagination/Pagination"
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/shared/components/pagination/paginationConstant"
-import Search from "@/shared/components/search/Search"
 
 export default async function ProductsPage({ searchParams }: ProductPageProps) {
   const { page, limit, search }: any = await searchParams
@@ -24,7 +23,7 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
   );
 
   return (
-    <>
+    <div className="flex-1 flex flex-col">
       {currenSearch && <p className="w-full max-w-7xl mx-auto px-4 pb-2">Có {products.length} kết quả tìm kiếm...</p>}
       <ProductList products={products} />
       {currenSearch ? (
@@ -32,6 +31,6 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
       ) : (
         <Pagination data={products} />
       )}
-    </>
+    </div>
   )
 }

@@ -2,7 +2,8 @@ import ProductCard from '@/modules/product/components/ProductCard'
 import { ProductDetailProps, ProductType } from '@/modules/product/types/productType'
 import Error from '@/shared/components/error/Error'
 import ImageCustom from '@/shared/components/image/ImageCustom'
-import Image from 'next/image'
+import { FaShoppingCart, FaCoins } from 'react-icons/fa'
+
 
 export default async function ProductDetail({ params }: ProductDetailProps) {
     const { id } = await params
@@ -32,61 +33,124 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
 
             {/* Ảnh + Thông tin */}
             <div className="px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-
-                {/* Ảnh sản phẩm */}
-                <div className="rounded-2xl cursor-pointer relative w-full pb-[100%] bg-gray-200 overflow-hidden">
-                    {/* <Image
-                        src={product.thumbnail || "/images/no-image.png"}       // URL ảnh
-                        alt={product.name || "Product image"}            // alt text
-                        fill                          // thay thế cho w-full h-full + absolute
-                        className="rounded-2xl cursor-pointer object-cover transition-transform duration-300 hover:scale-105"
-                        sizes="100vw"                 // responsive
-                        unoptimized={true}           // nếu muốn tối ưu Next.js
-                        loading="eager"
-                    /> */}
-                    <ImageCustom
-                        src={product.thumbnail || "/images/no-image.png"}       // URL ảnh
-                        alt={product.name || "Product image"}            // alt text
-                    // fill                          // thay thế cho w-full h-full + absolute
-                    // className="rounded-2xl cursor-pointer object-cover transition-transform duration-300 hover:scale-105"
-                    // sizes="100vw"                 // responsive
-                    // unoptimized={false}           // nếu muốn tối ưu Next.js
-                    // loading="eager"
-                    />
+                {/* Ảnh + Thông tin */}
+                <div className="flex flex-col">
+                    {/* Ảnh chính */}
+                    <div className="rounded cursor-pointer relative w-full pb-[100%] bg-gray-200 overflow-hidden ">
+                        <ImageCustom
+                            src={product.thumbnail || "/images/no-image.png"}
+                            alt={product.name || "Product image"}
+                        />
+                    </div>
+                    {/* Thumbnail list */}
+                    <div className="flex flex-nowrap overflow-x-auto gap-2 py-2 justify-between items-center">
+                        {[product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail].map((img, i) => (
+                            <div
+                                key={i}
+                                className="bg-gray-200 relative w-20 h-20 rounded overflow-hidden cursor-pointer flex-shrink-0 transition-transform hover:scale-105"
+                            >
+                                <ImageCustom src={img || "/images/no-image.png"} alt={`thumb-${i}`} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Thông tin sản phẩm */}
                 <div className="flex flex-col justify-between h-full">
                     <div>
-                        <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-snug break-words">
-                            {product.name}
-                        </h1>
+                        {/* Thông tin sản phẩm */}
+                        <div>
+                            <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-snug break-words">
+                                {product.name}
+                            </h1>
 
-                        <div className="mt-4 flex items-center gap-3">
-                            <p className="text-3xl font-bold text-gray-600">
-                                {Number(product.price).toLocaleString('vi-VN')}₫
-                            </p>
+                            <div className="mt-4 flex items-center gap-3">
+                                <p className="text-3xl font-bold text-gray-600">
+                                    {Number(product.price).toLocaleString('vi-VN')}₫
+                                </p>
+                            </div>
+
+                            {product.description && (
+                                <p className="mt-4 text-gray-700 leading-relaxed whitespace-pre-line">
+                                    {product.description}
+                                </p>
+                            )}
                         </div>
 
-                        {product.description && (
-                            <p className="mt-4 text-gray-700 leading-relaxed whitespace-pre-line">
-                                {product.description}
-                            </p>
-                        )}
+                        {/* select */}
+                        <div>
+                            {/* Chọn màu */}
+                            <div className="mt-5">
+                                <h3 className="font-semibold mb-2 text-gray-800">Select color:</h3>
+                                <div className="flex gap-3">
+                                    {["Đỏ", "Xanh", "Đen"].map((color) => (
+                                        <button
+                                            key={color}
+                                            className="cursor-pointer px-4 py-2 border rounded-full text-sm hover:bg-gray-100 transition"
+                                        >
+                                            {color}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Chọn size */}
+                            <div className="mt-5">
+                                <h3 className="font-semibold mb-2 text-gray-800">Select size:</h3>
+                                <div className="flex gap-3">
+                                    {["S", "M", "L", "XL"].map((size) => (
+                                        <button
+                                            key={size}
+                                            className="cursor-pointer px-4 py-2 border rounded-full text-sm hover:bg-gray-100 transition"
+                                        >
+                                            {size}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+
                     {/* Nút hành động */}
-                    <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                        <button className="flex-1 px-5 py-3 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition">
-                            Thêm vào giỏ hàng
+                    <div className="mt-6 flex flex-col gap-3">
+                        <button className="cursor-pointer flex-1 px-5 py-5 bg-gray-950 text-white font-bold rounded-full hover:bg-[#707072] transition">
+                            <span className='flex justify-center items-center gap-1 transition-colors'>Buy Now <FaCoins /></span>
                         </button>
-                        <button className="flex-1 px-5 py-3 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition">
-                            Mua ngay
+                        <button className="cursor-pointer flex-1 px-5 py-5 bg-white text-black border-2 border-gray-300 font-bold rounded-full hover:border-black transition">
+                            <span className='flex justify-center items-center gap-1 transition-colors'>Add to Cart <FaShoppingCart /></span>
                         </button>
                     </div>
                 </div>
 
             </div>
+
+            {/* Mô tả chi tiết dài */}
+            <div className="pt-10 px-4">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Chi tiết sản phẩm</h3>
+
+                {/* Paragraphs */}
+                <p className="text-gray-700 leading-relaxed mb-3">
+                    {product.detailParagraph1 || "Sản phẩm được thiết kế với chất liệu cao cấp, độ bền cao và kiểu dáng hiện đại phù hợp với nhu cầu sử dụng hàng ngày."}
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                    {product.detailParagraph2 || "Công nghệ tiên tiến giúp sản phẩm vận hành mượt mà, tiết kiệm năng lượng và thân thiện với môi trường."}
+                </p>
+
+                {/* List tính năng / thông số */}
+                <ul className="list-disc list-inside text-gray-700 mb-3">
+                    {(product.features || ["Chất liệu: Cao cấp", "Kích thước: 30x20x10cm", "Màu sắc: Đỏ, Xanh, Đen", "Bảo hành: 12 tháng"]).map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                    ))}
+                </ul>
+
+                {/* Optional: chú thích nhỏ */}
+                {product.detailNote && (
+                    <p className="text-gray-500 text-sm italic">{product.detailNote}</p>
+                )}
+            </div>
+
+
 
             {/* Sản phẩm tương tự */}
             <div className='py-10 px-4'>

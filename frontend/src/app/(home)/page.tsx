@@ -37,12 +37,12 @@ export default async function HomePage() {
               </p>
               <Link
                 href="/products"
-                className="inline-block mt-4 px-6 py-3 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition"
+                className="inline-block mt-4 px-6 py-3 bg-[#111111] text-white font-semibold rounded hover:bg-[#707072] transition"
               >
-                Browse Products
+                Shopping now
               </Link>
             </div>
-            < div className="flex-1 relative min-h-[16rem] w-full h-64 sm:h-80 md:h-96 rounded-2xl bg-gray-200">
+            < div className="flex-1 relative min-h-[16rem] w-full h-64 sm:h-80 md:h-96 rounded bg-gray-200">
               {/* <Image
                 src="https://picsum.photos/600/400?grayscale"
                 alt="Hero Product"
@@ -101,9 +101,9 @@ export default async function HomePage() {
           <section className="w-full text-center">
             <Link
               href="/products"
-              className="inline-block px-8 py-4 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition"
+              className="inline-block px-8 py-4 bg-[#111111] text-white font-semibold rounded hover:bg-[#707072] transition"
             >
-              Start Shopping
+              Shopping now
             </Link>
           </section>
         </div>

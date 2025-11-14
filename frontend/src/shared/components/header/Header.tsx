@@ -7,25 +7,25 @@ export default function Header() {
             <nav className="flex gap-8">
                 <Link
                     href="/"
-                    className="text-gray-800 font-medium hover:text-blue-600 transition-colors"
+                    className="text-[#111111] font-bold hover:text-[#707072] transition-colors"
                 >
                     Home
                 </Link>
                 <Link
                     href="/products"
-                    className="text-gray-800 font-medium hover:text-blue-600 transition-colors"
+                    className="text-[#111111] font-bold hover:text-[#707072] transition-colors"
                 >
                     Products
                 </Link>
                 <Link
                     href="/cart"
-                    className="text-gray-800 font-medium hover:text-blue-600 transition-colors"
+                    className="text-[#111111] font-bold hover:text-[#707072] transition-colors"
                 >
                     Cart
                 </Link>
                 <Link
                     href="/login"
-                    className="text-gray-800 font-medium hover:text-blue-600 transition-colors"
+                    className="text-[#111111] font-bold hover:text-[#707072] transition-colors"
                 >
                     Login
                 </Link>
