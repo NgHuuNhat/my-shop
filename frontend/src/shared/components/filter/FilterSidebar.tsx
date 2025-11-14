@@ -105,7 +105,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
       {/* Button áp dụng filter */}
       <button
         onClick={handleApply}
-        className="w-full bg-gray-900 text-white py-2 mt-4 rounded hover:bg-gray-800 transition"
+        className="cursor-pointer w-full border border-gray-200 text-gray-700 py-2 mt-4 rounded-lg transition"
       >
         Áp dụng lọc
       </button>
