@@ -26,7 +26,7 @@ export default function Header() {
                         Products
                     </Link>
                     <Link
-                        href="#"
+                        href="/about"
                         className="text-[#111111] font-bold hover:text-[#707072] transition-colors flex items-center"
                     >
                         About
