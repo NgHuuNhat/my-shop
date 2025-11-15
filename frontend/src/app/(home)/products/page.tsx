@@ -24,7 +24,7 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
 
   return (
     <div className="flex-1 flex flex-col">
-      {currenSearch && <p className="w-full max-w-7xl mx-auto px-4 pb-2">Có {products.length} kết quả tìm kiếm...</p>}
+      {currenSearch && <p className="w-full max-w-7xl mx-auto px-4 pb-2 mt-[-28px] text-sm">Có {products.length} kết quả tìm kiếm...</p>}
       <ProductList products={products} />
       {currenSearch ? (
         <div className="flex justify-center items-center gap-4 py-10 w-full max-w-7xl mx-auto"></div>
