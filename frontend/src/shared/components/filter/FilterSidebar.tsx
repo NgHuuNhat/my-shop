@@ -40,7 +40,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
   }
 
   return (
-    <aside className={`hidden md:block w-full md:w-72 flex-shrink-0 px-4 py-10 ${className}`}>
+    <aside className={`hidden lg:block w-full md:w-72 flex-shrink-0 px-4 py-10 ${className}`}>
       <span className='flex mb-4 items-center gap-1'>
         <FaFilter />
         <h2 className="text-lg font-semibold">Filter Products</h2>
