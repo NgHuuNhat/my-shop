@@ -39,8 +39,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
   }
 
   return (
-    <aside className={`w-full md:w-72 flex-shrink-0 px-4 pb-10 ${className}`}>
-      <h2 className="text-lg font-semibold mb-4">Bộ lọc</h2>
+    <aside className={`hidden md:block w-full md:w-72 flex-shrink-0 px-4 py-10 ${className}`}>
+      <h2 className="text-lg font-semibold mb-4">Filter Products</h2>
 
       {/* Giá */}
       <div className="mb-4">
@@ -105,7 +105,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
       {/* Button áp dụng filter */}
       <button
         onClick={handleApply}
-        className="cursor-pointer w-full border border-gray-200 text-gray-700 py-2 mt-4 rounded-lg transition"
+        className="cursor-pointer w-full text-black bg-gray-100 py-2 mt-4 rounded-2xl transition hover:bg-gray-200"
       >
         Áp dụng lọc
       </button>

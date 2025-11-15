@@ -7,9 +7,10 @@ interface ImageCustomProps {
   src: string;
   alt: string;
   className?: string;
+  loading?: string
 }
 
-export default function ImageCustom({ src, alt, className }: ImageCustomProps) {
+export default function ImageCustom({ src, alt, className, loading }: ImageCustomProps) {
   const [loaded, setLoaded] = useState(false);
 
   return (
@@ -20,7 +21,7 @@ export default function ImageCustom({ src, alt, className }: ImageCustomProps) {
       unoptimized
       loading="eager"
       sizes="100vw"
-      className={`object-cover rounded transition-opacity duration-1000 ${className || ''}`}
+      className={`object-cover transition-opacity duration-1000 ${className || ''}`}
       style={{
         opacity: loaded ? 1 : 0,
       }}

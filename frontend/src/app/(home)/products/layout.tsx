@@ -9,10 +9,10 @@ export default function Layout({ children }: any) {
     const show = pathname === '/products'
 
     return (
-        <div className="flex-1 flex flex-col">
-            {show && <Search />}
-            <div className="flex-1 w-full max-w-7xl mx-auto flex flex-col md:flex-row">
-                {show && <FilterSidebar />}
+        <div className="flex-1 flex w-full max-w-7xl mx-auto">
+            {show && <FilterSidebar />}
+            <div className="flex-1 flex flex-col">
+                {show && <Search />}
                 <div className="flex-1 flex">
                     {children}
                 </div>

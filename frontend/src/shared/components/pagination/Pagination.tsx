@@ -49,7 +49,7 @@ const Pagination = ({ data = [] }: PaginationProps) => {
             <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`cursor-pointer px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 transition ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`cursor-pointer px-4 py-2 rounded-2xl bg-gray-200 hover:bg-gray-300 transition ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
                 &lt;
             </button>
@@ -59,7 +59,7 @@ const Pagination = ({ data = [] }: PaginationProps) => {
             <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={isDisabledNext}
-                className={`cursor-pointer px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 transition ${isDisabledNext ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`cursor-pointer px-4 py-2 rounded-2xl bg-gray-200 hover:bg-gray-300 transition ${isDisabledNext ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
                 &gt;
             </button>
