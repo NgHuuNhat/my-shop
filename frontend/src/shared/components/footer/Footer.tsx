@@ -54,7 +54,7 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="py-16 text-center text-gray-400 text-sm font-medium">
-        &copy; {new Date().getFullYear()} My Store. All rights reserved.
+        &copy; {new Date().getFullYear()} My Store. All rights reserved. nhat200901@gmail.com
       </div>
     </footer>
   )

@@ -84,9 +84,10 @@ export default async function HomePage() {
             {list.map((i) => (
               <Link href={`/products/${i.id}`} key={i.id} className="relative min-w-[330px] h-[420px] rounded-3xl overflow-hidden bg-gray-200 flex-shrink-0">
                 <ImageCustom src={i.thumbnail || `https://picsum.photos/700/900?random=${i}`} alt="Trending Banner" className="object-cover w-full h-full" />
+                <div className="absolute inset-0 bg-black/20"></div>
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-3xl font-bold">{i.name}</h3>
-                  <h6 className="text-2xl font-bold">{i.price}₫</h6>
+                  <h3 className="text-l font-bold">{i.name}</h3>
+                  <h6 className="text-xl font-bold">{i.price}₫</h6>
                 </div>
               </Link>
             ))}
@@ -128,7 +129,7 @@ export default async function HomePage() {
         <section className="px-6 mt-32 max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold mb-10">Shop by Category</h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
 
             {[
               { name: "Shoes", img: 51 },

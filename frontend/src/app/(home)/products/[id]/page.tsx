@@ -43,13 +43,14 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                         />
                     </div>
                     {/* Thumbnail list */}
-                    <div className="flex flex-nowrap overflow-x-auto gap-4 py-2 justify-between items-center">
+                    <div className="flex flex-nowrap overflow-x-auto gap-1 py-1 justify-between items-center">
                         {[product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail].map((img, i) => (
                             <div
                                 key={i}
-                                className="bg-gray-200 relative w-20 h-20 rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 transition-transform hover:scale-105"
+                                className="bg-gray-200 relative w-30 h-30 rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 transition-transform"
                             >
                                 <ImageCustom src={img || "/images/no-image.png"} alt={`thumb-${i}`} />
+                                <div className="absolute inset-0 hover:bg-black/20"></div>
                             </div>
                         ))}
                     </div>
@@ -60,12 +61,12 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                     <div>
                         {/* Thông tin sản phẩm */}
                         <div>
-                            <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-snug break-words">
+                            <h1 className="text-xl md:text-2xl font-semibold text-gray-900 leading-snug break-words">
                                 {product.name}
                             </h1>
 
                             <div className="mt-4 flex items-center gap-3">
-                                <p className="text-3xl font-bold text-gray-600">
+                                <p className="text-4xl font-bold text-gray-600">
                                     {Number(product.price).toLocaleString('vi-VN')}₫
                                 </p>
                             </div>
@@ -155,7 +156,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             {/* Sản phẩm tương tự */}
             <div className='py-10 px-4'>
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Sản phẩm tương tự</h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1">
                     {[...Array(4)].map((_, i) => (
                         <ProductCard key={i} product={product} />
                     ))}
