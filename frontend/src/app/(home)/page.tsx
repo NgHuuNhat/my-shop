@@ -157,7 +157,7 @@ export default async function HomePage() {
         </section> */}
 
         {/* SECTION 7: FINAL CTA */}
-        <section className="text-center mt-40 mb-32 px-6">
+        <section className="text-center my-32 px-6">
           <h2 className="text-4xl font-bold">Ready to level up your style?</h2>
           <p className="mt-4 text-gray-600 text-lg max-w-xl mx-auto">Trải nghiệm bộ sưu tập mới nhất với công nghệ vượt trội & thiết kế hiện đại.</p>
           <Link href="/products" className="mt-8 inline-block bg-black text-white px-10 py-4 text-lg font-semibold rounded-full hover:bg-gray-800">Sản phẩm</Link>
