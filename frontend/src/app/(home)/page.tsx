@@ -12,9 +12,12 @@ export default async function HomePage() {
     { id: "4", name: "Product 4", price: "80000", thumbnail: "https://picsum.photos/900/1000?random=4" },
   ];
 
+  const totalPages = 10;
+  const randomPage = Math.floor(Math.random() * totalPages) + 1;
+
   const products: ProductType[] = await (
     fetch(
-      `https://691078c77686c0e9c20a6dc4.mockapi.io/api/product?page=${1}&limit=${4}`,
+      `https://691078c77686c0e9c20a6dc4.mockapi.io/api/product?page=${randomPage}&limit=${6}`,
       { next: { revalidate: 60 } }
     )
       .then((res) => (res.ok ? res.json() : []))
@@ -76,13 +79,82 @@ export default async function HomePage() {
 
         {/* SECTION 4: FEATURED PRODUCTS */}
         <section className="px-6 mt-32 max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold">Featured Products</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 mt-10">
-            {list.map((p) => <ProductCard key={p.id} product={p} />)}
+          <h2 className="text-4xl font-bold mb-8">Featured Products</h2>
+          <div className="flex gap-2 overflow-x-auto no-scrollbar py-2">
+            {list.map((i) => (
+              <Link href={`/products/${i.id}`} key={i.id} className="relative min-w-[330px] h-[420px] rounded-3xl overflow-hidden bg-gray-200 flex-shrink-0">
+                <ImageCustom src={i.thumbnail || `https://picsum.photos/700/900?random=${i}`} alt="Trending Banner" className="object-cover w-full h-full" />
+                <div className="absolute bottom-6 left-6 text-white">
+                  <h3 className="text-3xl font-bold">{i.name}</h3>
+                  <h6 className="text-2xl font-bold">{i.price}₫</h6>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
 
-        {/* SECTION 5: FINAL CTA */}
+        {/* ====================================================== */}
+        {/* 🔥 SECTION 5: BIG PROMO BANNER (Nike style) */}
+        {/* ====================================================== */}
+        <section className="px-6 mt-32 relative max-w-7xl mx-auto">
+          <div className="w-full h-[500px] rounded-3xl overflow-hidden bg-gray-200 relative">
+            <ImageCustom
+              src="https://picsum.photos/1700/900?random=200"
+              alt="Promo Banner"
+              className="object-cover w-full h-full"
+            />
+
+            <div className="absolute inset-0 bg-black/40"></div>
+
+            <div className="absolute left-10 bottom-10 text-white max-w-xl">
+              <h3 className="text-5xl font-extrabold">THE FUTURE IS HERE</h3>
+              <p className="mt-4 text-xl text-gray-200">
+                Bộ sưu tập công nghệ mới cho hiệu suất tối đa.
+              </p>
+
+              <Link
+                href="/products"
+                className="inline-block mt-6 px-8 py-3 bg-white text-black rounded-full hover:bg-gray-200"
+              >
+                Explore Now
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ====================================================== */}
+        {/* 🔥 SECTION 6: SHOP BY CATEGORY */}
+        {/* ====================================================== */}
+        <section className="px-6 mt-32 max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10">Shop by Category</h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+            {[
+              { name: "Shoes", img: 51 },
+              { name: "Apparel", img: 52 },
+              { name: "Accessories", img: 53 },
+              { name: "Sportswear", img: 54 },
+            ].map((cat, i) => (
+              <div key={i} className="w-full h-[260px] rounded-2xl overflow-hidden bg-gray-200 relative">
+                <ImageCustom
+                  src={`https://picsum.photos/700/700?random=${cat.img}`}
+                  alt={cat.name}
+                  className="object-cover w-full h-full"
+                />
+
+                <div className="absolute inset-0 bg-black/30"></div>
+
+                <p className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow">
+                  {cat.name}
+                </p>
+              </div>
+            ))}
+
+          </div>
+        </section>
+
+        {/* SECTION 7: FINAL CTA */}
         <section className="text-center mt-40 mb-32 px-6">
           <h2 className="text-4xl font-bold">Ready to level up your style?</h2>
           <p className="mt-4 text-gray-600 text-lg max-w-xl mx-auto">Trải nghiệm bộ sưu tập mới nhất với công nghệ vượt trội & thiết kế hiện đại.</p>
