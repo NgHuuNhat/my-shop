@@ -1,3 +1,4 @@
+import Footer from '@/shared/components/footer/Footer'
 import Header from '@/shared/components/header/Header'
 
 export default function layout({ children }: any) {
@@ -7,6 +8,7 @@ export default function layout({ children }: any) {
             <main className="flex-1 flex flex-col">
                 {children}
             </main>
+            <Footer />
         </div>
     )
 }

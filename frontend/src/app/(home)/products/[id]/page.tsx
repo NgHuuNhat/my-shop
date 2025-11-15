@@ -26,8 +26,8 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
 
             {/* Breadcrumb */}
             <div className="py-4 px-4 text-sm text-gray-500">
-                <a href="/" className="hover:text-blue-600 transition">Home</a> {`>`}
-                <a href="/products" className="hover:text-blue-600 transition"> Products</a> {`>`}
+                <a href="/" className="hover:text-blue-600 transition">Trang chủ</a> {`>`}
+                <a href="/products" className="hover:text-blue-600 transition"> Sản phẩm</a> {`>`}
                 <span className="text-gray-700 font-medium"> {product.name}</span>
             </div>
 
@@ -43,11 +43,11 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                         />
                     </div>
                     {/* Thumbnail list */}
-                    <div className="flex flex-nowrap overflow-x-auto gap-1 py-1 justify-between items-center">
-                        {[product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail].map((img, i) => (
+                    <div className="flex flex-nowrap overflow-x-auto gap-1 py-1 items-center">
+                        {[product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail].map((img, i) => (
                             <div
                                 key={i}
-                                className="bg-gray-200 relative w-30 h-30 rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 transition-transform"
+                                className="bg-gray-200 relative w-15 h-15 rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 transition-transform"
                             >
                                 <ImageCustom src={img || "/images/no-image.png"} alt={`thumb-${i}`} />
                                 <div className="absolute inset-0 hover:bg-black/20"></div>
@@ -128,7 +128,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
 
             {/* Mô tả chi tiết dài */}
             <div className="pt-10 px-4">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Chi tiết sản phẩm</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Chi tiết sản phẩm</h3>
 
                 {/* Paragraphs */}
                 <p className="text-gray-700 leading-relaxed mb-3">

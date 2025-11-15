@@ -40,7 +40,7 @@ export default async function HomePage() {
             <h1 className="text-6xl md:text-6xl font-extrabold leading-tight drop-shadow-xl">UNLEASH YOUR ENERGY</h1>
             <p className="mt-6 text-xl text-gray-200 max-w-xl">Thiết kế cho tốc độ. Công nghệ cho tương lai. Bộ sưu tập mới nhất đã ra mắt.</p>
             <div className="mt-10">
-              <Link href="/products" className="px-10 py-4 bg-white text-black text-lg font-semibold rounded-full hover:bg-gray-200 transition">Danh sách sản phẩm</Link>
+              <Link href="/products" className="px-10 py-4 bg-white text-black text-lg font-semibold rounded-full hover:bg-gray-200 transition">Sản phẩm</Link>
             </div>
           </div>
         </section>
@@ -160,11 +160,11 @@ export default async function HomePage() {
         <section className="text-center mt-40 mb-32 px-6">
           <h2 className="text-4xl font-bold">Ready to level up your style?</h2>
           <p className="mt-4 text-gray-600 text-lg max-w-xl mx-auto">Trải nghiệm bộ sưu tập mới nhất với công nghệ vượt trội & thiết kế hiện đại.</p>
-          <Link href="/products" className="mt-8 inline-block bg-black text-white px-10 py-4 text-lg font-semibold rounded-full hover:bg-gray-800">Danh sách sản phẩm</Link>
+          <Link href="/products" className="mt-8 inline-block bg-black text-white px-10 py-4 text-lg font-semibold rounded-full hover:bg-gray-800">Sản phẩm</Link>
         </section>
 
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
