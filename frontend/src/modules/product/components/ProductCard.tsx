@@ -33,7 +33,7 @@ const ProductCard = (({ product }: ProductCardProps) => {
 
                 {/* Text – không scale */}
                 <div className="text-white absolute bottom-3 left-3">
-                    <h2 className="mt-4 text-xs font-black line-clamp-2">
+                    <h2 className="mt-4 text-sm font-black line-clamp-2">
                         {product.name}
                     </h2>
                     <p className="mt-1 text-m font-bold">

@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import { FaFilter } from 'react-icons/fa'
 
 interface FilterSidebarProps {
   className?: string
@@ -40,7 +41,10 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
 
   return (
     <aside className={`hidden md:block w-full md:w-72 flex-shrink-0 px-4 py-10 ${className}`}>
-      <h2 className="text-lg font-semibold mb-4">Filter Products</h2>
+      <span className='flex mb-4 items-center gap-1'>
+        <FaFilter />
+        <h2 className="text-lg font-semibold">Filter Products</h2>
+      </span>
 
       {/* Giá */}
       <div className="mb-4">
