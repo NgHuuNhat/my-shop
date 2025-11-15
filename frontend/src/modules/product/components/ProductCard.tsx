@@ -17,7 +17,7 @@ const ProductCard = (({ product }: ProductCardProps) => {
                     <p className="mt-1 text-base sm:text-lg md:text-xl font-bold">{product.price}₫</p>
                 </div>
             </div> */}
-            <div className="relative w-full pb-[130%] overflow-hidden rounded-2xl shadow-lg bg-gray-200">
+            <div className="relative w-full pb-[100%] overflow-hidden rounded-2xl shadow-lg bg-gray-200">
 
                 {/* Chỉ scale phần ảnh */}
                 <div className="absolute inset-0 overflow-hidden rounded-2xl hover:scale-[1.03] transition-transform duration-300">

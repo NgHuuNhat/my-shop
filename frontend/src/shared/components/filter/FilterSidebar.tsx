@@ -13,8 +13,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
   const [selectedSizes, setSelectedSizes] = useState<string[]>([])
   const [selectedPrices, setSelectedPrices] = useState<string[]>([])
 
-  const colors = ['Đỏ', 'Xanh', 'Đen']
-  const sizes = ['S', 'M', 'L', 'XL']
+  const colors = ['SPEC', 'SPEC ECO', 'SPEC EKO']
+  const sizes = ['Keo chống thấm', 'Keo chà ron', 'Keo dán gạch']
   const prices = ['<1 triệu', '1-5 triệu', '>5 triệu']
 
   const toggleItem = (
@@ -41,14 +41,14 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
 
   return (
     <aside className={`hidden lg:block w-full md:w-72 flex-shrink-0 px-4 py-10 ${className}`}>
-      <span className='flex mb-4 items-center gap-1'>
+      <span className='flex h-[40px] items-center gap-2'>
         <FaFilter />
-        <h2 className="text-lg font-semibold">Filter Products</h2>
+        <h2 className="text-lg font-semibold">Lọc sản phẩm</h2>
       </span>
 
       {/* Giá */}
       <div className="mb-4">
-        <h3 className="font-medium mb-2">Giá</h3>
+        <h3 className="font-semibold h-[41px] flex items-end mb-2 border-b">Giá</h3>
         <div className="flex flex-col gap-2">
           {prices.map(price => (
             <label
@@ -68,7 +68,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
 
       {/* Màu sắc */}
       <div className="mb-4">
-        <h3 className="font-medium mb-2">Màu sắc</h3>
+        <h3 className="font-semibold mb-2 border-b">Dòng sản phẩm</h3>
         <div className="flex flex-col gap-2">
           {colors.map(color => (
             <label
@@ -88,7 +88,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
 
       {/* Size */}
       <div className="mb-4">
-        <h3 className="font-medium mb-2">Size</h3>
+        <h3 className="font-semibold mb-2 border-b">Loại sản phẩm</h3>
         <div className="flex flex-col gap-2">
           {sizes.map(size => (
             <label
@@ -107,12 +107,20 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
       </div>
 
       {/* Button áp dụng filter */}
-      <button
-        onClick={handleApply}
-        className="cursor-pointer w-full text-black bg-gray-100 py-2 mt-4 rounded-2xl transition hover:bg-gray-200"
-      >
-        Áp dụng lọc
-      </button>
+      <div>
+        <button
+          onClick={handleApply}
+          className="cursor-pointer w-full text-black bg-white border-2 border-gray-300 py-3 mt-4 rounded-2xl transition hover:border-gray-950"
+        >
+          Xoá bộ lọc
+        </button>
+        <button
+          onClick={handleApply}
+          className="cursor-pointer w-full text-white bg-gray-950 py-4 mt-4 rounded-2xl transition hover:bg-gray-700"
+        >
+          Áp dụng bộ lọc
+        </button>
+      </div>
     </aside>
   )
 }

@@ -1,6 +1,7 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
+import { FaSearch } from 'react-icons/fa';
 
 const Search = () => {
     const router = useRouter();
@@ -37,11 +38,11 @@ const Search = () => {
                     type="text"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
-                    placeholder="🔍 Tìm sản phẩm..."
+                    placeholder='Tìm kiếm sản phẩm...'
                     className="flex-1 w-full px-4 py-2 rounded-lg focus:outline-none focus:border-gray-400 transition text-gray-700 placeholder-gray-400"
                 />
-                <button type="submit" className="text-black bg-gray-100 border-l border-gray-100 py-2 px-6 rounded-2xl cursor-pointer hover:bg-gray-200">
-                    Tìm kiếm
+                <button type="submit" className="text-white bg-gray-950 border-l py-2 px-10 rounded-2xl cursor-pointer hover:bg-gray-700">
+                    <FaSearch />
                 </button>
             </form>
 

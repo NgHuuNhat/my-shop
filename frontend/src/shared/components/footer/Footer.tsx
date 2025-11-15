@@ -9,7 +9,7 @@ export default function Footer() {
 
         {/* Brand */}
         <div className="space-y-8">
-          <h2 className="text-[#111111] font-bold">My Shop</h2>
+          <h2 className="text-[#111111] font-bold text-3xl">My Shop</h2>
           <p className="space-y-4 text-gray-400 text-sm font-medium">
             Quality products, fast delivery, and excellent customer service. Your satisfaction is our priority.
           </p>
