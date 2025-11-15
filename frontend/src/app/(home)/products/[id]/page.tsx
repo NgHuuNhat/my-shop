@@ -36,18 +36,18 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                 {/* Ảnh + Thông tin */}
                 <div className="flex flex-col">
                     {/* Ảnh chính */}
-                    <div className="rounded cursor-pointer relative w-full pb-[100%] bg-gray-200 overflow-hidden ">
+                    <div className="rounded-2xl cursor-pointer relative w-full pb-[100%] bg-gray-200 overflow-hidden ">
                         <ImageCustom
                             src={product.thumbnail || "/images/no-image.png"}
                             alt={product.name || "Product image"}
                         />
                     </div>
                     {/* Thumbnail list */}
-                    <div className="flex flex-nowrap overflow-x-auto gap-2 py-2 justify-between items-center">
+                    <div className="flex flex-nowrap overflow-x-auto gap-4 py-2 justify-between items-center">
                         {[product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail].map((img, i) => (
                             <div
                                 key={i}
-                                className="bg-gray-200 relative w-20 h-20 rounded overflow-hidden cursor-pointer flex-shrink-0 transition-transform hover:scale-105"
+                                className="bg-gray-200 relative w-20 h-20 rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 transition-transform hover:scale-105"
                             >
                                 <ImageCustom src={img || "/images/no-image.png"} alt={`thumb-${i}`} />
                             </div>
