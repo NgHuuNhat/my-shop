@@ -2,6 +2,7 @@ import React from 'react'
 import { ProductCardProps } from '../types/productType'
 import Link from 'next/link'
 import ImageCustom from '@/shared/components/image/ImageCustom'
+import Image from 'next/image'
 
 const ProductCard = (({ product }: ProductCardProps) => {
     return (
@@ -9,10 +10,12 @@ const ProductCard = (({ product }: ProductCardProps) => {
             <div className="relative w-full pb-[100%] overflow-hidden rounded-2xl shadow-lg bg-gray-200">
                 {/* Chỉ scale phần ảnh */}
                 <div className="absolute inset-0 overflow-hidden rounded-2xl hover:scale-[1.03] transition-transform duration-300">
-                    <ImageCustom
+                    <Image
                         src={product.thumbnail || "/images/no-image.png"}
                         alt={product.name || "Product image"}
                         className="w-full h-full object-cover"
+                        fill
+                        sizes="100vw"
                     />
                 </div>
 

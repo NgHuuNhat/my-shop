@@ -18,7 +18,6 @@ export default function ImageCustom({ src, alt, className, loading }: ImageCusto
       src={src || "/images/no-image.png"}
       alt={alt || "Product image"}
       fill
-      unoptimized
       loading={loading || 'lazy'}
       sizes="100vw"
       className={`object-cover transition-opacity duration-1000 ${className || ''}`}

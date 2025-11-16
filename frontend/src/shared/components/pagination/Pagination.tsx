@@ -21,9 +21,7 @@ const Pagination = ({ data = [] }: PaginationProps) => {
             if (newPage < 1) return
             router.push(`/products?page=${newPage}&limit=${currentLimit}`)
             router.refresh()
-        },
-        [router, currentLimit]
-    )
+        }, [router, currentLimit])
 
     // const handlePageChange = useCallback(
     //     (newPage: number) => {

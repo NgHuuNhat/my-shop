@@ -2,6 +2,7 @@ import ProductCard from '@/modules/product/components/ProductCard'
 import { ProductDetailProps, ProductType } from '@/modules/product/types/productType'
 import Error from '@/shared/components/error/Error'
 import ImageCustom from '@/shared/components/image/ImageCustom'
+import Image from 'next/image'
 import { FaShoppingCart, FaCoins } from 'react-icons/fa'
 
 
@@ -37,9 +38,11 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                 <div className="flex flex-col">
                     {/* Ảnh chính */}
                     <div className="rounded-2xl cursor-pointer relative w-full pb-[100%] bg-gray-200 overflow-hidden ">
-                        <ImageCustom
+                        <Image
                             src={product.thumbnail || "/images/no-image.png"}
                             alt={product.name || "Product image"}
+                            fill
+                            className='object-cover'
                         />
                     </div>
                     {/* Thumbnail list */}
@@ -49,7 +52,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                                 key={i}
                                 className="bg-gray-200 relative w-15 h-15 rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 transition-transform"
                             >
-                                <ImageCustom src={img || "/images/no-image.png"} alt={`thumb-${i}`} />
+                                <Image src={img || "/images/no-image.png"} alt={`thumb-${i}`} fill className='object-cover'/>
                                 <div className="absolute inset-0 hover:bg-black/20"></div>
                             </div>
                         ))}

@@ -1,5 +1,5 @@
 'use client'
-import FilterSidebar from '@/shared/components/filter/FilterSidebar'
+import FilterSidebar from '@/shared/components/filter/Filter'
 import Search from '@/shared/components/search/Search'
 import { usePathname } from 'next/navigation'
 import React from 'react'
