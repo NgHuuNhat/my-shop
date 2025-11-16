@@ -23,8 +23,8 @@ export default async function HomePage() {
   const list = products.length ? products : fallbackProducts;
 
   return (
-    <>
-      <main>
+    <main className="">
+      <div className="">
 
         {/* ====================== HERO ====================== */}
         <section className="relative w-full h-[90vh] overflow-hidden">
@@ -38,7 +38,7 @@ export default async function HomePage() {
           />
           <div className="absolute inset-0 bg-black/30" />
 
-          <div className="absolute inset-0 flex flex-col justify-center px-6 max-w-3xl mx-auto text-white">
+          <div className="absolute inset-0 flex flex-col justify-center px-4 max-w-3xl mx-auto text-white">
             <h1 className="text-6xl font-extrabold leading-tight drop-shadow-xl">
               UNLEASH YOUR ENERGY
             </h1>
@@ -55,7 +55,7 @@ export default async function HomePage() {
         </section>
 
         {/* ====================== CATEGORY ====================== */}
-        <section className="px-6 mt-32 max-w-7xl mx-auto">
+        <section className="px-4 mt-32 max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold mb-10">Danh mục</h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -83,7 +83,7 @@ export default async function HomePage() {
         </section>
 
         {/* ====================== TRENDING ====================== */}
-        <section className="px-6 mt-32 max-w-7xl mx-auto">
+        <section className="px-4 mt-32 max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold mb-8">Xu hướng</h2>
 
           <div className="flex gap-2 overflow-x-auto no-scrollbar py-2">
@@ -102,7 +102,7 @@ export default async function HomePage() {
         </section>
 
         {/* ====================== FEATURED PRODUCTS ====================== */}
-        <section className="px-6 mt-32 max-w-7xl mx-auto">
+        <section className="px-4 mt-32 max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold mb-8">Sản phẩm nổi bật</h2>
 
           <div className="flex gap-2 overflow-x-auto no-scrollbar py-2">
@@ -132,7 +132,7 @@ export default async function HomePage() {
         </section>
 
         {/* ====================== FINAL CTA ====================== */}
-        <section className="text-center my-32 px-6">
+        <section className="text-center my-32 px-4">
           <h2 className="text-4xl font-bold">Ready to level up your style?</h2>
           <p className="mt-4 text-gray-600 text-lg max-w-xl mx-auto">
             Trải nghiệm bộ sưu tập mới nhất với thiết kế hiện đại.
@@ -144,9 +144,9 @@ export default async function HomePage() {
             Sản phẩm
           </Link>
         </section>
-      </main>
+      </div>
 
       <Footer />
-    </>
+    </main>
   );
 }

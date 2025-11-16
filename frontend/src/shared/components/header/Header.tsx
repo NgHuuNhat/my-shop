@@ -4,7 +4,7 @@ import { FaShoppingCart, FaUser } from 'react-icons/fa'
 export default function Header() {
     return (
         <header className="h-[50px] sticky top-0 z-50 bg-white shadow-sm flex items-center gap-8 text-sm sm:text-base md:text-base">
-            <nav className="flex gap-8 justify-between w-full max-w-7xl mx-auto px-6">
+            <nav className="flex gap-8 justify-between w-full max-w-7xl mx-auto px-4">
                 <div className='w-[20px] h-[20px] md:min-w-[50px] md:h-[50px] relative overflow-hidden flex items-center justify-center'>
                     <Link
                         href="/"

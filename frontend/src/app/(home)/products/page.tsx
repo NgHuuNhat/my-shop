@@ -44,7 +44,7 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
   }
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="flex-1">
 
       {/* ket qua tim kiem */}
       {(currentSearch || currentPrice) && (
@@ -62,6 +62,7 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
       ) : (
         <Pagination data={products} />
       )}
+
     </div>
   )
 }
