@@ -26,7 +26,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
         <div className="max-w-6xl mx-auto flex flex-col">
 
             {/* Breadcrumb */}
-            <div className="py-4 px-4 text-sm text-gray-500">
+            <div className="py-5 px-4 text-sm text-gray-500">
                 <a href="/" className="hover:text-blue-600 transition">Trang chủ</a> {`>`}
                 <a href="/products" className="hover:text-blue-600 transition"> Sản phẩm</a> {`>`}
                 <span className="text-gray-700 font-medium"> {product.name}</span>
@@ -130,19 +130,19 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             </div>
 
             {/* Mô tả chi tiết dài */}
-            <div className="pt-10 px-4">
+            <div className="pt-20 px-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Chi tiết sản phẩm</h3>
 
                 {/* Paragraphs */}
-                <p className="text-gray-700 leading-relaxed mb-3">
+                <p className="text-gray-700 leading-relaxed">
                     {"Sản phẩm được thiết kế với chất liệu cao cấp, độ bền cao và kiểu dáng hiện đại phù hợp với nhu cầu sử dụng hàng ngày."}
                 </p>
-                <p className="text-gray-700 leading-relaxed mb-3">
+                <p className="text-gray-700 leading-relaxed">
                     {"Công nghệ tiên tiến giúp sản phẩm vận hành mượt mà, tiết kiệm năng lượng và thân thiện với môi trường."}
                 </p>
 
                 {/* List tính năng / thông số */}
-                <ul className="list-disc list-inside text-gray-700 mb-3">
+                <ul className="list-disc list-inside text-gray-700 flex flex-col gap-4 mt-4">
                     {(["Chất liệu: Cao cấp", "Kích thước: 30x20x10cm", "Màu sắc: Đỏ, Xanh, Đen", "Bảo hành: 12 tháng"]).map((item, idx) => (
                         <li key={idx}>{item}</li>
                     ))}
@@ -150,7 +150,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             </div>
 
             {/* Sản phẩm tương tự */}
-            <div className='py-10 px-4'>
+            <div className='py-20 px-4'>
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Sản phẩm tương tự</h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1">
                     {[...Array(4)].map((_, i) => (
