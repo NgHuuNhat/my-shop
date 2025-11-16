@@ -144,14 +144,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                         <li key={idx}>{item}</li>
                     ))}
                 </ul>
-
-                {/* Optional: chú thích nhỏ */}
-                {/* {product.detailNote && (
-                    <p className="text-gray-500 text-sm italic">{product.detailNote}</p>
-                )} */}
             </div>
-
-
 
             {/* Sản phẩm tương tự */}
             <div className='py-10 px-4'>
@@ -164,6 +157,5 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             </div>
 
         </div>
-
     )
 }

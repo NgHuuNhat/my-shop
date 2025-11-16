@@ -43,12 +43,12 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
     <aside className={`hidden lg:block w-full md:w-72 flex-shrink-0 px-4 py-10 ${className}`}>
       <span className='flex h-[40px] items-center gap-2'>
         <FaFilter />
-        <h2 className="text-lg font-semibold">Lọc sản phẩm</h2>
+        <h2 className="text-lg font-bold">Lọc sản phẩm</h2>
       </span>
 
       {/* Giá */}
       <div className="mb-4">
-        <h3 className="font-semibold h-[41px] flex items-end mb-2 border-b">Giá</h3>
+        <h3 className="font-bold h-[41px] flex items-end mb-2 border-b">Giá</h3>
         <div className="flex flex-col gap-2">
           {prices.map(price => (
             <label
@@ -68,7 +68,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
 
       {/* Màu sắc */}
       <div className="mb-4">
-        <h3 className="font-semibold mb-2 border-b">Dòng sản phẩm</h3>
+        <h3 className="font-bold mb-2 border-b">Dòng sản phẩm</h3>
         <div className="flex flex-col gap-2">
           {colors.map(color => (
             <label
@@ -88,7 +88,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
 
       {/* Size */}
       <div className="mb-4">
-        <h3 className="font-semibold mb-2 border-b">Loại sản phẩm</h3>
+        <h3 className="font-bold mb-2 border-b">Loại sản phẩm</h3>
         <div className="flex flex-col gap-2">
           {sizes.map(size => (
             <label
@@ -110,13 +110,13 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '', onChange 
       <div>
         <button
           onClick={handleApply}
-          className="cursor-pointer w-full text-black bg-white border-2 border-gray-300 py-3 mt-4 rounded-2xl transition hover:border-gray-950"
+          className="cursor-pointer w-full text-black bg-white border-2 border-gray-300 py-2 mt-4 rounded-2xl transition hover:border-gray-950"
         >
           Xoá bộ lọc
         </button>
         <button
           onClick={handleApply}
-          className="cursor-pointer w-full text-white bg-gray-950 py-4 mt-4 rounded-2xl transition hover:bg-gray-700"
+          className="cursor-pointer w-full text-white bg-gray-950 py-3 mt-4 rounded-2xl transition hover:bg-gray-700"
         >
           Áp dụng bộ lọc
         </button>

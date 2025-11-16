@@ -1,10 +1,9 @@
 import Link from 'next/link'
-import React from 'react'
 import { FaShoppingCart, FaUser } from 'react-icons/fa'
 
 export default function Header() {
     return (
-        <header className="h-[40px] sticky top-0 z-50 bg-white shadow-sm flex items-center gap-8 px-6 text-base md:text-base">
+        <header className="h-[50px] sticky top-0 z-50 bg-white shadow-sm flex items-center gap-8 px-6 text-base md:text-base">
             <nav className="flex gap-8 justify-between w-full max-w-7xl mx-auto">
                 <div className=' w-[20px] h-[20px] md:w-[60px] md:h-[60px]'>
                     <Link
@@ -27,12 +26,6 @@ export default function Header() {
                     >
                         Sản phẩm
                     </Link>
-                    {/* <Link
-                        href="/about"
-                        className="text-[#111111] font-bold hover:text-[#707072] transition-colors flex items-center"
-                    >
-                        About
-                    </Link> */}
                 </div>
                 <div className='flex gap-8 min-w-[60px]'>
                     <Link
