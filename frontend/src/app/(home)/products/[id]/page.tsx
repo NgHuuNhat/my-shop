@@ -1,10 +1,8 @@
 import ProductCard from '@/modules/product/components/ProductCard'
 import { ProductDetailProps, ProductType } from '@/modules/product/types/productType'
 import Error from '@/shared/components/error/Error'
-import ImageCustom from '@/shared/components/image/ImageCustom'
 import Image from 'next/image'
 import { FaShoppingCart, FaCoins } from 'react-icons/fa'
-import { delay } from '@/shared/components/delay/delay'
 
 
 export default async function ProductDetail({ params }: ProductDetailProps) {
@@ -27,7 +25,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
     }
 
     return (
-        <div className="bg-red-100 flex-1 max-w-6xl mx-auto flex flex-col">
+        <div className="flex-1 max-w-6xl mx-auto flex flex-col">
 
             {/* Breadcrumb */}
             <div className="py-5 px-4 text-sm text-gray-500">

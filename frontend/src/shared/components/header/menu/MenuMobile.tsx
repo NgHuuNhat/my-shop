@@ -10,16 +10,16 @@ export default function MenuMobile({ open, setOpen }: any) {
                 `}
             >
                 <div className='bg-white sticky top-0 h-[50px] shadow-sm flex items-center justify-between px-4'>
-                    <h3 className="font-bold flex items-center justify-center gap-2 text-2xl"><FaBars /><span>Menu</span> </h3>
+                    <h3 className="font-bold flex items-center justify-center gap-2 text-l"><FaBars /><span>Menu</span> </h3>
                     <button
                         onClick={() => setOpen(false)}
-                        className="text-2xl font-bold text-gray-950"
+                        className="ps-4 text-l font-bold text-gray-950"
                     >
-                        X
+                        x
                     </button>
                 </div>
 
-                <div className='flex flex-col py-10 text-l'>
+                <div className='flex flex-col text-l'>
                     <Link
                         onClick={() => setOpen(false)}
                         href="/"

@@ -61,12 +61,12 @@ const Filter = () => {
       >
         {/* Header drawer */}
         <div className="bg-white sticky top-0 h-[50px] shadow-sm flex items-center justify-between px-4">
-          <h3 className="font-bold flex items-center justify-center gap-2 text-2xl"><FaFilter /> <span>Filter</span> </h3>
+          <h3 className="font-bold flex items-center justify-center gap-2 text-l"><FaFilter /> <span>Filter</span> </h3>
           <button
             onClick={() => setOpen(false)}
-            className="text-2xl font-bold text-gray-950"
+            className="ps-4 text-l font-bold text-gray-950"
           >
-            X
+            x
           </button>
         </div>
 
@@ -91,8 +91,8 @@ const FilterContent = ({
   setOpen, // optional
 }: any) => {
   return (
-    <div className="flex flex-col py-10 lg:py-0 px-4 lg:px-0">
-      <h3 className="hidden lg:flex font-bold mb-6 items-center gap-2"><FaFilter className='text-xl' /><span className='text-2xl'>Filter</span></h3>
+    <div className="flex flex-col px-4 py-4 lg:px-0">
+      <h3 className="hidden lg:flex font-bold mb-6 items-center gap-2 text-xl"><FaFilter /><span>Filter</span></h3>
 
       {/* Price */}
       <div className="mb-6">
