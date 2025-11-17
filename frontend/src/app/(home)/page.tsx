@@ -55,17 +55,17 @@ export default async function HomePage() {
         </section>
 
         {/* ====================== CATEGORY ====================== */}
-        <section className="px-4 mt-32 max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10">Danh mục</h2>
+        <section className="w-full mt-32">
+          <h2 className="text-4xl font-bold mb-10 px-4 max-w-7xl mx-auto">Danh mục</h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-[1px]">
             {[
               { name: "Shoes", img: 51 },
               { name: "Apparel", img: 52 },
               { name: "Accessories", img: 53 },
               { name: "Sportswear", img: 54 },
             ].map((cat, i) => (
-              <div key={i} className="relative w-full h-[260px] rounded-2xl overflow-hidden">
+              <div key={i} className="relative w-full h-[260px] overflow-hidden">
                 <Image
                   src={`https://picsum.photos/700/700?random=${cat.img}`}
                   alt={cat.name}
@@ -83,12 +83,12 @@ export default async function HomePage() {
         </section>
 
         {/* ====================== TRENDING ====================== */}
-        <section className="px-4 mt-32 max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8">Xu hướng</h2>
+        <section className="w-full mt-32">
+          <h2 className="text-4xl font-bold mb-10 px-4 max-w-7xl mx-auto">Xu hướng</h2>
 
-          <div className="flex gap-2 overflow-x-auto no-scrollbar py-2">
+          <div className="flex gap-[1px] overflow-x-auto no-scrollbar py-2">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="relative min-w-[330px] h-[420px] rounded-3xl overflow-hidden flex-shrink-0 bg-gray-200">
+              <div key={i} className="relative min-w-[330px] h-[420px] overflow-hidden flex-shrink-0 bg-gray-200">
                 <Image
                   src={`https://picsum.photos/700/900?random=${i}`}
                   alt="Trending Banner"
@@ -102,15 +102,15 @@ export default async function HomePage() {
         </section>
 
         {/* ====================== FEATURED PRODUCTS ====================== */}
-        <section className="px-4 mt-32 max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8">Sản phẩm nổi bật</h2>
+        <section className="w-full mt-32">
+          <h2 className="text-4xl font-bold mb-10 px-4 max-w-7xl mx-auto">Sản phẩm nổi bật</h2>
 
-          <div className="flex gap-2 overflow-x-auto no-scrollbar py-2">
+          <div className="flex gap-[1px] overflow-x-auto no-scrollbar py-2">
             {list.map((item) => (
               <Link
                 key={item.id}
                 href={`/products/${item.id}`}
-                className="relative min-w-[330px] h-[420px] rounded-3xl overflow-hidden flex-shrink-0"
+                className="relative min-w-[330px] h-[420px] overflow-hidden flex-shrink-0"
               >
                 <Image
                   src={item.thumbnail || ''}

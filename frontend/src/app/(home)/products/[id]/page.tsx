@@ -33,11 +33,11 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             </div>
 
             {/* Ảnh + Thông tin */}
-            <div className="px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                 {/* Ảnh + Thông tin */}
                 <div className="flex flex-col">
                     {/* Ảnh chính */}
-                    <div className="rounded-2xl cursor-pointer relative w-full pb-[100%] bg-gray-200 overflow-hidden ">
+                    <div className="cursor-pointer relative w-full pb-[100%] bg-gray-200 overflow-hidden ">
                         <Image
                             src={product.thumbnail || "/images/no-image.png"}
                             alt={product.name || "Product image"}
@@ -46,11 +46,11 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                         />
                     </div>
                     {/* Thumbnail list */}
-                    <div className="flex flex-nowrap overflow-x-auto gap-1 py-1 items-center">
+                    <div className="flex flex-nowrap overflow-x-auto gap-[1px] py-[1px] items-center">
                         {[product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail].map((img, i) => (
                             <div
                                 key={i}
-                                className="bg-gray-200 relative w-15 h-15 rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 transition-transform"
+                                className="bg-gray-200 relative w-15 h-15 overflow-hidden cursor-pointer flex-shrink-0 transition-transform"
                             >
                                 <Image src={img || "/images/no-image.png"} alt={`thumb-${i}`} fill className='object-cover'/>
                                 <div className="absolute inset-0 hover:bg-black/20"></div>
@@ -60,7 +60,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                 </div>
 
                 {/* Thông tin sản phẩm */}
-                <div className="flex flex-col justify-between h-full">
+                <div className="px-4 flex flex-col justify-between h-full">
                     <div>
                         {/* Thông tin sản phẩm */}
                         <div>
@@ -150,9 +150,9 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             </div>
 
             {/* Sản phẩm tương tự */}
-            <div className='py-20 px-4'>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Sản phẩm tương tự</h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1">
+            <div className='py-20'>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4 px-4">Sản phẩm tương tự</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-[1px]">
                     {[...Array(4)].map((_, i) => (
                         <ProductCard key={i} product={product} />
                     ))}

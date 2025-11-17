@@ -91,7 +91,7 @@ const FilterContent = ({
   setOpen, // optional
 }: any) => {
   return (
-    <div className="flex flex-col py-10 lg:py-0 px-4">
+    <div className="flex flex-col py-10 lg:py-0 px-4 lg:px-0">
       <h3 className="hidden lg:flex font-bold mb-6 items-center gap-2"><FaFilter className='text-xl' /><span className='text-2xl'>Filter</span></h3>
 
       {/* Price */}

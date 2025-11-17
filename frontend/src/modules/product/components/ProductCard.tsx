@@ -9,7 +9,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       href={`/products/${product.id}`}
       className="group flex flex-col w-full rounded-2xl cursor-pointer"
     >
-      <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-lg bg-gray-200">
+      <div className="relative w-full aspect-square overflow-hidden shadow-lg bg-gray-200">
         {/* Ảnh scale khi hover */}
         <Image
           src={product.thumbnail || "/images/no-image.png"}
