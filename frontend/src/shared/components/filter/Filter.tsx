@@ -49,19 +49,19 @@ const Filter = () => {
       {/* 🔥 MOBILE DRAWER OVERLAY */}
       {open && (
         <div
-          className="fixed inset-0 bg-black/40 z-40"
+          className="fixed inset-0 bg-black/40 z-60"
           onClick={() => setOpen(false)}
         />
       )}
 
       {/* 🔥 MOBILE DRAWER */}
       <div
-        className={`bg-white fixed top-0 right-0 h-full w-[80%] max-w-xs z-50 overflow-y-auto shadow-xl transform transition-transform duration-300 lg:hidden ${open ? 'translate-x-0' : 'translate-x-full'
+        className={`bg-white fixed top-0 right-0 h-full w-[80%] max-w-xs z-70 overflow-y-auto shadow-xl transform transition-transform duration-300 lg:hidden ${open ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
         {/* Header drawer */}
         <div className="bg-white sticky top-0 h-[50px] shadow-sm flex items-center justify-between px-4">
-          <h3 className="font-bold flex items-center justify-center gap-2"><span className='text-2xl'>Filter</span> <FaFilter /></h3>
+          <h3 className="font-bold flex items-center justify-center gap-2 text-2xl"><FaFilter /> <span>Filter</span> </h3>
           <button
             onClick={() => setOpen(false)}
             className="text-2xl font-bold text-gray-950"
@@ -91,7 +91,9 @@ const FilterContent = ({
   setOpen, // optional
 }: any) => {
   return (
-    <div className="flex flex-col py-10 px-4">
+    <div className="flex flex-col py-10 lg:py-0 px-4">
+      <h3 className="hidden lg:flex font-bold mb-6 items-center gap-2"><FaFilter className='text-xl' /><span className='text-2xl'>Filter</span></h3>
+
       {/* Price */}
       <div className="mb-6">
         <h3 className="font-bold flex items-end mb-4 border-b">Price</h3>
