@@ -23,14 +23,14 @@ export default function MenuMobile({ open, setOpen }: any) {
                     <Link
                         onClick={() => setOpen(false)}
                         href="/"
-                        className="px-12 p-4 flex items-center font-bold text-[#111111] hover:text-[#707072] transition-colors border-t border-b"
+                        className="px-4 p-4 flex items-center font-bold text-[#111111] hover:text-[#707072] transition-colors border-t border-b"
                     >
                         Home
                     </Link>
                     <Link
                         onClick={() => setOpen(false)}
                         href="/products"
-                        className="px-12 p-4 flex items-center font-bold text-[#111111] hover:text-[#707072] transition-colors border-b"
+                        className="px-4 p-4 flex items-center font-bold text-[#111111] hover:text-[#707072] transition-colors border-b"
                     >
                         Products
                     </Link>
