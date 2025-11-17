@@ -4,9 +4,11 @@ import Error from '@/shared/components/error/Error'
 import ImageCustom from '@/shared/components/image/ImageCustom'
 import Image from 'next/image'
 import { FaShoppingCart, FaCoins } from 'react-icons/fa'
+import { delay } from '@/shared/components/delay/delay'
 
 
 export default async function ProductDetail({ params }: ProductDetailProps) {
+
     const { id } = await params
 
     const product: ProductType = await fetch(`https://691078c77686c0e9c20a6dc4.mockapi.io/api/product/${id}`, {
@@ -16,6 +18,8 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
         .then(data => data ? data : null)
         .catch(() => null)
 
+    // await delay(5000)
+
     if (!product) {
         return (
             <Error />
@@ -23,7 +27,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
     }
 
     return (
-        <div className="max-w-6xl mx-auto flex flex-col">
+        <div className="bg-red-100 flex-1 max-w-6xl mx-auto flex flex-col">
 
             {/* Breadcrumb */}
             <div className="py-5 px-4 text-sm text-gray-500">
@@ -52,7 +56,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                                 key={i}
                                 className="bg-gray-200 relative w-15 h-15 overflow-hidden cursor-pointer flex-shrink-0 transition-transform"
                             >
-                                <Image src={img || "/images/no-image.png"} alt={`thumb-${i}`} fill className='object-cover'/>
+                                <Image src={img || "/images/no-image.png"} alt={`thumb-${i}`} fill className='object-cover' />
                                 <div className="absolute inset-0 hover:bg-black/20"></div>
                             </div>
                         ))}
