@@ -49,7 +49,7 @@ export default async function HomePage() {
               href="/products"
               className="mt-10 px-10 py-4 bg-white text-black text-lg font-semibold rounded-full hover:bg-gray-200 transition"
             >
-              Sản phẩm
+              Products
             </Link>
           </div>
         </section>
@@ -141,7 +141,7 @@ export default async function HomePage() {
             href="/products"
             className="mt-8 inline-block bg-black text-white px-10 py-4 text-lg font-semibold rounded-full hover:bg-gray-800"
           >
-            Sản phẩm
+            Products
           </Link>
         </section>
       </div>
