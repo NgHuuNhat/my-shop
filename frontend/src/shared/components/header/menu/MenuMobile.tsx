@@ -19,18 +19,18 @@ export default function MenuMobile({ open, setOpen }: any) {
                     </button>
                 </div>
 
-                <div className='flex flex-col py-10 text-2xl'>
+                <div className='flex flex-col py-10 text-l'>
                     <Link
                         onClick={() => setOpen(false)}
                         href="/"
-                        className="px-12 p-4 flex items-center font-bold text-[#111111] hover:text-[#707072] transition-colors"
+                        className="px-12 p-4 flex items-center font-bold text-[#111111] hover:text-[#707072] transition-colors border-t border-b"
                     >
                         Home
                     </Link>
                     <Link
                         onClick={() => setOpen(false)}
                         href="/products"
-                        className="px-12 p-4 flex items-center font-bold text-[#111111] hover:text-[#707072] transition-colors"
+                        className="px-12 p-4 flex items-center font-bold text-[#111111] hover:text-[#707072] transition-colors border-b"
                     >
                         Products
                     </Link>
