@@ -1,6 +1,6 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaFilter } from 'react-icons/fa'
 
 const colors = ['đen', 'trắng', 'xám']
@@ -12,6 +12,16 @@ const Filter = () => {
   const searchParams = useSearchParams()
   const currentPrice = searchParams.get('price') || ''
   const [open, setOpen] = useState(false) // mobile drawer
+
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [open]);
 
   const handlePriceClick = (range: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -26,7 +36,7 @@ const Filter = () => {
         onClick={() => setOpen(true)}
         className="lg:hidden w-full flex items-center gap-2 mx-4 mb-10 px-4 py-2 border rounded-xl"
       >
-        <FaFilter /> Bộ lọc
+        <FaFilter /> Filter
       </button>
 
       {/* 🔥 DESKTOP SIDEBAR */}
@@ -46,7 +56,7 @@ const Filter = () => {
       )}
 
       {/* 🔥 MOBILE DRAWER */}
-      <div
+      {/* <div
         className={`fixed top-0 right-0 h-full w-[80%] max-w-xs bg-white z-50 p-6 overflow-y-auto shadow-xl transform transition-transform duration-300
         ${open ? 'translate-x-0' : 'translate-x-full'}
         lg:hidden`}
@@ -55,7 +65,7 @@ const Filter = () => {
           onClick={() => setOpen(false)}
           className="mb-6 font-bold text-gray-600"
         >
-          ✕ Đóng
+          X
         </button>
 
         <FilterContent
@@ -65,6 +75,29 @@ const Filter = () => {
             setOpen(false)
           }}
         />
+      </div> */}
+
+      <div
+        className={`bg-white fixed top-0 right-0 h-full w-[80%] max-w-xs z-50 overflow-y-auto shadow-xl transform transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'} lg:hidden
+                `}
+      >
+        <div className='bg-white sticky top-0 h-[50px] shadow-sm flex items-center justify-end px-4'>
+          <button
+            onClick={() => setOpen(false)}
+            className="text-2xl font-bold text-gray-950"
+          >
+            X
+          </button>
+        </div>
+
+        <FilterContent
+          currentPrice={currentPrice}
+          handlePriceClick={(r: any) => {
+            handlePriceClick(r)
+            // setOpen(false)
+          }}
+          setOpen={setOpen}
+        />
       </div>
     </>
   )
@@ -73,17 +106,11 @@ const Filter = () => {
 const FilterContent = ({
   currentPrice,
   handlePriceClick,
-}: {
-  currentPrice: string,
-  handlePriceClick: (r: string) => void,
-}) => {
+  open,
+  setOpen,
+}: any) => {
   return (
-    <>
-      {/* Title */}
-      {/* <span className="flex h-[40px] items-center gap-2 mb-4">
-        <FaFilter />
-        <h2 className="text-lg font-bold">Filter products</h2>
-      </span> */}
+    <div className='flex flex-col py-10 px-4'>
 
       {/* Price */}
       <div className="mb-6">
@@ -131,12 +158,13 @@ const FilterContent = ({
 
       {/* Button apply */}
       <button
+        onClick={() => setOpen(false)}
         type="button"
         className="font-bold cursor-pointer w-full text-white bg-gray-950 py-3 rounded-2xl transition hover:bg-gray-700"
       >
-        <span className='flex justify-center items-center gap-2'><FaFilter /> Filter</span>
+        <span className='flex justify-center items-center gap-2'><FaFilter />Filter</span>
       </button>
-    </>
+    </div>
   )
 }
 
