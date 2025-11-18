@@ -2,7 +2,6 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { FaFilter, FaSlidersH } from 'react-icons/fa'
 import { FaSliders } from 'react-icons/fa6'
 
 const sorts = ['Mới nhất', 'Cũ nhất', 'Giá tăng dần', 'Giá giảm dần']

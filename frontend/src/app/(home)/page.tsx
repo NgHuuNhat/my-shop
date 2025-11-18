@@ -2,6 +2,7 @@ import { ProductType } from "@/modules/product/types/productType";
 import Footer from "@/shared/components/footer/Footer";
 import Image from "next/image";
 import Link from "next/link";
+import { HiShoppingBag } from "react-icons/hi";
 
 export default async function HomePage() {
   const fallbackProducts: ProductType[] = [
@@ -47,8 +48,9 @@ export default async function HomePage() {
             </p>
             <Link
               href="/products"
-              className="mt-10 px-10 py-4 bg-white text-black text-lg font-semibold rounded-full hover:bg-gray-200 transition"
+              className="flex items-center gap-1 mt-10 px-10 py-4 bg-white text-black text-lg font-semibold rounded-full hover:bg-gray-200 transition"
             >
+              {/* <HiShoppingBag /> */}
               Products
             </Link>
           </div>
@@ -141,7 +143,10 @@ export default async function HomePage() {
             href="/products"
             className="mt-8 inline-block bg-black text-white px-10 py-4 text-lg font-semibold rounded-full hover:bg-gray-800"
           >
-            Products
+            <span className="flex items-center justify-center gap-1">
+              {/* <HiShoppingBag /> */}
+              Products
+            </span>
           </Link>
         </section>
       </div>

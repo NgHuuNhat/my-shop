@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function MenuMobile({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
+export default function MenuMobileDrawer({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
     const closeMenu = () => setOpen(false)
 
     // Slide từ trái sang phải

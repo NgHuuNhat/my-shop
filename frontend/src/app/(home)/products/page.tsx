@@ -1,6 +1,5 @@
 import ProductList from "@/modules/product/components/ProductList"
 import { ProductPageProps, ProductType } from "@/modules/product/types/productType"
-import Footer from "@/shared/components/footer/Footer"
 import Pagination from "@/shared/components/pagination/Pagination"
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/shared/components/pagination/paginationConstant"
 
