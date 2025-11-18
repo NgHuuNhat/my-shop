@@ -30,7 +30,7 @@ const Search = () => {
     }, [value]);
 
     return (
-        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-3 px-4 py-3 lg:py-10 max-w-7xl mx-auto">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-3 px-4 py-3 pb-6 lg:py-10 max-w-7xl mx-auto">
 
             {/* Ô tìm kiếm */}
             <form onSubmit={(e) => e.preventDefault()} className="px-4 group overflow-hidden border border-gray-200 flex-1 flex gap-1 w-full rounded-2xl focus:outline-none focus-within:border-gray-950 focus-within:text-gray-950 transition-color text-gray-700 placeholder-gray-400">

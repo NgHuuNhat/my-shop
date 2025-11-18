@@ -31,7 +31,7 @@ const Filter = () => {
   return (
     <>
       {/* 🔥 MOBILE BUTTON */}
-      <div className='lg:hidden w-full max-w-7xl mx-auto px-4 pt-3'>
+      <div className='lg:hidden w-full max-w-7xl mx-auto px-4 pt-6'>
         <button
           onClick={() => setOpen(true)}
           className="text-gray-400 border-gray-200 w-full flex items-center justify-between py-2 px-4 border rounded-2xl">
