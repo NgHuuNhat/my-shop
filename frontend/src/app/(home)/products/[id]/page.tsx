@@ -29,8 +29,8 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
 
             {/* Breadcrumb */}
             <div className="py-5 px-4 text-sm text-gray-500">
-                <a href="/" className="hover:text-blue-600 transition">Trang chủ</a> {`>`}
-                <a href="/products" className="hover:text-blue-600 transition"> Sản phẩm</a> {`>`}
+                <a href="/" className="hover:text-blue-600 transition">Home</a> {`>`}
+                <a href="/products" className="hover:text-blue-600 transition"> Products</a> {`>`}
                 <span className="text-gray-700 font-medium"> {product.name}</span>
             </div>
 

@@ -52,8 +52,8 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
 
       {/* ket qua tim kiem */}
       {(currentSearch || currentPrice) && (
-        <p className="w-full max-w-7xl mx-auto px-4 pb-0 mt-[-20px] text-sm">
-          Có {filteredProducts().length} sản phẩm...
+        <p className="w-full max-w-7xl mx-auto px-4 pb-0 text-sm">
+          Có {filteredProducts().length} kết quả...
         </p>
       )}
 

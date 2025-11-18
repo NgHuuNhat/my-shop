@@ -1,47 +1,63 @@
 import Link from 'next/link'
-import React from 'react'
-import { FaBars } from 'react-icons/fa'
 
-export default function MenuMobile({ open, setOpen }: any) {
+export default function MenuMobile({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
+    const closeMenu = () => setOpen(false)
+
+    // Slide từ trái sang phải
+    const slideFromLeft = (open: boolean) =>
+        open ? 'translate-x-0 left-0' : '-translate-x-full left-0';
+
+    // Slide từ phải sang trái
+    const slideFromRight = (open: boolean) =>
+        open ? 'translate-x-0 right-0' : 'translate-x-full right-0';
+
+
     return (
         <>
+            {/* Menu Panel */}
             <div
-                className={`bg-white fixed top-0 right-0 h-full w-[80%] max-w-xs z-70 overflow-y-auto shadow-xl transform transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'} lg:hidden
-                `}
+                className={`
+          fixed top-0 h-full w-[80%] max-w-xs bg-white shadow-xl z-70
+          transform transition-transform duration-300
+           ${slideFromLeft(open)} 
+          lg:hidden
+        `}
             >
-                <div className='bg-white sticky top-0 h-[50px] shadow-sm flex items-center justify-between px-4'>
-                    <h3 className="font-bold flex items-center justify-center gap-2 text-l"><FaBars /><span>Menu</span> </h3>
-                    <button
-                        onClick={() => setOpen(false)}
-                        className="ps-4 text-l font-bold text-gray-950"
-                    >
-                        x
+                {/* Header */}
+                <div className="sticky top-0 h-[50px] flex items-center justify-between px-4 bg-white">
+                    <h3 className="font-bold flex items-center gap-2 text-lg">
+                        {/* <FaBars /> Menu */}
+                    </h3>
+                    <button onClick={closeMenu} className="text-4xl font-bold text-gray-900">
+                        ×
                     </button>
                 </div>
 
-                <div className='flex flex-col text-l'>
+                {/* Menu links */}
+                <nav className="flex flex-col text-xl px-6">
                     <Link
-                        onClick={() => setOpen(false)}
                         href="/"
-                        className="px-4 p-4 flex items-center justify-center font-bold text-[#111111] hover:text-[#707072] transition-colors border-t border-b"
+                        onClick={closeMenu}
+                        className="p-4 font-bold text-[#111] hover:text-[#707072] transition-colors"
                     >
                         Home
                     </Link>
+
                     <Link
-                        onClick={() => setOpen(false)}
                         href="/products"
-                        className="px-4 p-4 flex items-center justify-center font-bold text-[#111111] hover:text-[#707072] transition-colors border-b"
+                        onClick={closeMenu}
+                        className="p-4 font-bold text-[#111] hover:text-[#707072] transition-colors"
                     >
                         Products
                     </Link>
-                </div>
+                </nav>
             </div>
 
-            {/* overlay */}
+            {/* Overlay */}
             {open && (
                 <div
                     className="fixed inset-0 bg-black/40 z-60"
-                    onClick={() => setOpen(false)}
+                    onClick={closeMenu}
                 />
             )}
         </>
