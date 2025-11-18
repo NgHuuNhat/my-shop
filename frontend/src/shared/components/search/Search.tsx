@@ -25,39 +25,43 @@ const Search = () => {
                 params.set("search", value);
             }
             router.replace(`?${params.toString()}`, { scroll: false });
-        }, 500);
+        }, 700);
         return () => clearTimeout(delay);
     }, [value]);
 
     return (
-        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-3 px-4 py-10 max-w-7xl mx-auto">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-3 px-4 py-3 lg:py-10 max-w-7xl mx-auto">
 
             {/* Ô tìm kiếm */}
-            <form onSubmit={(e) => e.preventDefault()} className="border border-gray-200 flex-1 flex gap-1 w-full rounded-2xl focus:outline-none focus-within:border-gray-950 transition text-gray-700 placeholder-gray-400">
+            <form onSubmit={(e) => e.preventDefault()} className="px-4 group overflow-hidden border border-gray-200 flex-1 flex gap-1 w-full rounded-2xl focus:outline-none focus-within:border-gray-950 focus-within:text-gray-950 transition-color text-gray-700 placeholder-gray-400">
                 <input
                     type="text"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     placeholder='Tìm kiếm sản phẩm...'
-                    className="flex-1 w-full px-4 py-2 rounded-lg focus:outline-none transition text-gray-700 placeholder-gray-400"
+                    className="flex-1 w-full py-2 rounded-lg focus:outline-none transition text-gray-700 placeholder-gray-400"
                 />
-                <button type="submit" className="text-white bg-gray-950 w-20 flex justify-center items-center rounded-2xl cursor-pointer hover:bg-gray-700">
+                <div
+                    className={`flex justify-center items-center transition-colors
+                    ${value.trim().length > 0 ? "text-gray-950" : "text-gray-400"}
+                    `}
+                >
                     <FaSearch />
-                </button>
+                </div>
             </form>
 
-            {/* Bộ lọc giá */}
-            {/* <div className="relative w-full md:w-full lg:w-[200px]">
+            {/* Sap xep */}
+            <div className="relative w-full md:w-full lg:w-[200px]">
                 <select
-                    className="appearance-none w-full px-4 py-2 border border-gray-200 rounded-2xl focus:outline-none focus:border-gray-400 transition text-gray-700 bg-white cursor-pointer"
+                    className="appearance-none w-full px-4 py-2 border border-gray-200 rounded-2xl focus:outline-none transition text-gray-400 cursor-pointer "
                 >
-                    <option value="all">Tất cả mức giá</option>
-                    <option value="low">Dưới 500.000₫</option>
-                    <option value="mid">Từ 500.000₫ đến 2.000.000₫</option>
-                    <option value="high">Trên 2.000.000₫</option>
+                    <option value="all">Mới nhất</option>
+                    <option value="low">Cũ nhất</option>
+                    <option value="mid">Giá tăng dần</option>
+                    <option value="high">Giá giảm dần</option>
                 </select>
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">▾</span>
-            </div> */}
+            </div>
 
             {/* Bộ lọc danh mục */}
             {/* <div className="relative w-full md:w-full lg:w-[250px]">

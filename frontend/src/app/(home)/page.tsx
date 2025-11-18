@@ -56,7 +56,7 @@ export default async function HomePage() {
 
         {/* ====================== CATEGORY ====================== */}
         <section className="w-full mt-32">
-          <h2 className="text-4xl font-bold mb-10 px-4 max-w-7xl mx-auto">Danh mục</h2>
+          <h2 className="text-4xl font-bold mb-10 px-4">Danh mục</h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-[1px]">
             {[
@@ -83,8 +83,8 @@ export default async function HomePage() {
         </section>
 
         {/* ====================== TRENDING ====================== */}
-        <section className="w-full mt-32">
-          <h2 className="text-4xl font-bold mb-10 px-4 max-w-7xl mx-auto">Xu hướng</h2>
+        <section className="w-full mt-32 max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10 px-4">Xu hướng</h2>
 
           <div className="flex gap-[1px] overflow-x-auto no-scrollbar py-2">
             {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -102,8 +102,8 @@ export default async function HomePage() {
         </section>
 
         {/* ====================== FEATURED PRODUCTS ====================== */}
-        <section className="w-full mt-32">
-          <h2 className="text-4xl font-bold mb-10 px-4 max-w-7xl mx-auto">Sản phẩm nổi bật</h2>
+        <section className="w-full mt-32 max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10 px-4">Sản phẩm nổi bật</h2>
 
           <div className="flex gap-[1px] overflow-x-auto no-scrollbar py-2">
             {list.map((item) => (

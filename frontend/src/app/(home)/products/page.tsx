@@ -20,6 +20,10 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
     queryParams.delete('page')
     queryParams.delete('limit')
   }
+  if (currentPrice) {
+    queryParams.delete('page')
+    queryParams.delete('limit')
+  }
 
   const urlApi = `https://691078c77686c0e9c20a6dc4.mockapi.io/api/product?${queryParams.toString()}`
 
@@ -48,7 +52,7 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
 
       {/* ket qua tim kiem */}
       {(currentSearch || currentPrice) && (
-        <p className="w-full max-w-7xl mx-auto px-4 pb-2 mt-[-28px] text-sm">
+        <p className="w-full max-w-7xl mx-auto px-4 pb-0 mt-[-20px] text-sm">
           Có {filteredProducts().length} sản phẩm...
         </p>
       )}

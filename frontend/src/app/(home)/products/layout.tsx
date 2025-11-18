@@ -11,11 +11,13 @@ export default function Layout({ children }: any) {
     return (
         <>
             {show ? (
-                <div className="flex flex-col w-full max-w-7xl mx-auto">
-                    <div className="flex flex-wrap w-full">
-                        <Search />
+                <div className="flex-1 flex flex-col w-full max-w-7xl mx-auto">
+                    <div className="flex flex-col md:flex-1 md:flex lg:flex-row">
                         <FilterSidebar />
-                        {children}
+                        <div className='md:flex-1 md:flex-col'>
+                            <Search />
+                            {children}
+                        </div>
                     </div>
                 </div>
             ) : (

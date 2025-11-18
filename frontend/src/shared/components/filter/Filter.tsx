@@ -31,12 +31,13 @@ const Filter = () => {
   return (
     <>
       {/* 🔥 MOBILE BUTTON */}
-      <button
-        onClick={() => setOpen(true)}
-        className="lg:hidden w-full flex items-center gap-2 mx-4 mb-10 px-4 py-2 border rounded-xl"
-      >
-        <FaFilter /> Filter
-      </button>
+      <div className='lg:hidden w-full max-w-7xl mx-auto px-4 pt-3'>
+        <button
+          onClick={() => setOpen(true)}
+          className="text-gray-400 border-gray-200 w-full flex items-center justify-between py-2 px-4 border rounded-2xl">
+          <span>Filter</span><FaFilter className='' />
+        </button>
+      </div>
 
       {/* 🔥 DESKTOP SIDEBAR */}
       <form className="hidden lg:block w-full md:w-72 flex-shrink-0 px-4">
@@ -91,12 +92,12 @@ const FilterContent = ({
   setOpen, // optional
 }: any) => {
   return (
-    <div className="flex flex-col px-4 py-4 lg:px-0">
-      <h3 className="hidden lg:flex font-bold mb-6 items-center gap-2 text-xl"><FaFilter /><span>Filter</span></h3>
+    <div className="flex flex-col px-4 py-4 lg:px-0 lg:py-0">
+      <h3 className="hidden mt-10 h-[42px] lg:flex font-bold items-center gap-2"><FaFilter /><span>Filter</span></h3>
 
       {/* Price */}
       <div className="mb-6">
-        <h3 className="font-bold flex items-end mb-4 border-b">Price</h3>
+        <h3 className="font-bold flex items-end mb-4 border-b h-[40px]">Price</h3>
         <div className="flex flex-col gap-2">
           {prices.map((price, index) => (
             <label key={index} className="cursor-pointer flex items-center gap-2">
