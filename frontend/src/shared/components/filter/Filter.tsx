@@ -34,8 +34,10 @@ const Filter = () => {
       <div className='lg:hidden w-full max-w-7xl mx-auto px-4 pt-6'>
         <button
           onClick={() => setOpen(true)}
-          className="text-gray-400 border-gray-200 w-full flex items-center justify-between py-2 px-4 border rounded-2xl">
-          <span>Filter</span><FaFilter className='' />
+          className={`text-gray-400 border-gray-200 w-full flex items-center justify-between py-2 px-4 border rounded-2xl
+          ${currentPrice && `text-gray-950 border-gray-950`}
+          `}>
+          <span>Filter {currentPrice && `${currentPrice}k`}</span><FaFilter />
         </button>
       </div>
 
