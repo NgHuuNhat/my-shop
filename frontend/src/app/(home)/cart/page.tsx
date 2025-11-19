@@ -73,7 +73,7 @@ export default function CartPage() {
 
     return (
         <div className="flex-1 py-6 px-3 sm:py-8 sm:px-4">
-            <div className="max-w-7xl mx-auto lg:py-10">
+            <div className="max-w-7xl mx-auto">
                 <div className="flex items-center gap-3 mb-6">
                     <FaShoppingCart className="text-2xl" />
                     <h1 className="text-xl lg:text-2xl font-semibold">Giỏ hàng của bạn</h1>

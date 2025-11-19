@@ -26,48 +26,18 @@ export default function OrderPage() {
     const [search, setSearch] = useState('')
 
     const [orders] = useState<OrderItem[]>([
-        {
-            id: 'o1',
-            orderCode: 'DH001',
-            products: [
-                { id: 'p1', title: 'AirPods Pro', qty: 1, price: 249 },
-                { id: 'p2', title: 'iPhone 14 Case', qty: 2, price: 39 },
-            ],
-            paymentMethod: 'BANKING',
-            status: 'PAID',
-            shippingStatus: 'Đã giao',
-            recipientPhone: '0912345678',
-            recipientAddress: '123 Lê Lợi, TP.HCM',
-            orderDate: '2025-11-19 14:30',
-            note: 'Giao hàng giờ hành chính',
-        },
-        {
-            id: 'o2',
-            orderCode: 'DH002',
-            products: [{ id: 'p3', title: 'MacBook Pro', qty: 1, price: 1999 }],
-            paymentMethod: 'COD',
-            status: 'PROCESSING',
-            shippingStatus: 'Chưa gửi',
-            recipientPhone: '0987654321',
-            recipientAddress: '456 Trần Hưng Đạo, Hà Nội',
-            orderDate: '2025-11-18 09:15',
-        },
-        {
-            id: 'o3',
-            orderCode: 'DH003',
-            products: [
-                { id: 'p1', title: 'AirPods Pro', qty: 1, price: 249 },
-                { id: 'p2', title: 'iPhone 14 Case', qty: 2, price: 39 },
-            ],
-            paymentMethod: 'BANKING',
-            status: 'PAID',
-            shippingStatus: 'Đang vận chuyển',
-            recipientPhone: '0912345000',
-            recipientAddress: 'TP.HCM',
-            orderDate: '2025-12-22 16:45',
-            note: 'Giao hàng giờ hành chính',
-        },
+        { id: 'o1', orderCode: 'DH001', products: [{ id: 'p1', title: 'AirPods Pro', qty: 1, price: 249 }], paymentMethod: 'BANKING', status: 'PAID', shippingStatus: 'Đã giao', recipientPhone: '0912345678', recipientAddress: 'TP.HCM', orderDate: '2025-11-19 14:30' },
+        { id: 'o2', orderCode: 'DH002', products: [{ id: 'p2', title: 'iPhone 14 Case', qty: 2, price: 39 }], paymentMethod: 'COD', status: 'PAID', shippingStatus: 'Đang vận chuyển', recipientPhone: '0987654321', recipientAddress: 'Hà Nội', orderDate: '2025-11-18 09:15' },
+        { id: 'o3', orderCode: 'DH003', products: [{ id: 'p3', title: 'MacBook Pro', qty: 1, price: 1999 }], paymentMethod: 'BANKING', status: 'UNPAID', shippingStatus: 'Chưa gửi', recipientPhone: '0912345000', recipientAddress: 'Đà Nẵng', orderDate: '2025-12-22 16:45' },
+        { id: 'o4', orderCode: 'DH004', products: [{ id: 'p4', title: 'iPad Air', qty: 1, price: 599 }], paymentMethod: 'COD', status: 'PROCESSING', shippingStatus: 'Đang xử lý', recipientPhone: '0901111222', recipientAddress: 'HCM', orderDate: '2025-11-20 11:00' },
+        { id: 'o5', orderCode: 'DH005', products: [{ id: 'p5', title: 'Apple Watch', qty: 1, price: 399 }], paymentMethod: 'BANKING', status: 'PAID', shippingStatus: 'Đã giao', recipientPhone: '0933334444', recipientAddress: 'Hà Nội', orderDate: '2025-11-21 15:30' },
+        { id: 'o6', orderCode: 'DH006', products: [{ id: 'p6', title: 'AirPods Max', qty: 1, price: 549 }], paymentMethod: 'COD', status: 'UNPAID', shippingStatus: 'Chưa gửi', recipientPhone: '0944445555', recipientAddress: 'Huế', orderDate: '2025-11-22 10:20' },
+        { id: 'o7', orderCode: 'DH007', products: [{ id: 'p7', title: 'Mac Mini', qty: 1, price: 699 }], paymentMethod: 'BANKING', status: 'PROCESSING', shippingStatus: 'Đang xử lý', recipientPhone: '0955556666', recipientAddress: 'HCM', orderDate: '2025-11-23 13:45' },
+        { id: 'o8', orderCode: 'DH008', products: [{ id: 'p8', title: 'iPhone 15', qty: 1, price: 1099 }], paymentMethod: 'COD', status: 'SHIPPING', shippingStatus: 'Đang vận chuyển', recipientPhone: '0966667777', recipientAddress: 'Hà Nội', orderDate: '2025-11-24 09:50' },
+        { id: 'o9', orderCode: 'DH009', products: [{ id: 'p9', title: 'iMac', qty: 1, price: 1799 }], paymentMethod: 'BANKING', status: 'PAID', shippingStatus: 'Đã giao', recipientPhone: '0977778888', recipientAddress: 'Đà Nẵng', orderDate: '2025-11-25 16:10' },
+        { id: 'o10', orderCode: 'DH010', products: [{ id: 'p10', title: 'HomePod', qty: 1, price: 199 }], paymentMethod: 'COD', status: 'UNPAID', shippingStatus: 'Chưa gửi', recipientPhone: '0988889999', recipientAddress: 'HCM', orderDate: '2025-11-26 12:30' },
     ])
+
 
     const statusColors: Record<string, string> = {
         PAID: 'bg-green-100 text-green-800',
@@ -95,11 +65,11 @@ export default function OrderPage() {
     }, [search, orders])
 
     return (
-        <div className="flex-1 py-6 px-3 sm:py-8 sm:px-4 bg-gray-50 min-h-screen">
+        <div className="flex-1 py-6 px-3 sm:py-8 sm:px-4 min-h-screen">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-6">
-                    <h1 className="text-2xl lg:text-3xl font-semibold">Đơn hàng của bạn</h1>
+                    <h1 className="text-xl lg:text-2xl font-semibold">Đơn hàng của bạn</h1>
                     <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 font-medium">
                         Tổng số đơn: {filteredOrders.length}
                     </span>
@@ -135,17 +105,16 @@ export default function OrderPage() {
                                             {index + 1}. {order.orderCode}
                                         </h3>
                                         <span
-                                            className={`px-2 py-1 rounded-full text-sm font-medium ${
-                                                statusColors[order.status]
-                                            }`}
+                                            className={`px-2 py-1 rounded-full text-sm font-medium ${statusColors[order.status]
+                                                }`}
                                         >
                                             {order.status === 'PAID'
                                                 ? `Đã thanh toán (${order.paymentMethod === 'BANKING' ? 'Banking' : 'COD'})`
                                                 : order.status === 'UNPAID'
-                                                ? 'Chưa thanh toán'
-                                                : order.status === 'PROCESSING'
-                                                ? 'Đang xử lý'
-                                                : 'Đang vận chuyển'}
+                                                    ? 'Chưa thanh toán'
+                                                    : order.status === 'PROCESSING'
+                                                        ? 'Đang xử lý'
+                                                        : 'Đang vận chuyển'}
                                         </span>
                                     </div>
 
