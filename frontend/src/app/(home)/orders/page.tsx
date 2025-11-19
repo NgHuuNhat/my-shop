@@ -18,14 +18,13 @@ export type OrderItem = {
     shippingStatus: 'Chưa gửi' | 'Đang vận chuyển' | 'Đã giao'
     recipientPhone: string
     recipientAddress: string
-    orderDate: string // định dạng "YYYY-MM-DD HH:mm"
+    orderDate: string // "YYYY-MM-DD HH:mm"
     note?: string
 }
 
 export default function OrderPage() {
     const [search, setSearch] = useState('')
 
-    // Sample data
     const [orders] = useState<OrderItem[]>([
         {
             id: 'o1',
@@ -70,23 +69,18 @@ export default function OrderPage() {
         },
     ])
 
-    function renderPaymentStatus(order: OrderItem) {
-        switch (order.status) {
-            case 'PAID':
-                return (
-                    <span className="text-green-600 font-semibold">
-                        Đã thanh toán ({order.paymentMethod === 'BANKING' ? 'Banking' : 'COD'})
-                    </span>
-                )
-            case 'UNPAID':
-                return <span className="text-red-600 font-semibold">Chưa thanh toán (Banking)</span>
-            case 'PROCESSING':
-                return <span className="text-yellow-600 font-semibold">Đang xử lý (COD)</span>
-            case 'SHIPPING':
-                return <span className="text-blue-600 font-semibold">Đang vận chuyển</span>
-            default:
-                return null
-        }
+    const statusColors: Record<string, string> = {
+        PAID: 'bg-green-100 text-green-800',
+        UNPAID: 'bg-red-100 text-red-800',
+        PROCESSING: 'bg-yellow-100 text-yellow-800',
+        SHIPPING: 'bg-blue-100 text-blue-800',
+    }
+
+    const shippingColors: Record<string, string> = {
+        'Chưa gửi': 'bg-gray-200 text-gray-800',
+        'Đang vận chuyển': 'bg-blue-100 text-blue-800',
+        'Đã giao': 'bg-green-100 text-green-800',
+        'Đang xử lý': 'bg-yellow-100 text-yellow-800',
     }
 
     const filteredOrders = useMemo(() => {
@@ -101,29 +95,29 @@ export default function OrderPage() {
     }, [search, orders])
 
     return (
-        <div className="flex-1 py-6 px-3 sm:py-8 sm:px-4">
-            <div className="max-w-7xl mx-auto bg-white">
-                {/* Header: Tiêu đề + tổng số đơn */}
-                <div className="flex justify-between items-center mb-4">
+        <div className="flex-1 py-6 px-3 sm:py-8 sm:px-4 bg-gray-50 min-h-screen">
+            <div className="max-w-7xl mx-auto">
+                {/* Header */}
+                <div className="flex justify-between items-center mb-6">
                     <h1 className="text-2xl lg:text-3xl font-semibold">Đơn hàng của bạn</h1>
-                    <span className="text-gray-600 font-medium">
+                    <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 font-medium">
                         Tổng số đơn: {filteredOrders.length}
                     </span>
                 </div>
 
                 {/* Search box */}
-                <div className="mb-4">
+                <div className="mb-6">
                     <input
                         type="text"
                         placeholder="Tìm theo mã đơn, SĐT, sản phẩm..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
                     />
                 </div>
 
                 {filteredOrders.length === 0 ? (
-                    <div className="text-center py-16 text-gray-500">Không tìm thấy đơn hàng nào.</div>
+                    <div className="text-center py-16 text-gray-500 text-lg">Không tìm thấy đơn hàng nào.</div>
                 ) : (
                     <ul className="space-y-6">
                         {filteredOrders.map((order, index) => {
@@ -131,29 +125,48 @@ export default function OrderPage() {
                             const totalAmount = order.products.reduce((s, p) => s + p.qty * p.price, 0)
 
                             return (
-                                <li key={order.id} className="p-4 rounded-xl border bg-gray-50 space-y-3">
-                                    <div className="flex justify-between items-center">
+                                <li
+                                    key={order.id}
+                                    className="p-6 rounded-xl shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
+                                >
+                                    {/* Header card */}
+                                    <div className="flex justify-between items-center mb-3">
                                         <h3 className="font-medium text-lg">
-                                            {index + 1}. Mã đơn: {order.orderCode}
+                                            {index + 1}. {order.orderCode}
                                         </h3>
-                                        {renderPaymentStatus(order)}
+                                        <span
+                                            className={`px-2 py-1 rounded-full text-sm font-medium ${
+                                                statusColors[order.status]
+                                            }`}
+                                        >
+                                            {order.status === 'PAID'
+                                                ? `Đã thanh toán (${order.paymentMethod === 'BANKING' ? 'Banking' : 'COD'})`
+                                                : order.status === 'UNPAID'
+                                                ? 'Chưa thanh toán'
+                                                : order.status === 'PROCESSING'
+                                                ? 'Đang xử lý'
+                                                : 'Đang vận chuyển'}
+                                        </span>
                                     </div>
 
-                                    <p className="text-sm text-gray-500">
-                                        Ngày đặt: {order.orderDate}
-                                    </p>
+                                    {/* Info */}
+                                    <div className="flex flex-col sm:flex-row sm:justify-between text-gray-600 text-sm mb-3">
+                                        <span>Ngày đặt: {order.orderDate}</span>
+                                        <span
+                                            className={`mt-1 sm:mt-0 px-2 py-1 rounded-full text-sm font-medium ${shippingColors[order.shippingStatus]}`}
+                                        >
+                                            {order.shippingStatus}
+                                        </span>
+                                    </div>
 
-                                    <p className="text-sm text-gray-500">
-                                        Trạng thái vận chuyển: {order.shippingStatus}
-                                    </p>
-
-                                    <div className="border-t pt-2">
-                                        <h4 className="font-medium mb-1">
+                                    {/* Products */}
+                                    <div className="border-t pt-3">
+                                        <h4 className="font-medium mb-2 text-gray-700">
                                             Sản phẩm ({order.products.length} loại, tổng số lượng: {totalQty})
                                         </h4>
                                         <ul className="space-y-1">
                                             {order.products.map((p) => (
-                                                <li key={p.id} className="flex justify-between text-sm text-gray-700">
+                                                <li key={p.id} className="flex justify-between text-gray-700">
                                                     <span>
                                                         {p.title} x {p.qty}
                                                     </span>
@@ -163,16 +176,13 @@ export default function OrderPage() {
                                         </ul>
                                     </div>
 
-                                    <p className="text-sm text-gray-500 mt-2">
-                                        Tổng thanh toán: ${totalAmount.toFixed(2)}
-                                    </p>
-                                    <p className="text-sm text-gray-500">
-                                        SĐT người nhận: {order.recipientPhone}
-                                    </p>
-                                    <p className="text-sm text-gray-500">
-                                        Địa chỉ nhận: {order.recipientAddress}
-                                    </p>
-                                    {order.note && <p className="text-sm text-gray-500">Ghi chú: {order.note}</p>}
+                                    {/* Footer */}
+                                    <div className="border-t pt-3 mt-3 text-gray-600 text-sm space-y-1">
+                                        <p>Tổng thanh toán: ${totalAmount.toFixed(2)}</p>
+                                        <p>SĐT người nhận: {order.recipientPhone}</p>
+                                        <p>Địa chỉ nhận: {order.recipientAddress}</p>
+                                        {order.note && <p>Ghi chú: {order.note}</p>}
+                                    </div>
                                 </li>
                             )
                         })}
