@@ -77,15 +77,19 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
       <div className='lg:hidden'>
         <div className='pt-5'><Search /></div>
 
-        <div className='flex items-center justify-between px-4 py-4'>
-          <button className="lg:hidden border-gray-200 text-gray-400 cursor-pointer border rounded-2xl px-4 flex items-center justify-center gap-2 transition-colors">
-            <span>
-              {currentSearch || currentPrice
-                ? `Có ${filteredProducts().length} kết quả`
-                : `Trang ${currentPage}`}
-            </span>
-          </button>
-          <Filter />
+        <div className='w-full flex items-center justify-between px-4 py-4 '>
+          <div className=''>
+            <button className="lg:hidden border-gray-200 text-gray-400 cursor-pointer border rounded-2xl px-4 flex items-center justify-center gap-2 transition-colors">
+              <span>
+                {currentSearch || currentPrice
+                  ? `Có ${filteredProducts().length} kết quả`
+                  : `Trang ${currentPage}`}
+              </span>
+            </button>
+          </div>
+          <div className='min-w-1/2 flex justify-end'>
+            <Filter />
+          </div>
         </div>
 
         <div className=''><ProductList products={filteredProducts()} /></div>

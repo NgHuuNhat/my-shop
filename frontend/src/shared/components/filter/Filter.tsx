@@ -44,7 +44,7 @@ export default function Filter() {
   return (
     <>
       {/* Mobile menu button */}
-      <button onClick={() => setOpen(true)} className="lg:hidden border-gray-200 text-gray-400 cursor-pointer border rounded-2xl px-4 flex items-center justify-center gap-2 transition-colors">
+      <button onClick={() => setOpen(true)} className="lg:hidden w-full border-gray-200 text-gray-400 cursor-pointer border rounded-2xl px-4 flex items-center justify-center gap-2 transition-colors">
         <span>{currentSort} {currentPrice}</span><FaSliders />
       </button>
 
