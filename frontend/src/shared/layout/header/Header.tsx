@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { FaBars, FaHome, FaShoppingBag, FaShoppingCart, FaUser } from 'react-icons/fa'
+import { FaBars, FaClipboardList, FaHome, FaShoppingBag, FaShoppingCart, FaUser } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import MenuMobile from '@/shared/components/menu/MenuMobile'
 
@@ -41,6 +41,14 @@ export default function Header() {
 
                     {/* Actions */}
                     <div className="hidden lg:flex gap-8 items-center text-xl">
+                        <Link href="/orders" className="relative text-[#111] hover:text-[#707072] transition-colors">
+                            {/* icon order có thể dùng FaClipboardList hoặc FaListAlt */}
+                            <FaClipboardList />
+                            <span className="absolute -top-2 -right-3 bg-blue-600 text-white font-bold w-4 h-4 text-sm flex items-center justify-center rounded-full">
+                                0
+                                {/* {orders.length} nếu bạn truyền số đơn từ context hoặc state */}
+                            </span>
+                        </Link>
                         <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
                             <FaShoppingCart />
                             <span className="absolute -top-2 -right-3 bg-red-600 text-white font-bold w-4 h-4 text-sm flex items-center justify-center rounded-full">1</span>
@@ -63,6 +71,14 @@ export default function Header() {
                         <div className='flex items-center justify-between text-xl gap-10'>
                             {/* <Link href="/" className="text-[#111] hover:text-[#707072] transition-colors"><FaHome /></Link>
                             <Link href="/products" className="text-[#111] hover:text-[#707072] transition-colors"><FaShoppingBag /></Link> */}
+                            <Link href="/orders" className="relative text-[#111] hover:text-[#707072] transition-colors">
+                                {/* icon order có thể dùng FaClipboardList hoặc FaListAlt */}
+                                <FaClipboardList />
+                                <span className="absolute -top-1 -right-2 bg-blue-600 text-white font-bold w-3 h-3 text-sm flex items-center justify-center rounded-full">
+                                    0
+                                    {/* {orders.length} nếu bạn truyền số đơn từ context hoặc state */}
+                                </span>
+                            </Link>
                             <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
                                 <FaShoppingCart />
                                 <span className="absolute -top-1 -right-2 bg-red-600 text-white font-bold w-3 h-3 text-sm flex items-center justify-center rounded-full">1</span>
