@@ -60,7 +60,7 @@ export default function Header() {
                                 />
                             </svg>
                         </Link>
-                        <div className='flex items-center justify-between text-xl gap-6'>
+                        <div className='flex items-center justify-between text-xl gap-10'>
                             {/* <Link href="/" className="text-[#111] hover:text-[#707072] transition-colors"><FaHome /></Link>
                             <Link href="/products" className="text-[#111] hover:text-[#707072] transition-colors"><FaShoppingBag /></Link> */}
                             <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
