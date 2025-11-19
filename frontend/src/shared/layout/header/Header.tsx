@@ -50,7 +50,7 @@ export default function Header() {
 
                     {/* Mobile Menu */}
                     <nav className="w-full max-w-7xl mx-auto flex items-center justify-between lg:hidden text-xl">
-                        <Link href="/" className="w-12 h-12 flex items-center text-[#111] hover:text-[#707072] transition-colors">
+                        <Link href="/" className="w-16 h-16 flex items-center text-[#111] hover:text-[#707072] transition-colors">
                             <svg aria-hidden="true" className="w-full h-full" viewBox="0 0 24 24" fill="none">
                                 <path
                                     fill="currentColor"
@@ -60,17 +60,19 @@ export default function Header() {
                                 />
                             </svg>
                         </Link>
-                        <Link href="/" className="text-[#111] hover:text-[#707072] transition-colors"><FaHome /></Link>
-                        <Link href="/products" className="text-[#111] hover:text-[#707072] transition-colors"><FaShoppingBag /></Link>
-                        <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
-                            <FaShoppingCart />
-                            <span className="absolute -top-1 -right-2 bg-red-600 text-white font-bold w-3 h-3 text-sm flex items-center justify-center rounded-full">1</span>
-                        </Link>
-                        <Link href="/profile" className="text-[#111] hover:text-[#707072] transition-colors"><FaUser /></Link>
-                        {/* Mobile menu button */}
-                        <button onClick={() => setOpen(true)} className="text-[#111] hover:text-[#707072] transition-colors">
-                            <FaBars />
-                        </button>
+                        <div className='flex items-center justify-between text-xl gap-6'>
+                            {/* <Link href="/" className="text-[#111] hover:text-[#707072] transition-colors"><FaHome /></Link>
+                            <Link href="/products" className="text-[#111] hover:text-[#707072] transition-colors"><FaShoppingBag /></Link> */}
+                            <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
+                                <FaShoppingCart />
+                                <span className="absolute -top-1 -right-2 bg-red-600 text-white font-bold w-3 h-3 text-sm flex items-center justify-center rounded-full">1</span>
+                            </Link>
+                            <Link href="/profile" className="text-[#111] hover:text-[#707072] transition-colors"><FaUser /></Link>
+                            {/* Mobile menu button */}
+                            <button onClick={() => setOpen(true)} className="text-[#111] hover:text-[#707072] transition-colors">
+                                <FaBars />
+                            </button>
+                        </div>
                     </nav>
 
                 </nav>
