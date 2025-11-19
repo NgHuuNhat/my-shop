@@ -51,12 +51,13 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
 
   return (
     <div>
+
       {/* desktop */}
       <div className='hidden lg:grid grid-cols-4 max-w-7xl mx-auto px-4'>
         <div className='col-span-1'><Filter /></div>
         <div className='col-span-3'>
           <div className=''><Search /></div>
-          <div>
+          <div className=''>
             {(currentSearch || currentPrice) && (
               <p className="w-full max-w-7xl mx-auto px-4 pb-0 text-sm mt-[-20px]">
                 Có {filteredProducts().length} kết quả...
@@ -65,11 +66,9 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
           </div>
           <div className=''><ProductList products={filteredProducts()} /></div>
           <div>
-            {(currentSearch || price) ? (
-              <div className="flex justify-center items-center gap-4 py-10 w-full max-w-7xl mx-auto"></div>
-            ) : (
-              <Pagination data={products} />
-            )}
+            {currentSearch || price
+              ? <div className="flex justify-center items-center gap-4 py-10 w-full max-w-7xl mx-auto" />
+              : <Pagination data={products} />}
           </div>
         </div>
       </div>
@@ -79,29 +78,25 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
         <div className='pt-5'><Search /></div>
 
         <div className='flex items-center justify-between px-4 py-4'>
-          <div>
-            {(currentSearch || currentPrice) && (
-              <p className="w-full max-w-7xl mx-auto pb-0 text-sm">
-                Có {filteredProducts().length} kết quả
-              </p>
-            ) || (
-                <p className="w-full max-w-7xl mx-auto pb-0 text-sm">
-                  Trang {currentPage}
-                </p>
-              )}
-          </div>
-          <div className=''><Filter /></div>
+          <button className="lg:hidden border-gray-200 text-gray-400 cursor-pointer border rounded-2xl px-4 flex items-center justify-center gap-2 transition-colors">
+            <span>
+              {currentSearch || currentPrice
+                ? `Có ${filteredProducts().length} kết quả`
+                : `Trang ${currentPage}`}
+            </span>
+          </button>
+          <Filter />
         </div>
 
         <div className=''><ProductList products={filteredProducts()} /></div>
+
         <div>
-          {(currentSearch || price) ? (
-            <div className="flex justify-center items-center gap-4 py-10 w-full max-w-7xl mx-auto"></div>
-          ) : (
-            <Pagination data={products} />
-          )}
+          {currentSearch || price
+            ? <div className="flex justify-center items-center gap-4 py-10 w-full max-w-7xl mx-auto" />
+            : <Pagination data={products} />}
         </div>
       </div>
+
     </div>
   )
 }
