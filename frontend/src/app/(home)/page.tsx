@@ -1,4 +1,5 @@
 import { ProductType } from '@/modules/product/types/productType';
+import Footer from '@/shared/layout/footer/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
@@ -136,6 +137,9 @@ export default async function HomePage() {
         </Link>
       </section>
 
+      <Footer />
+
     </div>
+
   )
 }

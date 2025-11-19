@@ -45,7 +45,7 @@ export default function Header() {
                             <FaShoppingCart />
                             <span className="absolute -top-2 -right-3 bg-red-600 text-white font-bold w-4 h-4 text-sm flex items-center justify-center rounded-full">1</span>
                         </Link>
-                        <Link href="/profile" className="text-[#111] hover:text-[#707072] transition-colors"><FaUser /></Link>
+                        <Link href="/auth" className="text-[#111] hover:text-[#707072] transition-colors"><FaUser /></Link>
                     </div>
 
                     {/* Mobile Menu */}
@@ -67,7 +67,7 @@ export default function Header() {
                                 <FaShoppingCart />
                                 <span className="absolute -top-1 -right-2 bg-red-600 text-white font-bold w-3 h-3 text-sm flex items-center justify-center rounded-full">1</span>
                             </Link>
-                            <Link href="/profile" className="text-[#111] hover:text-[#707072] transition-colors"><FaUser /></Link>
+                            <Link href="/auth" className="text-[#111] hover:text-[#707072] transition-colors"><FaUser /></Link>
                             {/* Mobile menu button */}
                             <button onClick={() => setOpen(true)} className="text-[#111] hover:text-[#707072] transition-colors">
                                 <FaBars />

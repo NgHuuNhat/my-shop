@@ -25,7 +25,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
     }
 
     return (
-        <div className="flex-1 max-w-6xl mx-auto flex flex-col">
+        <div className="min-h-screen max-w-6xl mx-auto flex flex-col">
 
             {/* Breadcrumb */}
             <div className="py-2 lg:py-5 px-4 text-sm text-gray-500">
