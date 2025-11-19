@@ -34,7 +34,7 @@ export default function Search() {
   }, [value])
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-3 lg:py-10">
+    <div className="w-full max-w-7xl mx-auto px-4 py-4 lg:py-10">
       <form
         onSubmit={(e) => e.preventDefault()}
         className="flex items-center gap-2 px-4 border border-gray-200 rounded-2xl 
