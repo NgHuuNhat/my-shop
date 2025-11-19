@@ -47,7 +47,7 @@ export default function OrderPage() {
             products: [{ id: 'p3', title: 'MacBook Pro', qty: 1, price: 1999 }],
             paymentMethod: 'COD',
             status: 'PROCESSING',
-            shippingStatus: 'Đang xử lý',
+            shippingStatus: 'Chưa gửi',
             recipientPhone: '0987654321',
             recipientAddress: '456 Trần Hưng Đạo, Hà Nội',
             orderDate: '2025-11-18 09:15',
