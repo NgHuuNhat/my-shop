@@ -28,7 +28,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
         <div className="flex-1 max-w-6xl mx-auto flex flex-col">
 
             {/* Breadcrumb */}
-            <div className="hidden lg:block py-5 px-4 text-sm text-gray-500">
+            <div className="py-2 lg:py-5 px-4 text-sm text-gray-500">
                 <a href="/" className="hover:text-gray-950 transition">Home</a> {`>`}
                 <a href="/products" className="hover:text-gray-950 transition"> Products</a> {`>`}
                 <span className="text-gray-700 font-medium"> {product.name}</span>
