@@ -7,26 +7,34 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link
       href={`/products/${product.id}`}
-      className="group flex flex-col w-full rounded-2xl cursor-pointer"
+      className="group flex flex-col w-full cursor-pointer mb-3"
     >
-      <div className="relative w-full aspect-square overflow-hidden shadow-lg bg-gray-200">
-        {/* Ảnh scale khi hover */}
+      {/* IMAGE WRAPPER */}
+      <div className="relative w-full aspect-square bg-[#f2f4f5] overflow-hidden">
         <Image
           src={product.image || "/images/no-image.png"}
           alt={product.name || "Product image"}
           fill
+          // className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
           className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-          // sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
         />
+      </div>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/30" />
+      {/* TEXT INFO */}
+      <div className="mt-3">
+        <p className="text-lg font-bold">{product.price}₫</p>
 
-        {/* Text */}
-        <div className="absolute bottom-3 left-3 text-white">
-          <h2 className="text-sm font-black line-clamp-2">{product.name}</h2>
-          <p className="mt-1 text-base font-bold">{product.price}₫</p>
-        </div>
+        <h3 className="mt-1 text-[17px] font-medium text-black line-clamp-1">
+          {product.name}
+        </h3>
+
+        <p className="text-gray-500 text-sm mt-0.5">
+          {"Product"}
+        </p>
+
+        <p className="text-gray-500 text-sm">{product ? ` colours` : "1 colour"}</p>
+
+        {/* <p className="text-sm text-black mt-1">Trending</p> */}
       </div>
     </Link>
   );
