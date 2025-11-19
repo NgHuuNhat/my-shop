@@ -58,7 +58,7 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
           <div className=''><Search /></div>
           <div>
             {(currentSearch || currentPrice) && (
-              <p className="w-full max-w-7xl mx-auto px-4 pb-0 text-sm">
+              <p className="w-full max-w-7xl mx-auto px-4 pb-0 text-sm mt-[-20px]">
                 Có {filteredProducts().length} kết quả...
               </p>
             )}
@@ -76,17 +76,19 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
 
       {/* mobile */}
       <div className='lg:hidden'>
-        <div className=''><Search /></div>
+        <div className='pt-5'><Search /></div>
 
-        <div className='flex items-center justify-between px-4 pb-3'>
+        <div className='flex items-center justify-between px-4 py-4'>
           <div>
             {(currentSearch || currentPrice) && (
-              <p className="w-full max-w-7xl mx-auto px-4 pb-0 text-sm">
-                Có {filteredProducts().length} kết quả...
+              <p className="w-full max-w-7xl mx-auto pb-0 text-sm">
+                Có {filteredProducts().length} kết quả
               </p>
-            ) || (<p className="w-full max-w-7xl mx-auto px-4 pb-0 text-sm">
-              {/* Có {products.length} sản phẩm mỗi trang. */}
-            </p>)}
+            ) || (
+                <p className="w-full max-w-7xl mx-auto pb-0 text-sm">
+                  Trang {currentPage}
+                </p>
+              )}
           </div>
           <div className=''><Filter /></div>
         </div>

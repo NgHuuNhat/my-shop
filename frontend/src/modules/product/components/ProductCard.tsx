@@ -21,7 +21,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </div>
 
       {/* TEXT INFO */}
-      <div className="mt-3">
+      <div className="mt-1 px-1 lg:px-0">
         <p className="text-lg font-bold">{product.price}₫</p>
 
         <h3 className="mt-1 text-[17px] font-medium text-black line-clamp-1">
