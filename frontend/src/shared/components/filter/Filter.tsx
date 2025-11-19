@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { FaSliders } from 'react-icons/fa6'
+import MenuMobile from '../menu/MenuMobile'
 
 const sorts = ['Mới nhất', 'Cũ nhất', 'Giá tăng dần', 'Giá giảm dần']
 const prices = ['0 - 500', '500 - 1000', '1000 - 2000']
@@ -32,8 +33,39 @@ export default function Filter() {
     // không cần setState ở đây nữa vì useEffect sẽ sync
   }
 
+  //bat tat menu
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    document.body.classList.toggle("overflow-hidden", open)
+    return () => document.body.classList.remove("overflow-hidden")
+  }, [open])
+
   return (
-    <form className="hidden lg:block w-full md:w-72 flex-shrink-0 px-4">
+    <>
+      {/* Mobile menu button */}
+      <button onClick={() => setOpen(true)} className="lg:hidden border-gray-200 text-gray-400 cursor-pointer border rounded-2xl px-4 py-0 flex items-center justify-center gap-2 transition-colors">
+        <span>{currentSort} {currentPrice}</span><FaSliders />
+      </button>
+
+      {/* Content */}
+      <div className='hidden lg:block'>
+        <Content currentSort={currentSort} updateUrlParam={updateUrlParam} currentPrice={currentPrice} />
+      </div>
+
+      {/* MenuMobile*/}
+      <MenuMobile
+        open={open}
+        setOpen={setOpen}
+        content={<Content currentSort={currentSort} updateUrlParam={updateUrlParam} currentPrice={currentPrice} setOpen={setOpen} />}
+      />
+    </>
+  )
+}
+
+export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen }: any) => {
+  return (
+    <form className="w-full md:w-72 flex-shrink-0 px-4">
       <div className="flex flex-col px-0 py-4 lg:px-0 lg:py-0">
 
         {/* Name */}
@@ -49,7 +81,10 @@ export default function Filter() {
                   type="radio"
                   name="sort"
                   checked={currentSort === sort}
-                  onChange={() => updateUrlParam('sort', sort)}
+                  onChange={() => {
+                    updateUrlParam('sort', sort)
+                    if (setOpen) setOpen(false)
+                  }}
                   className="cursor-pointer accent-blue-600"
                 />
                 {sort}
@@ -67,9 +102,10 @@ export default function Filter() {
                 <input
                   type="checkbox"
                   checked={currentPrice === price}
-                  onChange={() =>
+                  onChange={() => {
                     updateUrlParam('price', currentPrice === price ? '' : price)
-                  }
+                    if (setOpen) setOpen(false)
+                  }}
                   className="cursor-pointer accent-blue-600"
                 />
                 {price}k

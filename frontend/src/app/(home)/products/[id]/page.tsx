@@ -1,6 +1,6 @@
 import ProductCard from '@/modules/product/components/ProductCard'
 import { ProductDetailProps, ProductType } from '@/modules/product/types/productType'
-import Error from '@/shared/components/error/Error'
+import Error from '@/shared/ui/error/Error'
 import Image from 'next/image'
 import { FaShoppingCart, FaCoins } from 'react-icons/fa'
 
@@ -28,9 +28,9 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
         <div className="flex-1 max-w-6xl mx-auto flex flex-col">
 
             {/* Breadcrumb */}
-            <div className="py-5 px-4 text-sm text-gray-500">
-                <a href="/" className="hover:text-blue-600 transition">Home</a> {`>`}
-                <a href="/products" className="hover:text-blue-600 transition"> Products</a> {`>`}
+            <div className="hidden lg:block py-5 px-4 text-sm text-gray-500">
+                <a href="/" className="hover:text-gray-950 transition">Home</a> {`>`}
+                <a href="/products" className="hover:text-gray-950 transition"> Products</a> {`>`}
                 <span className="text-gray-700 font-medium"> {product.name}</span>
             </div>
 
@@ -41,7 +41,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                     {/* Ảnh chính */}
                     <div className="cursor-pointer relative w-full pb-[100%] bg-gray-200 overflow-hidden ">
                         <Image
-                            src={product.thumbnail || "/images/no-image.png"}
+                            src={product.image || "/images/no-image.png"}
                             alt={product.name || "Product image"}
                             fill
                             className='object-cover'
@@ -49,7 +49,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
                     </div>
                     {/* Thumbnail list */}
                     <div className="flex flex-nowrap overflow-x-auto gap-[1px] py-[1px] items-center">
-                        {[product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail, product.thumbnail].map((img, i) => (
+                        {[product.image, product.image, product.image, product.image, product.image, product.image, product.image, product.image, product.image, product.image, product.image].map((img, i) => (
                             <div
                                 key={i}
                                 className="bg-gray-200 relative w-15 h-15 overflow-hidden cursor-pointer flex-shrink-0 transition-transform"

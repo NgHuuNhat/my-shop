@@ -1,7 +1,10 @@
-import ProductList from "@/modules/product/components/ProductList"
-import { ProductPageProps, ProductType } from "@/modules/product/types/productType"
-import Pagination from "@/shared/components/pagination/Pagination"
-import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/shared/components/pagination/paginationConstant"
+import ProductList from '@/modules/product/components/ProductList'
+import { ProductPageProps, ProductType } from '@/modules/product/types/productType'
+import Filter from '@/shared/components/filter/Filter'
+import Pagination from '@/shared/components/pagination/Pagination'
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from '@/shared/components/pagination/paginationConstant'
+import Search from '@/shared/components/search/Search'
+import React from 'react'
 
 export default async function ProductsPage({ searchParams }: ProductPageProps) {
   const { page, limit, search, price }: any = await searchParams
@@ -47,25 +50,56 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
   }
 
   return (
-    <div className="flex-1">
+    <div>
+      {/* desktop */}
+      <div className='hidden lg:grid grid-cols-4 max-w-7xl mx-auto px-4'>
+        <div className='col-span-1'><Filter /></div>
+        <div className='col-span-3'>
+          <div className=''><Search /></div>
+          <div>
+            {(currentSearch || currentPrice) && (
+              <p className="w-full max-w-7xl mx-auto px-4 pb-0 text-sm">
+                Có {filteredProducts().length} kết quả...
+              </p>
+            )}
+          </div>
+          <div className=''><ProductList products={filteredProducts()} /></div>
+          <div>
+            {(currentSearch || price) ? (
+              <div className="flex justify-center items-center gap-4 py-10 w-full max-w-7xl mx-auto"></div>
+            ) : (
+              <Pagination data={products} />
+            )}
+          </div>
+        </div>
+      </div>
 
-      {/* ket qua tim kiem */}
-      {(currentSearch || currentPrice) && (
-        <p className="w-full max-w-7xl mx-auto px-4 pb-0 text-sm">
-          Có {filteredProducts().length} kết quả...
-        </p>
-      )}
+      {/* mobile */}
+      <div className='lg:hidden'>
+        <div className=''><Search /></div>
 
-      {/* producst-list */}
-      <ProductList products={filteredProducts()} />
+        <div className='flex items-center justify-between px-4 pb-3'>
+          <div>
+            {(currentSearch || currentPrice) && (
+              <p className="w-full max-w-7xl mx-auto px-4 pb-0 text-sm">
+                Có {filteredProducts().length} kết quả...
+              </p>
+            ) || (<p className="w-full max-w-7xl mx-auto px-4 pb-0 text-sm">
+              {/* Có {products.length} sản phẩm mỗi trang. */}
+            </p>)}
+          </div>
+          <div className=''><Filter /></div>
+        </div>
 
-      {/* pagination */}
-      {(currentSearch || price) ? (
-        <div className="flex justify-center items-center gap-4 py-10 w-full max-w-7xl mx-auto"></div>
-      ) : (
-        <Pagination data={products} />
-      )}
-
+        <div className=''><ProductList products={filteredProducts()} /></div>
+        <div>
+          {(currentSearch || price) ? (
+            <div className="flex justify-center items-center gap-4 py-10 w-full max-w-7xl mx-auto"></div>
+          ) : (
+            <Pagination data={products} />
+          )}
+        </div>
+      </div>
     </div>
   )
 }

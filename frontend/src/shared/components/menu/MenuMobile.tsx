@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function MenuMobileDrawer({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
+export default function MenuMobile({ open, setOpen, content }: { open: boolean; setOpen: (v: boolean) => void; content?: any }) {
     const closeMenu = () => setOpen(false)
 
     // Slide từ trái sang phải
@@ -19,7 +19,7 @@ export default function MenuMobileDrawer({ open, setOpen }: { open: boolean; set
                 className={`
           fixed top-0 h-full w-[80%] max-w-xs bg-white shadow-xl z-70
           transform transition-transform duration-300
-           ${slideFromLeft(open)} 
+           ${slideFromRight(open)} 
           lg:hidden
         `}
             >
@@ -33,8 +33,33 @@ export default function MenuMobileDrawer({ open, setOpen }: { open: boolean; set
                     </button>
                 </div>
 
-                {/* Menu links */}
-                <nav className="flex flex-col text-xl px-6">
+                {/* Content */}
+                {content ? (
+                    <nav className="flex flex-col text-xl px-6">
+                        {content}
+                    </nav>
+                ) : (
+                    <nav className="flex flex-col text-xl px-6">
+                        <Link
+                            href="/"
+                            onClick={closeMenu}
+                            className="p-4 font-bold text-[#111] hover:text-[#707072] transition-colors"
+                        >
+                            Home
+                        </Link>
+
+                        <Link
+                            href="/products"
+                            onClick={closeMenu}
+                            className="p-4 font-bold text-[#111] hover:text-[#707072] transition-colors"
+                        >
+                            Products
+                        </Link>
+                    </nav>
+                )}
+
+                {/* Content */}
+                {/* <nav className="flex flex-col text-xl px-6">
                     <Link
                         href="/"
                         onClick={closeMenu}
@@ -50,7 +75,7 @@ export default function MenuMobileDrawer({ open, setOpen }: { open: boolean; set
                     >
                         Products
                     </Link>
-                </nav>
+                </nav> */}
             </div>
 
             {/* Overlay */}

@@ -12,11 +12,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <div className="relative w-full aspect-square overflow-hidden shadow-lg bg-gray-200">
         {/* Ảnh scale khi hover */}
         <Image
-          src={product.thumbnail || "/images/no-image.png"}
+          src={product.image || "/images/no-image.png"}
           alt={product.name || "Product image"}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+          // sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
         />
 
         {/* Overlay */}
