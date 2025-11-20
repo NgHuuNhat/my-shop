@@ -12,6 +12,7 @@ export interface ProductPageProps {
         page?: string,
         limit?: string,
         search?: string,
+        price?: string,
     }
 }
 

@@ -35,11 +35,11 @@ export default function MenuMobile({ open, setOpen, content }: { open: boolean; 
 
                 {/* Content */}
                 {content ? (
-                    <nav className="flex flex-col text-xl px-6">
+                    <nav className="flex flex-col text-base px-6">
                         {content}
                     </nav>
                 ) : (
-                    <nav className="flex flex-col text-xl px-6">
+                    <nav className="flex flex-col text-base px-6">
                         <Link
                             href="/"
                             onClick={closeMenu}

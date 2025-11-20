@@ -42,11 +42,13 @@ export default function Filter() {
   }, [open])
 
   return (
-    <>
+    <div>
       {/* Mobile menu button */}
-      <button onClick={() => setOpen(true)} className="lg:hidden w-full border-gray-200 text-gray-400 cursor-pointer border rounded-2xl px-4 flex items-center justify-center gap-2 transition-colors">
-        <span>{currentSort} {currentPrice}</span><FaSliders />
-      </button>
+      <div className='lg:hidden px-4 pb-5'>
+        <button onClick={() => setOpen(true)} className="flex items-center justify-between w-full py-2 px-4 border rounded-2xl">
+          <span>{currentSort} {currentPrice}</span><FaSliders />
+        </button>
+      </div>
 
       {/* Content */}
       <div className='hidden lg:block'>
@@ -59,58 +61,63 @@ export default function Filter() {
         setOpen={setOpen}
         content={<Content currentSort={currentSort} updateUrlParam={updateUrlParam} currentPrice={currentPrice} setOpen={setOpen} />}
       />
-    </>
+    </div>
   )
 }
 
 export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen }: any) => {
   return (
-    <form className="w-full md:w-72 flex-shrink-0 px-4">
-      <div className="flex flex-col px-0 py-4 lg:px-0 lg:py-0">
+    <form className="w-full flex-shrink-0 px-4 text-base">
+      <div className="flex flex-col">
 
         {/* Name */}
-        <h3 className="hidden mt-10 h-[42px] lg:flex font-bold items-center gap-2"><FaSliders /><span>Filter</span></h3>
-
-        {/* Sort */}
-        <div className="mb-6">
-          <h3 className="font-bold flex items-end mb-4 border-b h-[40px]">Sort</h3>
-          <div className="flex flex-col gap-2">
-            {sorts.map((sort) => (
-              <label key={sort} className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="sort"
-                  checked={currentSort === sort}
-                  onChange={() => {
-                    updateUrlParam('sort', sort)
-                    if (setOpen) setOpen(false)
-                  }}
-                  className="cursor-pointer accent-blue-600"
-                />
-                {sort}
-              </label>
-            ))}
-          </div>
+        <div className='hidden lg:block py-10'>
+          <h3 className="flex font-bold  py-2 items-center justify-between border border-gray-950 rounded-2xl px-4"><span>Filter</span><FaSliders /></h3>
         </div>
 
-        {/* Price */}
-        <div className="mb-6">
-          <h3 className="font-bold flex items-end mb-4 border-b h-[40px]">Price</h3>
-          <div className="flex flex-col gap-2">
-            {prices.map((price) => (
-              <label key={price} className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={currentPrice === price}
-                  onChange={() => {
-                    updateUrlParam('price', currentPrice === price ? '' : price)
-                    if (setOpen) setOpen(false)
-                  }}
-                  className="cursor-pointer accent-blue-600"
-                />
-                {price}k
-              </label>
-            ))}
+
+        <div className='lg:px-4'>
+          {/* Sort */}
+          <div className="mb-6">
+            <h3 className="font-bold flex items-end mb-4 border-b lg:mt-[-25px]">Sort</h3>
+            <div className="flex flex-col gap-2">
+              {sorts.map((sort) => (
+                <label key={sort} className="flex items-center gap-2 cursor-pointer text-base">
+                  <input
+                    type="radio"
+                    name="sort"
+                    checked={currentSort === sort}
+                    onChange={() => {
+                      updateUrlParam('sort', sort)
+                      if (setOpen) setOpen(false)
+                    }}
+                    className="cursor-pointer accent-blue-600"
+                  />
+                  {sort}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Price */}
+          <div className="mb-6">
+            <h3 className="font-bold flex items-end mb-4 border-b">Price</h3>
+            <div className="flex flex-col gap-2">
+              {prices.map((price) => (
+                <label key={price} className="flex items-center gap-2 cursor-pointer text-base">
+                  <input
+                    type="checkbox"
+                    checked={currentPrice === price}
+                    onChange={() => {
+                      updateUrlParam('price', currentPrice === price ? '' : price)
+                      if (setOpen) setOpen(false)
+                    }}
+                    className="cursor-pointer accent-blue-600"
+                  />
+                  {price}k
+                </label>
+              ))}
+            </div>
           </div>
         </div>
       </div>

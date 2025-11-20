@@ -1,11 +1,10 @@
 import Footer from '@/shared/layout/footer/Footer'
-import React from 'react'
 
 export default function layout({ children }: any) {
     return (
-        <div>
+        <main>
             {children}
             <Footer />
-        </div>
+        </main>
     )
 }

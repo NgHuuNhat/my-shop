@@ -57,7 +57,7 @@ export default function Header() {
                     </div>
 
                     {/* Mobile Menu */}
-                    <nav className="w-full max-w-7xl mx-auto flex items-center justify-between lg:hidden text-xl">
+                    <nav className="w-full max-w-7xl mx-auto flex items-center justify-between lg:hidden text-base">
                         <Link href="/" className="w-16 h-16 flex items-center text-[#111] hover:text-[#707072] transition-colors">
                             <svg aria-hidden="true" className="w-full h-full" viewBox="0 0 24 24" fill="none">
                                 <path
@@ -68,7 +68,7 @@ export default function Header() {
                                 />
                             </svg>
                         </Link>
-                        <div className='flex items-center justify-between text-xl gap-10'>
+                        <div className='flex items-center justify-between text-2xl gap-10'>
                             {/* <Link href="/" className="text-[#111] hover:text-[#707072] transition-colors"><FaHome /></Link>
                             <Link href="/products" className="text-[#111] hover:text-[#707072] transition-colors"><FaShoppingBag /></Link> */}
                             <Link href="/orders" className="relative text-[#111] hover:text-[#707072] transition-colors">
