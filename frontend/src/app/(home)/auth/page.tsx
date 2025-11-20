@@ -76,12 +76,12 @@ export default function AuthPage() {
             {isLogin ? 'Đăng nhập' : 'Đăng ký'}
           </button>
 
-          <button
+          {/* <button
             onClick={handleGoogleLogin}
             className="w-full py-2 rounded-lg border flex items-center justify-center gap-2 hover:bg-gray-100"
           >
             <FaGoogle /> {isLogin ? 'Đăng nhập' : 'Đăng ký'} với Google
-          </button>
+          </button> */}
         </div>
 
         <p className="mt-4 text-sm text-center text-gray-600">
