@@ -60,18 +60,32 @@ import { buildQueryParams, filterByPrice, normalizeSearchParams, sortProducts } 
 // }
 
 export const productAPI = {
-    getList: async ({ searchParams }: ProductPageProps) => {
-        const params = await normalizeSearchParams(searchParams);
-        const queryParams =  buildQueryParams(params);
+    getList: async ({ searchParams }: ProductPageProps = {}) => {
+        let products: ProductType[] = [];
 
-        let products: ProductType[] = await fetch(`${API_URL}/product?${queryParams.toString()}`, { next: { revalidate: 60 } })
-            .then(res => res.ok ? res.json() : [])
-            .then(data => Array.isArray(data) ? data : [])
-            .catch(() => []);
+        if (searchParams) {
+            const params = await normalizeSearchParams(searchParams);
+            const queryParams = buildQueryParams(params);
 
-        products =  filterByPrice(products, params.price);
-        products =  sortProducts(products, params.sort);
+            products = await fetch(`${API_URL}/product?${queryParams.toString()}`, { next: { revalidate: 60 } })
+                .then(res => res.ok ? res.json() : [])
+                .then(data => Array.isArray(data) ? data : [])
+                .catch(() => []);
+
+            products = filterByPrice(products, params.price);
+            products = sortProducts(products, params.sort);
+        } else {
+            products = await fetch(`${API_URL}/product`, { next: { revalidate: 60 } })
+                .then(res => res.ok ? res.json() : [])
+                .then(data => Array.isArray(data) ? data : [])
+                .catch(() => []);
+        }
 
         return products;
-    }
+    },
+
+    getDetail: async () => { },
+    add: async () => { },
+    update: async () => { },
+    delete: async () => { },
 }
