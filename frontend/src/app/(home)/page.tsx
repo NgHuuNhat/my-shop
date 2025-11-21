@@ -1,6 +1,6 @@
 // app/page.tsx
 import { ProductType } from '@/modules/product/types/productType';
-import Footer from '@/shared/layout/footer/Footer';
+import Footer from '@/shared/layouts/footer/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';

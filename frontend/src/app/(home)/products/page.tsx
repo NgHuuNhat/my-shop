@@ -1,5 +1,5 @@
 import ProductList from '@/modules/product/components/ProductList'
-import { getProducts } from '@/modules/product/services/productApi'
+import { productAPI } from '@/modules/product/services/api/productApi'
 import { ProductPageProps } from '@/modules/product/types/productType'
 import Filter from '@/shared/components/filter/Filter'
 import Pagination from '@/shared/components/pagination/Pagination'
@@ -7,7 +7,8 @@ import Search from '@/shared/components/search/Search'
 
 export default async function ProductsPage({ searchParams }: ProductPageProps) {
   const { search, price, sort }: any = await searchParams
-  const products = await getProducts({ searchParams })
+  // const products = await getProducts({ searchParams })
+  const products = await productAPI.getList({ searchParams })
 
   return (
     <main className="min-h-screen max-w-7xl mx-auto">

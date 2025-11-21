@@ -1,5 +1,5 @@
 
-import Header from '@/shared/layout/header/Header'
+import Header from '@/shared/layouts/header/Header'
 
 export default function layoutHome({ children }: any) {
     return (
