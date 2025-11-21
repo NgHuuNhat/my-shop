@@ -207,7 +207,7 @@ export default function OrderPage() {
             <div className="max-w-7xl mx-auto px-4">
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
-                    <h1 className="text-xl lg:text-2xl font-semibold flex gap-2"><FaClipboardList />Đơn hàng của bạn</h1>
+                    <h1 className="text-xl lg:text-2xl font-semibold flex gap-2 items-center justify-center"><FaClipboardList />Đơn hàng của bạn</h1>
                     <p className="ml-auto text-sm text-gray-500">Bạn có {filteredOrders.length} đơn hàng</p>
                 </div>
 
