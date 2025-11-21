@@ -39,12 +39,21 @@ export default function Filter() {
   }
 
   const resetFilter = () => {
-    setCurrentSort('')
-    setCurrentPrice('')
-    updateUrlParam('sort', '')
-    updateUrlParam('price', '')
-    if (setOpen) setOpen(false)
+    setCurrentSort('');
+    setCurrentPrice('');
+
+    // reset tất cả params cùng lúc
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete('sort');
+    params.delete('price');
+    params.delete('page');  // nếu muốn reset pagination
+    params.delete('limit');
+
+    router.replace(`?${params.toString()}`, { scroll: false });
+
+    if (setOpen) setOpen(false);
   }
+
 
   //bat tat menu
   const [open, setOpen] = useState(false)
@@ -138,7 +147,7 @@ export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen, se
           </div>
 
           <div>
-            <button onClick={resetFilter} className='border border-gray-200 hover:border-gray-950 text-gray-950 cursor-pointer w-full py-2 rounded-2xl'>Xoá bộ lọc</button>
+            <button onClick={(e) => { e.preventDefault(); resetFilter(); }} className='border border-gray-200 hover:border-gray-950 text-gray-950 cursor-pointer w-full py-2 rounded-2xl'>Xoá bộ lọc</button>
           </div>
 
         </div>

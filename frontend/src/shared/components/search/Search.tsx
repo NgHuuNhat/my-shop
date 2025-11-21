@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
+import { FaCircleXmark } from 'react-icons/fa6'
 
 export default function Search() {
   const router = useRouter()
@@ -45,9 +46,12 @@ export default function Search() {
           placeholder="Tìm kiếm sản phẩm..."
           className="flex-1 py-2 outline-none text-gray-700 placeholder-gray-400"
         />
-
+        <FaCircleXmark
+          onClick={() => setValue('')}
+          className={value.trim() ? "block text-gray-400 text-xs cursor-pointer transition-all" : "hidden"}
+        />
         <FaSearch
-          className={value.trim() ? "text-gray-900" : "text-gray-400"}
+          className={`text-xl ${value.trim() ? "text-gray-900" : "text-gray-400"}`}
         />
       </form>
     </div>
