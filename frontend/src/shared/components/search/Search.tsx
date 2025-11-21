@@ -7,13 +7,12 @@ import { FaSearch } from 'react-icons/fa'
 export default function Search() {
   const router = useRouter()
   const searchParams = useSearchParams()
-
   const [value, setValue] = useState(searchParams.get("search") || "")
 
   // Khi URL thay đổi → cập nhật input
-  useEffect(() => {
-    setValue(searchParams.get("search") || "")
-  }, [searchParams])
+  // useEffect(() => {
+  //   setValue(searchParams.get("search") || "")
+  // }, [searchParams])
 
   // Debounce update URL
   useEffect(() => {

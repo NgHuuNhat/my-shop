@@ -6,18 +6,23 @@ import { FaSliders } from 'react-icons/fa6'
 import MenuMobile from '../menu/MenuMobile'
 
 const sorts = ['Mới nhất', 'Cũ nhất', 'Giá tăng dần', 'Giá giảm dần']
-const prices = ['0 - 500', '500 - 1000', '1000 - 2000']
+const prices = ['0 - 400', '400 - 800', '800 - 1000']
 
 export default function Filter() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  const [currentSort, setCurrentSort] = useState('Mới nhất')
-  const [currentPrice, setCurrentPrice] = useState('')
+  const [currentSort, setCurrentSort] = useState(searchParams.get("sort") || '')
+  const [currentPrice, setCurrentPrice] = useState(searchParams.get("price") || '')
+
+  // Khi URL thay đổi → cập nhật input
+  // useEffect(() => {
+  //   setCurrentPrice(searchParams.get("price") || "")
+  // }, [searchParams])
 
   // Sync state khi searchParams thay đổi
   useEffect(() => {
-    setCurrentSort(searchParams.get('sort') || 'Mới nhất')
+    setCurrentSort(searchParams.get('sort') || '')
     setCurrentPrice(searchParams.get('price') || '')
   }, [searchParams.toString()]) // quan trọng: dùng toString() để lắng nghe thay đổi URL
 
@@ -31,6 +36,14 @@ export default function Filter() {
 
     router.replace(`?${params.toString()}`, { scroll: false })
     // không cần setState ở đây nữa vì useEffect sẽ sync
+  }
+
+  const resetFilter = () => {
+    setCurrentSort('')
+    setCurrentPrice('')
+    updateUrlParam('sort', '')
+    updateUrlParam('price', '')
+    if (setOpen) setOpen(false)
   }
 
   //bat tat menu
@@ -52,30 +65,30 @@ export default function Filter() {
 
       {/* Content */}
       <div className='hidden lg:block'>
-        <Content currentSort={currentSort} updateUrlParam={updateUrlParam} currentPrice={currentPrice} />
+        <Content currentSort={currentSort} updateUrlParam={updateUrlParam} currentPrice={currentPrice} setCurrentPrice={setCurrentPrice} setCurrentSort={setCurrentSort} resetFilter={resetFilter} />
       </div>
 
       {/* MenuMobile*/}
       <MenuMobile
         open={open}
         setOpen={setOpen}
-        content={<Content currentSort={currentSort} updateUrlParam={updateUrlParam} currentPrice={currentPrice} setOpen={setOpen} />}
+        content={<Content currentSort={currentSort} updateUrlParam={updateUrlParam} currentPrice={currentPrice} setOpen={setOpen} setCurrentPrice={setCurrentPrice} setCurrentSort={setCurrentSort} resetFilter={resetFilter} />}
       />
     </div>
   )
 }
 
-export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen }: any) => {
+export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen, setCurrentPrice, setCurrentSort, resetFilter }: any) => {
   return (
     <form className="w-full flex-shrink-0 px-4 text-base">
       <div className="flex flex-col">
 
         {/* Name */}
         <div className='hidden lg:block py-10'>
-          <h3 className="flex font-bold  py-2 items-center justify-between border border-gray-950 rounded-2xl px-4"><span>Filter</span><FaSliders /></h3>
+          <h3 className="flex font-bold py-2 items-center justify-between border border-gray-950 bg-gray-950 text-white rounded-2xl px-4"><span>Filter</span><FaSliders /></h3>
         </div>
 
-
+        {/* content desktop and mb */}
         <div className='lg:px-4'>
           {/* Sort */}
           <div className="mb-6">
@@ -84,11 +97,13 @@ export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen }: 
               {sorts.map((sort) => (
                 <label key={sort} className="flex items-center gap-2 cursor-pointer text-base">
                   <input
-                    type="radio"
-                    name="sort"
+                    type="checkbox"
+                    // name="sort"
                     checked={currentSort === sort}
                     onChange={() => {
-                      updateUrlParam('sort', sort)
+                      const newSort = currentSort === sort ? '' : sort;
+                      setCurrentSort(newSort)
+                      updateUrlParam('sort', newSort)
                       if (setOpen) setOpen(false)
                     }}
                     className="cursor-pointer accent-blue-600"
@@ -109,7 +124,9 @@ export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen }: 
                     type="checkbox"
                     checked={currentPrice === price}
                     onChange={() => {
-                      updateUrlParam('price', currentPrice === price ? '' : price)
+                      const newPrice = currentPrice === price ? '' : price
+                      setCurrentPrice(newPrice)
+                      updateUrlParam('price', newPrice)
                       if (setOpen) setOpen(false)
                     }}
                     className="cursor-pointer accent-blue-600"
@@ -119,8 +136,17 @@ export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen }: 
               ))}
             </div>
           </div>
+
+          <div>
+            <button onClick={resetFilter} className='border border-gray-200 hover:border-gray-950 text-gray-950 cursor-pointer w-full py-2 rounded-2xl'>Xoá bộ lọc</button>
+          </div>
+
         </div>
+
+
+
       </div>
+
     </form>
   )
 }

@@ -16,18 +16,20 @@ export type OrderItem = {
     products: OrderProduct[]
     paymentMethod: 'BANKING' | 'COD'
     shippingStatus: 'Đang xử lý' | 'Đang vận chuyển' | 'Đã giao'
-    paid?: boolean // COD đã thanh toán chưa
+    paid?: boolean
     recipientName: string
     recipientPhone: string
     recipientAddress: string
-    orderDate: string // "YYYY-MM-DD HH:mm"
+    orderDate: string
+    deliveredAt?: string // Thời gian giao hàng
     note?: string
 }
+
 
 export default function OrderPage() {
     const [search, setSearch] = useState('')
 
-    const [orders] = useState<OrderItem[]>([
+    const orders: OrderItem[] = [
         {
             id: 'o1',
             orderCode: 'DH001',
@@ -38,6 +40,7 @@ export default function OrderPage() {
             recipientPhone: '0912345678',
             recipientAddress: 'TP.HCM',
             orderDate: '2025-11-19 14:30',
+            deliveredAt: '2025-11-20 10:15',
             note: 'Giao giờ hành chính',
         },
         {
@@ -64,6 +67,7 @@ export default function OrderPage() {
             recipientPhone: '0912345000',
             recipientAddress: 'Đà Nẵng',
             orderDate: '2025-12-22 16:45',
+            deliveredAt: '2025-12-23 11:00',
             note: 'Hàng dễ vỡ',
         },
         {
@@ -101,6 +105,7 @@ export default function OrderPage() {
             recipientPhone: '0944445555',
             recipientAddress: 'Huế',
             orderDate: '2025-11-22 10:20',
+            deliveredAt: '2025-11-23 09:00',
             note: 'Giao qua bưu điện',
         },
         {
@@ -114,6 +119,7 @@ export default function OrderPage() {
             recipientPhone: '0955556666',
             recipientAddress: 'HCM',
             orderDate: '2025-11-23 13:45',
+            deliveredAt: '2025-11-24 14:30',
             note: 'Khách yêu cầu đóng gói kỹ',
         },
         {
@@ -151,9 +157,11 @@ export default function OrderPage() {
             recipientPhone: '0988889999',
             recipientAddress: 'HCM',
             orderDate: '2025-11-26 12:30',
+            deliveredAt: '2025-11-27 10:45',
             note: 'Giao tại quầy bưu điện',
         },
-    ])
+    ]
+
 
 
     // Colors
@@ -169,10 +177,10 @@ export default function OrderPage() {
     }
 
     const getPaymentStatus = (order: OrderItem) => {
-        if (order.paymentMethod === 'BANKING') return { text: 'Đã thanh toán', color: paymentColors.paid }
+        if (order.paymentMethod === 'BANKING') return { text: '', color: paymentColors.paid }
         if (order.paymentMethod === 'COD') {
             return order.paid
-                ? { text: 'Đã thanh toán', color: paymentColors.paid }
+                ? { text: '', color: paymentColors.paid }
                 : { text: 'Chưa thanh toán', color: paymentColors.unpaid }
         }
         return { text: 'Chưa xác định', color: paymentColors.unpaid }
@@ -229,7 +237,7 @@ export default function OrderPage() {
                             return (
                                 <li
                                     key={order.id}
-                                    className="p-6 border rounded-2xl bg-white hover:shadow-lg transition-shadow duration-300 col-span-1 list-none"
+                                    className="p-6 border rounded-2xl bg-white transition duration-300 col-span-1 list-none"
                                 >
                                     {/* Header */}
                                     <div className="flex justify-between items-center mb-3 flex-wrap gap-2">
@@ -243,9 +251,16 @@ export default function OrderPage() {
 
                                     {/* Info */}
                                     <div className="flex flex-col sm:flex-row sm:justify-between text-gray-600 text-sm mb-3 gap-2">
-                                        <span>Ngày đặt: {order.orderDate}</span>
+                                        <div className=''>
+                                            <span>Ngày đặt: {order.orderDate}</span>
+                                            <span>
+                                                {order.shippingStatus === 'Đã giao' && order.deliveredAt && (
+                                                    <p>Ngày giao: {order.deliveredAt}</p>
+                                                )}
+                                            </span>
+                                        </div>
                                         <span
-                                            className={`px-2 py-1 rounded-full text-sm font-medium ${shippingColors[order.shippingStatus]}`}
+                                            className={`flex items-center justify-center px-2 py-1 rounded-full text-sm font-medium ${shippingColors[order.shippingStatus]}`}
                                         >
                                             {order.shippingStatus}
                                         </span>
@@ -276,6 +291,7 @@ export default function OrderPage() {
                                         <p>Địa chỉ nhận: {order.recipientAddress}</p>
                                         {order.note && <p>Ghi chú: {order.note}</p>}
                                     </div>
+
                                 </li>
                             )
                         })

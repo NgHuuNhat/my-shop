@@ -13,6 +13,7 @@ export interface ProductPageProps {
         limit?: string,
         search?: string,
         price?: string,
+        sort?: string,
     }
 }
 
@@ -28,4 +29,11 @@ export interface ProductDetailProps {
     params: {
         id: string
     }
+}
+
+export interface SearchParams {
+    page?: string,
+    limit?: string,
+    search?: string,
+    price?: string,
 }

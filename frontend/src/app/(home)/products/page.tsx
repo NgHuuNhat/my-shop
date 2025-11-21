@@ -6,7 +6,7 @@ import Pagination from '@/shared/components/pagination/Pagination'
 import Search from '@/shared/components/search/Search'
 
 export default async function ProductsPage({ searchParams }: ProductPageProps) {
-  const { search, price }: any = await searchParams
+  const { search, price, sort }: any = await searchParams
   const products = await getProducts({ searchParams })
 
   return (
@@ -18,9 +18,9 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
         <section className="lg:w-3/4 flex flex-col">
           <Search />
           <aside className='lg:hidden'><Filter /></aside>
-          {(search || price) && (<p className='text-xs px-4 mt-[-16px]'> Có {products.length} sản phẩm...</p>)}
+          {(search || price || sort) && (<p className='text-xs px-4 mt-[-16px]'> Có {products.length} sản phẩm...</p>)}
           <ProductList products={products} />
-          {(!search || !price) && (<Pagination data={products} />)}
+          {!(search || price || sort) && <Pagination data={products} />}
         </section>
       </div>
     </main>
