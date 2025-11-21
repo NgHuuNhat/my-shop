@@ -59,7 +59,7 @@ export default function Filter() {
       {/* Mobile menu button */}
       <div className='lg:hidden px-4 pb-5'>
         <button onClick={() => setOpen(true)} className="flex items-center justify-between w-full py-2 px-4 border rounded-2xl">
-          <span>{currentSort} {currentPrice}</span><FaSliders />
+          <span>{(currentSort || currentPrice) ? `${currentSort} ${currentPrice}` : 'Filter'}</span><FaSliders />
         </button>
       </div>
 
