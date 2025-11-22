@@ -36,12 +36,12 @@ export default function Header() {
                     {/* Desktop Menu */}
                     <div className="hidden lg:flex gap-8 items-center">
                         <Link href="/" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Home</Link>
-                        <Link href="/products" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Products</Link>
+                        <Link href="/product" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Product List</Link>
                     </div>
 
                     {/* Actions */}
                     <div className="hidden lg:flex gap-8 items-center text-xl">
-                        <Link href="/orders" className="relative text-[#111] hover:text-[#707072] transition-colors">
+                        <Link href="/order" className="relative text-[#111] hover:text-[#707072] transition-colors">
                             {/* icon order có thể dùng FaClipboardList hoặc FaListAlt */}
                             <FaClipboardList />
                             <span className="absolute -top-2 -right-3 bg-blue-600 text-white font-bold w-4 h-4 text-sm flex items-center justify-center rounded-full">
@@ -57,7 +57,7 @@ export default function Header() {
                     </div>
 
                     {/* Mobile Menu */}
-                    <nav className="w-full max-w-7xl mx-auto flex items-center justify-between lg:hidden text-base">
+                    <nav className="lg:hidden w-full max-w-7xl mx-auto flex items-center justify-between  text-base">
                         <Link href="/" className="w-16 h-16 flex items-center text-[#111] hover:text-[#707072] transition-colors">
                             <svg aria-hidden="true" className="w-full h-full" viewBox="0 0 24 24" fill="none">
                                 <path
@@ -70,8 +70,8 @@ export default function Header() {
                         </Link>
                         <div className='flex items-center justify-between text-2xl gap-10'>
                             {/* <Link href="/" className="text-[#111] hover:text-[#707072] transition-colors"><FaHome /></Link>
-                            <Link href="/products" className="text-[#111] hover:text-[#707072] transition-colors"><FaShoppingBag /></Link> */}
-                            <Link href="/orders" className="relative text-[#111] hover:text-[#707072] transition-colors">
+                            <Link href="/product" className="text-[#111] hover:text-[#707072] transition-colors"><FaShoppingBag /></Link> */}
+                            <Link href="/order" className="relative text-[#111] hover:text-[#707072] transition-colors">
                                 {/* icon order có thể dùng FaClipboardList hoặc FaListAlt */}
                                 <FaClipboardList />
                                 <span className="absolute -top-1 -right-2 bg-blue-600 text-white font-bold w-3 h-3 text-sm flex items-center justify-center rounded-full">

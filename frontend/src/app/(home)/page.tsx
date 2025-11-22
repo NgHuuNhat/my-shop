@@ -26,7 +26,7 @@ const Hero = () => (
         Thiết kế cho tốc độ. Công nghệ cho tương lai. Bộ sưu tập mới đã ra mắt.
       </p>
       <Link
-        href="/products"
+        href="/product"
         className="flex items-center gap-1 mt-6 md:mt-10 px-6 md:px-10 py-3 md:py-4 bg-white text-black text-base md:text-lg font-semibold rounded-full hover:bg-gray-200 transition"
         aria-label="Xem tất cả sản phẩm"
       >
@@ -39,10 +39,10 @@ const Hero = () => (
 // ====================== CATEGORY SECTION ======================
 const CategorySection = () => {
   const categories = [
-    { name: "Shoes", img: 61, href: "/products?category=shoes" },
-    { name: "Apparel", img: 62, href: "/products?category=apparel" },
-    { name: "Accessories", img: 63, href: "/products?category=accessories" },
-    { name: "Sportswear", img: 64, href: "/products?category=sportswear" },
+    { name: "Shoes", img: 61, href: "/product?category=shoes" },
+    { name: "Apparel", img: 62, href: "/product?category=apparel" },
+    { name: "Accessories", img: 63, href: "/product?category=accessories" },
+    { name: "Sportswear", img: 64, href: "/product?category=sportswear" },
   ];
 
   return (
@@ -107,7 +107,7 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products }) => (
       {products.map((item) => (
         <Link
           key={item.id}
-          href={`/products/${item.id}`}
+          href={`/product/${item.id}`}
           className="relative min-w-[250px] sm:min-w-[280px] md:min-w-[330px] h-[350px] sm:h-[380px] md:h-[420px] flex-shrink-0 group overflow-hidden"
           aria-label={`Xem chi tiết sản phẩm ${item.name}`}
           role="listitem"
@@ -141,7 +141,7 @@ const FinalCTA = () => (
       Cập nhật những thiết kế hiện đại, phong cách và chất lượng cao. Mua sắm sản phẩm thời trang chính hãng ngay hôm nay!
     </p>
     <Link
-      href="/products"
+      href="/product"
       aria-label="Xem tất cả sản phẩm thời trang"
       className="mt-6 md:mt-8 inline-block bg-black text-white px-6 md:px-10 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full hover:bg-gray-800 transition"
     >

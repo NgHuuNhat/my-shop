@@ -6,7 +6,7 @@ import Image from "next/image";
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link
-      href={`/products/${product.id}`}
+      href={`/product/${product.id}`}
       className="group flex flex-col w-full cursor-pointer mb-3"
     >
       {/* IMAGE WRAPPER */}
