@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { FaBars, FaClipboardList, FaHome, FaShoppingBag, FaShoppingCart, FaUser } from 'react-icons/fa'
+import { FaBars, FaClipboardList, FaShoppingCart, FaUser } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
-import MenuMobile from '@/shared/components/menu/MenuMobile'
+import Draw from '@/shared/components/draw/Draw'
 
 export default function Header() {
     const [open, setOpen] = useState(false)
@@ -18,7 +18,7 @@ export default function Header() {
             <header className="bg-white sticky top-0 z-50 h-[50px] shadow-sm flex items-center justify-center overflow-hidden">
                 <nav className="w-full max-w-7xl mx-auto flex items-center justify-between px-4">
 
-                    {/* Logo */}
+                    {/* nav desktop */}
                     <div className="hidden lg:flex gap-8 items-center">
                         <Link href="/" className="w-20 h-20 flex items-center text-[#111] hover:text-[#707072] transition-colors">
                             <svg aria-hidden="true" className="w-full h-full lg:-ml-2.5" viewBox="0 0 24 24" fill="none">
@@ -31,22 +31,15 @@ export default function Header() {
                             </svg>
                         </Link>
                     </div>
-
-
-                    {/* Desktop Menu */}
                     <div className="hidden lg:flex gap-8 items-center">
                         <Link href="/" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Home</Link>
                         <Link href="/products" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Product</Link>
                     </div>
-
-                    {/* Actions */}
                     <div className="hidden lg:flex gap-8 items-center text-xl">
                         <Link href="/order" className="relative text-[#111] hover:text-[#707072] transition-colors">
-                            {/* icon order có thể dùng FaClipboardList hoặc FaListAlt */}
                             <FaClipboardList />
                             <span className="absolute -top-2 -right-3 bg-blue-600 text-white font-bold w-4 h-4 text-sm flex items-center justify-center rounded-full">
                                 0
-                                {/* {orders.length} nếu bạn truyền số đơn từ context hoặc state */}
                             </span>
                         </Link>
                         <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
@@ -56,8 +49,8 @@ export default function Header() {
                         <Link href="/auth" className="text-[#111] hover:text-[#707072] transition-colors"><FaUser /></Link>
                     </div>
 
-                    {/* Mobile Menu */}
-                    <nav className="lg:hidden w-full max-w-7xl mx-auto flex items-center justify-between  text-base">
+                    {/* nav mobile */}
+                    <main className="lg:hidden w-full max-w-7xl mx-auto flex items-center justify-between  text-base">
                         <Link href="/" className="w-16 h-16 flex items-center text-[#111] hover:text-[#707072] transition-colors">
                             <svg aria-hidden="true" className="w-full h-full" viewBox="0 0 24 24" fill="none">
                                 <path
@@ -69,14 +62,10 @@ export default function Header() {
                             </svg>
                         </Link>
                         <div className='flex items-center justify-between text-2xl gap-10'>
-                            {/* <Link href="/" className="text-[#111] hover:text-[#707072] transition-colors"><FaHome /></Link>
-                            <Link href="/products" className="text-[#111] hover:text-[#707072] transition-colors"><FaShoppingBag /></Link> */}
                             <Link href="/order" className="relative text-[#111] hover:text-[#707072] transition-colors">
-                                {/* icon order có thể dùng FaClipboardList hoặc FaListAlt */}
                                 <FaClipboardList />
                                 <span className="absolute -top-1 -right-2 bg-blue-600 text-white font-bold w-3 h-3 text-sm flex items-center justify-center rounded-full">
                                     0
-                                    {/* {orders.length} nếu bạn truyền số đơn từ context hoặc state */}
                                 </span>
                             </Link>
                             <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
@@ -84,18 +73,40 @@ export default function Header() {
                                 <span className="absolute -top-1 -right-2 bg-red-600 text-white font-bold w-3 h-3 text-sm flex items-center justify-center rounded-full">1</span>
                             </Link>
                             <Link href="/auth" className="text-[#111] hover:text-[#707072] transition-colors"><FaUser /></Link>
-                            {/* Mobile menu button */}
                             <button onClick={() => setOpen(true)} className="text-[#111] hover:text-[#707072] transition-colors">
                                 <FaBars />
                             </button>
                         </div>
-                    </nav>
+                    </main>
 
                 </nav>
             </header>
 
-            {/* MenuMobile*/}
-            <MenuMobile open={open} setOpen={setOpen} />
+            {/* Draw*/}
+            <Draw open={open} setOpen={setOpen} content={<HeaderDraw setOpen={setOpen} />} />
+        </>
+    )
+}
+
+//HeaderDraw
+export const HeaderDraw = ({ setOpen }: any) => {
+    return (
+        <>
+            <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className="p-4 font-bold text-[#111] hover:text-[#707072] transition-colors"
+            >
+                Home
+            </Link>
+
+            <Link
+                href="/products"
+                onClick={() => setOpen(false)}
+                className="p-4 font-bold text-[#111] hover:text-[#707072] transition-colors"
+            >
+                Products
+            </Link>
         </>
     )
 }

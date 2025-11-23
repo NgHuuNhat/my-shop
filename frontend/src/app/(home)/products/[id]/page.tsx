@@ -35,7 +35,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
             {/* Ảnh + Thông tin */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                 {/* Ảnh + Thông tin */}
-                <div className="flex flex-col">
+                <div className="flex flex-col md:ps-4">
                     {/* Ảnh chính */}
                     <div className="cursor-pointer relative w-full pb-[100%] bg-gray-200 overflow-hidden ">
                         <Image

@@ -1,4 +1,3 @@
-// app/page.tsx
 import { ProductType } from '@/modules/product/types/productType';
 import Footer from '@/shared/layouts/footer/Footer';
 import Image from 'next/image';
