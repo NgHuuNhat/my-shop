@@ -3,7 +3,6 @@ import { ProductsPageProps, ProductType } from "../../types/productType"
 import { awaitParams, awaitQueryParams, filterByPrice, filterBySort } from "../lib/productLib";
 
 export const productAPI = {
-    //update
     getList: async ({ searchParams }: ProductsPageProps = {}) => {
         let products: ProductType[] = [];
         const params = await awaitParams(searchParams);
