@@ -7,7 +7,7 @@ export interface ProductType {
     id?: string
 }
 
-export interface ProductPageProps {
+export interface ProductsPageProps {
     searchParams?: {
         page?: string,
         limit?: string,

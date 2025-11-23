@@ -10,12 +10,6 @@ export default function Search() {
   const searchParams = useSearchParams()
   const [value, setValue] = useState(searchParams.get("search") || "")
 
-  // Khi URL thay đổi → cập nhật input
-  // useEffect(() => {
-  //   setValue(searchParams.get("search") || "")
-  // }, [searchParams])
-
-  // Debounce update URL
   useEffect(() => {
     const timer = setTimeout(() => {
       const params = new URLSearchParams(searchParams.toString())

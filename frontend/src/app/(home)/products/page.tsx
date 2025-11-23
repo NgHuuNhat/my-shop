@@ -1,13 +1,12 @@
 import ProductList from '@/modules/product/components/ProductList'
 import { productAPI } from '@/modules/product/services/api/productApi'
-import { ProductPageProps } from '@/modules/product/types/productType'
+import { ProductsPageProps } from '@/modules/product/types/productType'
 import Filter from '@/shared/components/filter/Filter'
 import Pagination from '@/shared/components/pagination/Pagination'
 import Search from '@/shared/components/search/Search'
 
-export default async function ProductsPage({ searchParams }: ProductPageProps) {
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const { search, price, sort }: any = await searchParams
-  // const products = await getProducts({ searchParams })
   const products = await productAPI.getList({ searchParams })
 
   return (
@@ -19,9 +18,9 @@ export default async function ProductsPage({ searchParams }: ProductPageProps) {
         <section className="lg:w-3/4 flex flex-col">
           <Search />
           <aside className='lg:hidden'><Filter /></aside>
-          {(search || price || sort) && (<p className='text-xs px-4 mt-[-16px]'> Có {products.length} sản phẩm...</p>)}
+          {(search || price || sort) && <p className='px-4 text-xs mt-[-16px]'>Có {products.length} sản phẩm...</p>}
           <ProductList products={products} />
-          {!(search || price || sort) && <Pagination data={products} />}
+          {(!search && !price && !sort) && <Pagination data={products} />}
         </section>
       </div>
     </main>

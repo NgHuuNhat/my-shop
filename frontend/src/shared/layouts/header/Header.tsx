@@ -36,7 +36,7 @@ export default function Header() {
                     {/* Desktop Menu */}
                     <div className="hidden lg:flex gap-8 items-center">
                         <Link href="/" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Home</Link>
-                        <Link href="/product" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Product List</Link>
+                        <Link href="/products" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Product</Link>
                     </div>
 
                     {/* Actions */}
@@ -70,7 +70,7 @@ export default function Header() {
                         </Link>
                         <div className='flex items-center justify-between text-2xl gap-10'>
                             {/* <Link href="/" className="text-[#111] hover:text-[#707072] transition-colors"><FaHome /></Link>
-                            <Link href="/product" className="text-[#111] hover:text-[#707072] transition-colors"><FaShoppingBag /></Link> */}
+                            <Link href="/products" className="text-[#111] hover:text-[#707072] transition-colors"><FaShoppingBag /></Link> */}
                             <Link href="/order" className="relative text-[#111] hover:text-[#707072] transition-colors">
                                 {/* icon order có thể dùng FaClipboardList hoặc FaListAlt */}
                                 <FaClipboardList />

@@ -3,7 +3,7 @@ import { ProductType, ProductListProps } from '../types/productType'
 import ProductCard from './ProductCard'
 
 export default function ProductList({ products }: ProductListProps) {
-
+  
   if (!products.length) return <Error />
 
   return (

@@ -1,7 +1,7 @@
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/shared/components/pagination/paginationConstant";
 import { ProductType } from "../../types/productType";
 
-export const normalizeSearchParams = async (searchParams: any) => {
+export const awaitParams = async (searchParams: any) => {
     const { page, limit, search, price, sort } = await searchParams || {};
     return {
         page: Number(page) || DEFAULT_PAGE,
@@ -12,7 +12,7 @@ export const normalizeSearchParams = async (searchParams: any) => {
     };
 };
 
-export const buildQueryParams = ({ page, limit, search, price, sort }: { page: number, limit: number, search: string, price: string, sort: string }) => {
+export const awaitQueryParams = ({ page, limit, search, price, sort }: { page: number, limit: number, search: string, price: string, sort: string }) => {
     const queryParams = new URLSearchParams();
     queryParams.set('page', page.toString())
     queryParams.set('limit', limit.toString())
@@ -41,7 +41,7 @@ export const filterByPrice = (products: ProductType[], price: string) => {
     });
 };
 
-export const sortProducts = (products: ProductType[], sort: string) => {
+export const filterBySort = (products: ProductType[], sort: string) => {
     if (!sort) return products;
 
     switch (sort) {

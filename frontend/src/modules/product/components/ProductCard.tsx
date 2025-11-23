@@ -17,7 +17,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           loading="eager"
-          // className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
           className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         />
       </div>
@@ -25,18 +24,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
       {/* TEXT INFO */}
       <div className="mt-1 px-1 lg:px-0">
         <p className="text-lg font-bold">{product.price}₫</p>
-
         <h3 className="mt-1 text-[17px] font-medium text-black line-clamp-1">
           {product.name}
         </h3>
-
         <p className="text-gray-500 text-sm mt-0.5">
           {"Product"}
         </p>
-
         <p className="text-gray-500 text-sm">{product ? ` colours` : "1 colour"}</p>
-
-        {/* <p className="text-sm text-black mt-1">Trending</p> */}
       </div>
     </Link>
   );

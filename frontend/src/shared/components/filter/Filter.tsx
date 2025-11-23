@@ -11,53 +11,36 @@ const prices = ['0 - 400', '400 - 800', '800 - 1000']
 export default function Filter() {
   const router = useRouter()
   const searchParams = useSearchParams()
-
   const [currentSort, setCurrentSort] = useState(searchParams.get("sort") || '')
   const [currentPrice, setCurrentPrice] = useState(searchParams.get("price") || '')
 
-  // Khi URL thay đổi → cập nhật input
-  // useEffect(() => {
-  //   setCurrentPrice(searchParams.get("price") || "")
-  // }, [searchParams])
-
-  // Sync state khi searchParams thay đổi
   useEffect(() => {
     setCurrentSort(searchParams.get('sort') || '')
     setCurrentPrice(searchParams.get('price') || '')
-  }, [searchParams.toString()]) // quan trọng: dùng toString() để lắng nghe thay đổi URL
+  }, [searchParams.toString()])
 
   const updateUrlParam = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString())
     if (!value) params.delete(key)
     else params.set(key, value)
-
     params.delete('page')
     params.delete('limit')
-
     router.replace(`?${params.toString()}`, { scroll: false })
-    // không cần setState ở đây nữa vì useEffect sẽ sync
   }
 
   const resetFilter = () => {
     setCurrentSort('');
     setCurrentPrice('');
-
-    // reset tất cả params cùng lúc
     const params = new URLSearchParams(searchParams.toString());
     params.delete('sort');
     params.delete('price');
-    params.delete('page');  // nếu muốn reset pagination
+    params.delete('page');
     params.delete('limit');
-
     router.replace(`?${params.toString()}`, { scroll: false });
-
     if (setOpen) setOpen(false);
   }
 
-
-  //bat tat menu
   const [open, setOpen] = useState(false)
-
   useEffect(() => {
     document.body.classList.toggle("overflow-hidden", open)
     return () => document.body.classList.remove("overflow-hidden")
@@ -91,12 +74,10 @@ export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen, se
   return (
     <form className="w-full flex-shrink-0 px-4 text-base">
       <div className="flex flex-col">
-
         {/* Name */}
         <div className='hidden lg:block py-10'>
           <h3 className="flex font-bold py-2 items-center justify-between border border-gray-950 bg-gray-950 text-white rounded-2xl px-4"><span>Filter</span><FaSliders /></h3>
         </div>
-
         {/* content desktop and mb */}
         <div className='lg:px-4'>
           {/* Sort */}
@@ -107,7 +88,6 @@ export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen, se
                 <label key={sort} className="flex items-center gap-2 cursor-pointer text-base">
                   <input
                     type="checkbox"
-                    // name="sort"
                     checked={currentSort === sort}
                     onChange={() => {
                       const newSort = currentSort === sort ? '' : sort;
@@ -122,7 +102,6 @@ export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen, se
               ))}
             </div>
           </div>
-
           {/* Price */}
           <div className="mb-6">
             <h3 className="font-bold flex items-end mb-4 border-b">Price</h3>
@@ -145,17 +124,11 @@ export const Content = ({ currentSort, updateUrlParam, currentPrice, setOpen, se
               ))}
             </div>
           </div>
-
           <div>
             <button onClick={(e) => { e.preventDefault(); resetFilter(); }} className='border border-gray-200 hover:border-gray-950 text-gray-950 cursor-pointer w-full py-2 rounded-2xl'>Xoá bộ lọc</button>
           </div>
-
         </div>
-
-
-
       </div>
-
     </form>
   )
 }

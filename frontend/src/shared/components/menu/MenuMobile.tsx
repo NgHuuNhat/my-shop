@@ -49,11 +49,11 @@ export default function MenuMobile({ open, setOpen, content }: { open: boolean; 
                         </Link>
 
                         <Link
-                            href="/product"
+                            href="/products"
                             onClick={closeMenu}
                             className="p-4 font-bold text-[#111] hover:text-[#707072] transition-colors"
                         >
-                            Product List
+                            Products
                         </Link>
                     </nav>
                 )}

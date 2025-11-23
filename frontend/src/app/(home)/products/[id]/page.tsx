@@ -16,8 +16,6 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
         .then(data => data ? data : null)
         .catch(() => null)
 
-    // await delay(5000)
-
     if (!product) {
         return (
             <Error />
