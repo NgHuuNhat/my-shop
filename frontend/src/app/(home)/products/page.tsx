@@ -1,9 +1,9 @@
 import ProductList from '@/modules/product/components/ProductList'
 import { productAPI } from '@/modules/product/services/api/productApi'
 import { ProductsPageProps } from '@/modules/product/types/productType'
-import Filter from '@/shared/components/filter/Filter'
-import Pagination from '@/shared/components/pagination/Pagination'
-import Search from '@/shared/components/search/Search'
+import Filter from '@/shared/modules/filter/Filter'
+import Pagination from '@/shared/modules/pagination/Pagination'
+import Search from '@/shared/modules/search/Search'
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const { search, price, sort }: any = await searchParams

@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { FaBars, FaClipboardList, FaShoppingCart, FaUser } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
-import Draw from '@/shared/components/draw/Draw'
+import Draw from '@/shared/modules/draw/Draw'
+import HeaderContent from './components/HeaderContent'
 
 export default function Header() {
     const [open, setOpen] = useState(false)
@@ -32,8 +33,9 @@ export default function Header() {
                         </Link>
                     </div>
                     <div className="hidden lg:flex gap-8 items-center">
-                        <Link href="/" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Home</Link>
-                        <Link href="/products" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Product</Link>
+                        {/* <Link href="/" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Home</Link>
+                        <Link href="/products" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Products</Link> */}
+                        <HeaderContent />
                     </div>
                     <div className="hidden lg:flex gap-8 items-center text-xl">
                         <Link href="/order" className="relative text-[#111] hover:text-[#707072] transition-colors">
@@ -83,30 +85,7 @@ export default function Header() {
             </header>
 
             {/* Draw*/}
-            <Draw open={open} setOpen={setOpen} content={<HeaderDraw setOpen={setOpen} />} />
-        </>
-    )
-}
-
-//HeaderDraw
-export const HeaderDraw = ({ setOpen }: any) => {
-    return (
-        <>
-            <Link
-                href="/"
-                onClick={() => setOpen(false)}
-                className="p-4 font-bold text-[#111] hover:text-[#707072] transition-colors"
-            >
-                Home
-            </Link>
-
-            <Link
-                href="/products"
-                onClick={() => setOpen(false)}
-                className="p-4 font-bold text-[#111] hover:text-[#707072] transition-colors"
-            >
-                Products
-            </Link>
+            <Draw open={open} setOpen={setOpen} content={<HeaderContent setOpen={setOpen} />} />
         </>
     )
 }

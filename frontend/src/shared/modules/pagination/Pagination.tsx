@@ -1,4 +1,5 @@
 'use client'
+
 import { useRouter, useSearchParams } from "next/navigation"
 import React, { useCallback, useMemo } from "react"
 import { PaginationProps } from "./paginationType"
@@ -11,16 +12,14 @@ const Pagination = ({ data = [] }: PaginationProps) => {
     // Lấy page và limit từ searchParams
     const currentPage = useMemo(() => Number(searchParams?.get("page")) || DEFAULT_PAGE, [searchParams])
     const currentLimit = useMemo(() => Number(searchParams?.get("limit")) || DEFAULT_LIMIT, [searchParams])
-
     const isDisabledNext = data.length < currentLimit
 
     // Callback để tránh tạo hàm mới mỗi lần render
-    const handlePageChange = useCallback(
-        (newPage: number) => {
-            if (newPage < 1) return
-            router.push(`/products?page=${newPage}&limit=${currentLimit}`)
-            router.refresh()
-        }, [router, currentLimit])
+    const handlePageChange = useCallback((newPage: number) => {
+        if (newPage < 1) return
+        router.push(`/products?page=${newPage}&limit=${currentLimit}`)
+        router.refresh()
+    }, [router, currentLimit])
 
     return (
         <div className="flex justify-center items-center gap-4 py-10 w-full max-w-7xl mx-auto">

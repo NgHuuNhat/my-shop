@@ -1,4 +1,4 @@
-import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/shared/components/pagination/paginationConstant";
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/shared/modules/pagination/paginationConstant";
 import { ProductType } from "../../types/productType";
 
 export const awaitParams = async (searchParams: any) => {

@@ -8,7 +8,7 @@ export default function ProductList({ products }: ProductListProps) {
 
   return (
     <div className="w-full max-w-7xl mx-auto">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-1 lg:px-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 lg:px-4">
         {products.map((product: ProductType) => (
           <ProductCard key={product.id} product={product} />
         ))}

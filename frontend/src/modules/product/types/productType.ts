@@ -30,10 +30,3 @@ export interface ProductDetailProps {
         id: string
     }
 }
-
-export interface SearchParams {
-    page?: string,
-    limit?: string,
-    search?: string,
-    price?: string,
-}

@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { FaCircleXmark } from 'react-icons/fa6'
 
@@ -10,21 +10,22 @@ export default function Search() {
   const searchParams = useSearchParams()
   const [value, setValue] = useState(searchParams.get("search") || "")
 
+  const updateSearchParams = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+    if (!value.trim()) params.delete("search")
+    else {
+      params.set("search", value.trim())
+      params.delete("page")
+      params.delete("limit")
+    }
+    router.replace(`?${params.toString()}`, { scroll: false })
+  }
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const params = new URLSearchParams(searchParams.toString())
-
-      if (!value.trim()) params.delete("search")
-      else {
-        params.set("search", value.trim())
-        params.delete("page")
-        params.delete("limit")
-      }
-
-      router.replace(`?${params.toString()}`, { scroll: false })
-    }, 500)
-
-    return () => clearTimeout(timer)
+    const debounceUpdateSearchParams = setTimeout(() => {
+      updateSearchParams(value)
+    }, 700)
+    return () => clearTimeout(debounceUpdateSearchParams)
   }, [value])
 
   return (
