@@ -1,5 +1,5 @@
 import ProductList from '@/modules/product/components/ProductList'
-import { productAPI } from '@/modules/product/services/api/productApi'
+import { productAPI } from '@/modules/product/services/productApi'
 import { ProductsPageProps } from '@/modules/product/types/productType'
 import Filter from '@/shared/modules/filter/Filter'
 import Pagination from '@/shared/modules/pagination/Pagination'

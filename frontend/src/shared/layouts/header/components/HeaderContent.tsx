@@ -19,8 +19,6 @@ export default function HeaderContent({ setOpen }: any) {
             >
                 Products
             </Link>
-            {/* <Link href="/" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Home</Link>
-            <Link href="/products" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Products</Link> */}
         </>
     )
 }
