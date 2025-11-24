@@ -7,7 +7,7 @@ export default function HeaderContent({ setOpen }: any) {
             <Link
                 href="/"
                 onClick={() => setOpen(false)}
-                className="p-4 font-bold text-[#111] hover:text-[#707072] transition-colors"
+                className="p-4 lg:p-0 font-bold text-[#111] hover:text-[#707072] transition-colors"
             >
                 Home
             </Link>
@@ -15,10 +15,12 @@ export default function HeaderContent({ setOpen }: any) {
             <Link
                 href="/products"
                 onClick={() => setOpen(false)}
-                className="p-4 font-bold text-[#111] hover:text-[#707072] transition-colors"
+                className="p-4 lg:p-0 font-bold text-[#111] hover:text-[#707072] transition-colors"
             >
                 Products
             </Link>
+            {/* <Link href="/" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Home</Link>
+            <Link href="/products" className="font-bold text-[#111] hover:text-[#707072] transition-colors flex items-center justify-center gap-1">Products</Link> */}
         </>
     )
 }
