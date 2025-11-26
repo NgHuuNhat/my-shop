@@ -1,21 +1,22 @@
 'use client'
 
-import React, { useMemo, useState } from 'react'
+import { useCart } from '@/modules/cart/hooks/useCart'
+import { CartItem } from '@/modules/cart/types/CartType'
+import Image from 'next/image'
+import React, { useEffect, useMemo, useState } from 'react'
 import { FaTrash, FaMinus, FaPlus, FaShoppingCart } from 'react-icons/fa'
 
-export type CartItem = {
-    id: string
-    title: string
-    price: number
-    qty: number
-    img?: string
-}
-
 export default function CartPage() {
-    const [cart, setCart] = useState<CartItem[]>([
-        { id: 'p1', title: 'AirPods Pro (mock)', price: 249, qty: 1 },
-        { id: 'p2', title: 'iPhone 14 Case (mock)', price: 39, qty: 2 },
-    ])
+
+    const usecart = useCart((s) => s.cart);
+
+
+    const [cart, setCart] = useState<CartItem[]>(usecart)
+
+    useEffect(() => {
+        setCart(usecart)
+    }, [usecart])
+
     const [coupon, setCoupon] = useState('')
     const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null)
     const [checkoutStep, setCheckoutStep] = useState<'cart'>('cart')
@@ -26,20 +27,26 @@ export default function CartPage() {
     const [checkoutModalStep, setCheckoutModalStep] = useState<'shipping' | 'payment' | 'confirm'>('shipping')
     const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
-    const subtotal = useMemo(() => cart.reduce((s, it) => s + it.price * it.qty, 0), [cart])
-    const totalQty = useMemo(() => cart.reduce((s, it) => s + it.qty, 0), [cart])
+    const subtotal = useMemo(() => cart.reduce((s: any, it: any) => s + it.totalPrice, 0), [cart])
+    const totalQty = useMemo(() => cart.reduce((s: any, it: any) => s + it.qty, 0), [cart])
     const discount = useMemo(() => (appliedCoupon === 'SALE10' ? Math.round(subtotal * 0.1) : 0), [appliedCoupon, subtotal])
     const total = subtotal - discount
 
+    // useEffect(() => {
+    //     const stored = localStorage.getItem("cart");
+    //     if (stored) setCart(JSON.parse(stored));
+    // }, []);
+
     function updateQty(id: string, delta: number) {
-        setCart((c) => c.map((it) => (it.id === id ? { ...it, qty: Math.max(1, it.qty + delta) } : it)))
+        setCart((c: any) => c.map((it: any) => (it.id === id ? { ...it, qty: Math.max(1, it.qty + delta) } : it)))
     }
     function removeItem(id: string) {
-        setCart((c) => c.filter((it) => it.id !== id))
+        setCart((c: any) => c.filter((it: any) => it.id !== id))
     }
     function clearCart() {
         setCart([])
     }
+
     function applyCoupon() {
         const code = coupon.trim().toUpperCase()
         if (!code) return
@@ -89,7 +96,7 @@ export default function CartPage() {
 
     function resetCart() {
         setShowCheckoutModal(false)
-        clearCart()
+        // clearCart()
         setShippingInfo({ name: '', phone: '', address: '', note: '' })
         setPaymentMethod(null)
         setOtp('')
@@ -114,14 +121,18 @@ export default function CartPage() {
                             <ul className="space-y-4">
                                 {cart.map((item) => (
                                     <li key={item.id} className="flex gap-3 sm:gap-4 items-center p-3 sm:p-4 rounded-xl border">
-                                        <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-lg bg-gray-100 flex items-center justify-center">
-                                            <span className="text-xs text-gray-400">Ảnh</span>
+                                        <div className="relative w-30 h-30 flex-shrink-0 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                                            <Image
+                                                src={item.image ? item.image : "/images/no-image.png"}
+                                                alt={item.name || "Product image"} fill loading='eager' className='object-cover'
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            />
                                         </div>
                                         <div className="flex-1">
                                             <div className="flex items-start gap-2">
                                                 <div>
-                                                    <h3 className="font-medium">{item.title}</h3>
-                                                    <p className="text-sm text-gray-500">${item.price.toFixed(2)}</p>
+                                                    <h3 className="font-medium">{item.name}</h3>
+                                                    <p className="text-sm text-gray-500">${item.price}</p>
                                                 </div>
                                                 <button onClick={() => removeItem(item.id)} className="ml-auto text-gray-400 hover:text-red-500 transition">
                                                     <FaTrash />
@@ -135,7 +146,7 @@ export default function CartPage() {
                                                 <button onClick={() => updateQty(item.id, +1)} className="p-2 rounded-lg border hover:bg-gray-100">
                                                     <FaPlus />
                                                 </button>
-                                                <div className="ml-4 text-sm text-gray-600">Tạm tính: ${(item.price * item.qty).toFixed(2)}</div>
+                                                <div className="ml-4 text-sm text-gray-600">Tạm tính: ${item.totalPrice.toFixed(2)}</div>
                                             </div>
                                         </div>
                                     </li>

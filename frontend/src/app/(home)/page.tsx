@@ -1,5 +1,7 @@
+import { productAPI } from '@/modules/products/services/productApi';
 import { ProductType } from '@/modules/products/types/productType';
 import Footer from '@/shared/layouts/footer/Footer';
+import { API_URL } from '@/shared/services/api';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -151,17 +153,12 @@ const FinalCTA = () => (
 
 // ====================== HOME PAGE ======================
 export default async function HomePage() {
-  let products: ProductType[] = [];
-
-  try {
-    const res = await fetch(
-      `https://691078c77686c0e9c20a6dc4.mockapi.io/api/product?page=1&limit=6`,
-      { next: { revalidate: 60 } }
-    );
-    if (res.ok) products = await res.json();
-  } catch (error) {
-    console.error("Lỗi fetch sản phẩm:", error);
-  }
+  const products = await productAPI.getList({
+    searchParams: {
+      page: '1',
+      limit: '10',
+    }
+  })
 
   return (
     <main>

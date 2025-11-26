@@ -5,9 +5,18 @@ import { FaBars, FaClipboardList, FaShoppingCart, FaUser } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import Draw from '@/shared/modules/draw/Draw'
 import HeaderContent from './components/HeaderContent'
+import { CartItem } from '@/modules/cart/types/CartType'
+import { useCart } from '@/modules/cart/hooks/useCart'
 
 export default function Header() {
     const [open, setOpen] = useState(false)
+    const { cartLength } = useCart();
+
+    const [hydrated, setHydrated] = useState(false);
+
+    useEffect(() => {
+        setHydrated(true); // chỉ chạy trên client
+    }, []);
 
     useEffect(() => {
         document.body.classList.toggle("overflow-hidden", open)
@@ -44,7 +53,7 @@ export default function Header() {
                         </Link>
                         <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
                             <FaShoppingCart />
-                            <span className="absolute -top-2 -right-3 bg-red-600 text-white font-bold w-4 h-4 text-sm flex items-center justify-center rounded-full">1</span>
+                            <span className="absolute -top-2 -right-3 bg-red-600 text-white font-bold w-4 h-4 text-xs flex items-center justify-center rounded-full">{hydrated ? cartLength() : 0}</span>
                         </Link>
                         <Link href="/auth" className="text-[#111] hover:text-[#707072] transition-colors"><FaUser /></Link>
                     </div>
@@ -70,7 +79,7 @@ export default function Header() {
                             </Link>
                             <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
                                 <FaShoppingCart />
-                                <span className="absolute -top-1 -right-2 bg-red-600 text-white font-bold w-3 h-3 text-sm flex items-center justify-center rounded-full">1</span>
+                                <span className="absolute -top-1 -right-2 bg-red-600 text-white font-bold w-3 h-3 text-xs flex items-center justify-center rounded-full">{hydrated ? cartLength() : 0}</span>
                             </Link>
                             <Link href="/auth" className="text-[#111] hover:text-[#707072] transition-colors"><FaUser /></Link>
                             <button onClick={() => setOpen(true)} className="text-[#111] hover:text-[#707072] transition-colors">
