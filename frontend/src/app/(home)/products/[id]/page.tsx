@@ -1,4 +1,5 @@
 import ProductCard from '@/modules/products/components/ProductCard'
+import { productAPI } from '@/modules/products/services/productApi'
 import { ProductDetailProps, ProductType } from '@/modules/products/types/productType'
 import Error from '@/shared/ui/error/Error'
 import Image from 'next/image'
@@ -6,16 +7,8 @@ import { FaShoppingCart, FaCoins } from 'react-icons/fa'
 
 
 export default async function ProductDetail({ params }: ProductDetailProps) {
-
     const { id } = await params
-
-    const product: ProductType = await fetch(`https://691078c77686c0e9c20a6dc4.mockapi.io/api/product/${id}`, {
-        next: { revalidate: 60 }
-    })
-        .then(res => res.ok ? res.json() : null)
-        .then(data => data ? data : null)
-        .catch(() => null)
-
+    const product = await productAPI.getDetail({ id })
     if (!product) {
         return (
             <Error />
