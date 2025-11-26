@@ -1,4 +1,4 @@
-import { ProductType } from '@/modules/product/types/productType';
+import { ProductType } from '@/modules/products/types/productType';
 import Footer from '@/shared/layouts/footer/Footer';
 import Image from 'next/image';
 import Link from 'next/link';

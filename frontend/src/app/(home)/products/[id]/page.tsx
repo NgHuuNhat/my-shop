@@ -1,5 +1,5 @@
-import ProductCard from '@/modules/product/components/ProductCard'
-import { ProductDetailProps, ProductType } from '@/modules/product/types/productType'
+import ProductCard from '@/modules/products/components/ProductCard'
+import { ProductDetailProps, ProductType } from '@/modules/products/types/productType'
 import Error from '@/shared/ui/error/Error'
 import Image from 'next/image'
 import { FaShoppingCart, FaCoins } from 'react-icons/fa'

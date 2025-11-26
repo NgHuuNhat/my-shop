@@ -6,21 +6,9 @@ import { useFilter } from './hooks/useFilter'
 import FilterContent from './components/FilterContent'
 
 export default function Filter() {
-  const {
-    open,
-    setOpen,
-    sort,
-    price,
-    reset,
-    handleSelect,
-  } = useFilter()
+  const { open, setOpen, sort, price, reset, handleSelect, } = useFilter()
 
-  const props = {
-    sort,
-    price,
-    reset,
-    handleSelect,
-  }
+  const props = { sort, price, reset, handleSelect, }
 
   return (
     <div>

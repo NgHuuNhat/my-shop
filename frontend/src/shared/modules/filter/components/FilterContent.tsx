@@ -3,12 +3,7 @@
 import { FaSliders } from 'react-icons/fa6'
 import { PRICES, SORTS } from '../hooks/useFilter'
 
-export default function FilterContent({
-    sort,
-    price,
-    reset,
-    handleSelect,
-}: any) {
+export default function FilterContent({ sort, price, reset, handleSelect, }: any) {
 
     return (
         <form className="w-full px-4 text-base">
