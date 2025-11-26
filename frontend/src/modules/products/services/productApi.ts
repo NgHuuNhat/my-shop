@@ -16,7 +16,14 @@ export const productAPI = {
         return products;
     },
 
-    getDetail: async () => { },
+    getDetail: async ({ id }: { id: string }) => {
+        const product: ProductType = await fetch(`https://691078c77686c0e9c20a6dc4.mockapi.io/api/product/${id}`, {
+            next: { revalidate: 60 }
+        })
+            .then(res => res.ok ? res.json() : null)
+            .then(data => data ? data : null)
+            .catch(() => null)
+    },
     add: async () => { },
     update: async () => { },
     delete: async () => { },
