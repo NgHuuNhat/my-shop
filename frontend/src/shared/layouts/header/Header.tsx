@@ -5,11 +5,13 @@ import { FaBars, FaClipboardList, FaShoppingCart, FaUser } from 'react-icons/fa'
 import { useEffect, useRef, useState } from 'react'
 import Draw from '@/shared/modules/draw/Draw'
 import HeaderContent from './components/HeaderContent'
+import { CartItem } from '@/modules/cart/types/CartType'
 import { useCart } from '@/modules/cart/hooks/useCart'
 
 export default function Header() {
     const [open, setOpen] = useState(false)
-    const { cartLength } = useCart()
+    const { cartLength } = useCart();
+
     const [mounted, setMounted] = useState(false)
     const [animate, setAnimate] = useState(false)
     const refBadge = useRef(0)
@@ -26,8 +28,7 @@ export default function Header() {
             const timer = setTimeout(() => setAnimate(false), 500)
             return () => clearTimeout(timer)
         }
-    }, [cartLength(), mounted])
-
+    }, [cartLength()])
 
     useEffect(() => {
         document.body.classList.toggle("overflow-hidden", open)
@@ -44,18 +45,29 @@ export default function Header() {
         <>
             <header className="bg-white sticky top-0 z-50 h-[50px] shadow-sm flex items-center justify-center overflow-hidden">
                 <nav className="w-full max-w-7xl mx-auto flex items-center justify-between px-4">
+
                     {/* nav desktop */}
                     <div className="hidden lg:flex gap-8 items-center">
                         <Link href="/" className="w-20 h-20 flex items-center text-[#111] hover:text-[#707072] transition-colors">
-                            {/* SVG logo */}
+                            <svg aria-hidden="true" className="w-full h-full lg:-ml-2.5" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    fill="currentColor"
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M21 8.719L7.836 14.303C6.74 14.768 5.818 15 5.075 15c-.836 0-1.445-.295-1.819-.884-.485-.760-.273-1.982.559-3.272.494-.754 1.122-1.446 1.734-2.108-.144.234-1.415 2.349-.025 3.345.275.200.666.298 1.147.298.386 0 .829-.063 1.316-.190L21 8.719z"
+                                />
+                            </svg>
                         </Link>
+                    </div>
+                    <div className="hidden lg:flex gap-8 items-center">
                         <HeaderContent />
                     </div>
-
                     <div className="hidden lg:flex gap-8 items-center text-xl">
                         <Link href="/order" className="relative text-[#111] hover:text-[#707072] transition-colors">
                             <FaClipboardList />
-                            <span className="absolute -top-2 -right-3 bg-blue-600 text-white font-bold w-4 h-4 text-sm flex items-center justify-center rounded-full">0</span>
+                            <span className="absolute -top-2 -right-3 bg-blue-600 text-white font-bold w-4 h-4 text-sm flex items-center justify-center rounded-full">
+                                0
+                            </span>
                         </Link>
                         <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
                             <FaShoppingCart />
@@ -65,14 +77,23 @@ export default function Header() {
                     </div>
 
                     {/* nav mobile */}
-                    <div className="lg:hidden w-full max-w-7xl mx-auto flex items-center justify-between text-base">
+                    <main className="lg:hidden w-full max-w-7xl mx-auto flex items-center justify-between  text-base">
                         <Link href="/" className="w-16 h-16 flex items-center text-[#111] hover:text-[#707072] transition-colors">
-                            {/* SVG logo */}
+                            <svg aria-hidden="true" className="w-full h-full" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    fill="currentColor"
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M21 8.719L7.836 14.303C6.74 14.768 5.818 15 5.075 15c-.836 0-1.445-.295-1.819-.884-.485-.760-.273-1.982.559-3.272.494-.754 1.122-1.446 1.734-2.108-.144.234-1.415 2.349-.025 3.345.275.200.666.298 1.147.298.386 0 .829-.063 1.316-.190L21 8.719z"
+                                />
+                            </svg>
                         </Link>
                         <div className='flex items-center justify-between text-2xl gap-10'>
                             <Link href="/order" className="relative text-[#111] hover:text-[#707072] transition-colors">
                                 <FaClipboardList />
-                                <span className="absolute -top-1 -right-2 bg-blue-600 text-white font-bold w-3 h-3 text-sm flex items-center justify-center rounded-full">0</span>
+                                <span className="absolute -top-1 -right-2 bg-blue-600 text-white font-bold w-3 h-3 text-sm flex items-center justify-center rounded-full">
+                                    0
+                                </span>
                             </Link>
                             <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
                                 <FaShoppingCart />
@@ -83,10 +104,12 @@ export default function Header() {
                                 <FaBars />
                             </button>
                         </div>
-                    </div>
+                    </main>
+
                 </nav>
             </header>
 
+            {/* Draw*/}
             <Draw open={open} setOpen={setOpen} content={<HeaderContent setOpen={setOpen} />} />
         </>
     )

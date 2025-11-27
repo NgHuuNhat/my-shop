@@ -6,8 +6,10 @@ import { ProductType } from "@/modules/products/types/productType";
 type CartStore = {
     cart: CartItem[];
     addToCart: (product: ProductType) => void;
-    removeToCart: () => void;
+    clearCart: () => void;
     cartLength: () => number;
+    removeItem: (id: string) => void;
+    updateQty: (id: string, delta: number) => void
 };
 
 export const useCart = create<CartStore>()(
@@ -32,13 +34,34 @@ export const useCart = create<CartStore>()(
 
             set({ cart: newCart });
         },
-        
-        removeToCart: () => { },
+
+        clearCart: () => {
+            set({ cart: [] });
+        },
 
         cartLength: () => {
             const { cart } = get();
             return cart.reduce((sum, item) => sum + item.qty, 0);
         },
+
+        removeItem: (id) => {
+            const { cart } = get();
+            const newCart = cart.filter((p) => p.id !== id)
+            set({ cart: newCart });
+        },
+
+        updateQty: (id: string, delta: number) => {
+            const { cart } = get();
+            const newCart = cart.map((p) => {
+                if (p.id === id) {
+                    const newQty = Math.max(1, p.qty + delta);
+                    return { ...p, qty: newQty, totalPrice: newQty * Number(p.price) };
+                }
+                return p;
+            });
+            set({ cart: newCart });
+        },
+
     }),
         {
             name: "cart",

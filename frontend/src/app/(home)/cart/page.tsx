@@ -3,19 +3,12 @@
 import { useCart } from '@/modules/cart/hooks/useCart'
 import { CartItem } from '@/modules/cart/types/CartType'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { useEffect, useMemo, useState } from 'react'
 import { FaTrash, FaMinus, FaPlus, FaShoppingCart } from 'react-icons/fa'
 
 export default function CartPage() {
-
-    const usecart = useCart((s) => s.cart);
-
-
-    const [cart, setCart] = useState<CartItem[]>(usecart)
-
-    useEffect(() => {
-        setCart(usecart)
-    }, [usecart])
+    const { cart, clearCart, removeItem, updateQty } = useCart();
 
     const [coupon, setCoupon] = useState('')
     const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null)
@@ -37,15 +30,15 @@ export default function CartPage() {
     //     if (stored) setCart(JSON.parse(stored));
     // }, []);
 
-    function updateQty(id: string, delta: number) {
-        setCart((c: any) => c.map((it: any) => (it.id === id ? { ...it, qty: Math.max(1, it.qty + delta) } : it)))
-    }
-    function removeItem(id: string) {
-        setCart((c: any) => c.filter((it: any) => it.id !== id))
-    }
-    function clearCart() {
-        setCart([])
-    }
+    // function updateQty(id: string, delta: number) {
+    //     // setCart((c: any) => c.map((it: any) => (it.id === id ? { ...it, qty: Math.max(1, it.qty + delta) } : it)))
+    // }
+    // function removeItem(id: string) {
+    //     // setCart((c: any) => c.filter((it: any) => it.id !== id))
+    // }
+    // function clearCart() {
+    //     // setCart([])
+    // }
 
     function applyCoupon() {
         const code = coupon.trim().toUpperCase()
@@ -134,16 +127,16 @@ export default function CartPage() {
                                                     <h3 className="font-medium">{item.name}</h3>
                                                     <p className="text-sm text-gray-500">${item.price}</p>
                                                 </div>
-                                                <button onClick={() => removeItem(item.id)} className="ml-auto text-gray-400 hover:text-red-500 transition">
+                                                <button onClick={() => removeItem(item.id)} className="cursor-pointer ml-auto text-gray-400 hover:text-red-500 transition">
                                                     <FaTrash />
                                                 </button>
                                             </div>
                                             <div className="mt-3 flex items-center gap-3">
-                                                <button onClick={() => updateQty(item.id, -1)} className="p-2 rounded-lg border hover:bg-gray-100">
+                                                <button onClick={() => updateQty(item.id, -1)} className="cursor-pointer p-2 rounded-lg border hover:bg-gray-100">
                                                     <FaMinus />
                                                 </button>
                                                 <div className="min-w-[36px] text-center">{item.qty}</div>
-                                                <button onClick={() => updateQty(item.id, +1)} className="p-2 rounded-lg border hover:bg-gray-100">
+                                                <button onClick={() => updateQty(item.id, +1)} className="cursor-pointer p-2 rounded-lg border hover:bg-gray-100">
                                                     <FaPlus />
                                                 </button>
                                                 <div className="ml-4 text-sm text-gray-600">Tạm tính: ${item.totalPrice.toFixed(2)}</div>
@@ -154,12 +147,14 @@ export default function CartPage() {
                             </ul>
                         )}
                         <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                            <button onClick={clearCart} className="w-full sm:w-auto px-4 py-2 rounded-lg border hover:bg-red-50 text-red-600">
+                            <button onClick={clearCart} className="cursor-pointer w-full sm:w-auto px-4 py-2 rounded-lg border hover:bg-red-50 text-red-600">
                                 Xoá tất cả
                             </button>
-                            <button onClick={() => alert('Tiếp tục mua sắm (demo)')} className="w-full sm:w-auto px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200">
-                                Tiếp tục mua sắm
-                            </button>
+                            <Link href='products'>
+                                <button className="cursor-pointer w-full sm:w-auto px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200">
+                                    Tiếp tục mua sắm
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     <aside className="rounded-xl border p-4 sticky top-4 md:col-span-1">
