@@ -1,15 +1,17 @@
 import ButtonAddToCart from '@/modules/products/[id]/components/ButtonAddToCart'
 import ProductCard from '@/modules/products/components/ProductCard'
 import { productAPI } from '@/modules/products/services/productApi'
-import { ProductDetailProps } from '@/modules/products/types/productType'
+import { ProductType } from '@/modules/products/types/productType'
 import Error from '@/shared/ui/error/Error'
 import Image from 'next/image'
 import { FaCoins } from 'react-icons/fa'
 
 
-export default async function ProductDetail({ params }: ProductDetailProps) {
+export default async function ProductDetail({ params }: { params: { id: string } }) {
     const { id } = await params
-    const product = await productAPI.getDetail({ id })
+
+    const product: ProductType = await productAPI.getDetail({ id })
+
     if (!product) {
         return (
             <Error />
@@ -114,9 +116,9 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
 
                     {/* Nút hành động */}
                     <div className="mt-6 flex flex-col gap-3">
-                        <button className="cursor-pointer flex-1 px-5 py-5 bg-gray-950 text-white font-bold rounded-full hover:bg-[#707072] transition">
+                        {/* <button className="cursor-pointer flex-1 px-5 py-5 bg-gray-950 text-white font-bold rounded-full hover:bg-[#707072] transition">
                             <span className='flex justify-center items-center gap-1 transition-colors'>Buy Now <FaCoins /></span>
-                        </button>
+                        </button> */}
                         {/* <button className="cursor-pointer flex-1 px-5 py-5 bg-white text-black border-2 border-gray-300 font-bold rounded-full hover:border-black transition">
                             <span className='flex justify-center items-center gap-1 transition-colors'>Add to Cart <FaShoppingCart /></span>
                         </button> */}

@@ -1,9 +1,9 @@
 import React from "react";
-import { ProductCardProps } from "../types/productType";
+import { ProductType } from "../types/productType";
 import Link from "next/link";
 import Image from "next/image";
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product }: { product: ProductType }) => {
   return (
     <Link
       href={`/products/${product.id}`}
