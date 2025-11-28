@@ -16,17 +16,22 @@ export default function ButtonAddToCart({ product }: { product: ProductType }) {
     }
 
     return (
-        <>
-            <Link href='/cart' onClick={handleAddToCart} className='w-full'>
-                <button className="w-full cursor-pointer flex-1 px-5 py-5 bg-gray-950 text-white font-bold rounded-full hover:bg-[#707072] transition">
-                    <span className='flex justify-center items-center gap-1 transition-colors'>Buy Now <FaCoins /></span>
-                </button>
-            </Link>
-            <button onClick={handleAddToCart} className="cursor-pointer flex-1 px-5 py-5 bg-white text-black border-2 border-gray-300 font-bold rounded-full hover:border-black transition">
-                <span className='flex justify-center items-center gap-1 transition-colors'>Add to Cart <FaShoppingCart /></span>
+        <div className="flex flex-col lg:flex-row gap-2">
+            <button
+                onClick={handleAddToCart}
+                className="cursor-pointer w-full lg:w-1/2 px-5 py-5 bg-white text-gray-800 border-2 border-gray-300 font-bold rounded-full flex justify-center items-center gap-2 transition hover:border-gray-500"
+            >
+                Add to Cart <FaShoppingCart className="inline" />
             </button>
-        </>
 
+            <Link
+                href="/cart"
+                onClick={handleAddToCart}
+                className="w-full lg:w-1/2 px-5 py-5 bg-amber-500 text-white font-bold rounded-full flex justify-center items-center gap-2 transition hover:bg-amber-600"
+            >
+                Buy Now <FaCoins className="inline" />
+            </Link>
+        </div>
     )
 }
 

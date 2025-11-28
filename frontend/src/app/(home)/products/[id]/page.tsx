@@ -2,7 +2,7 @@ import ButtonAddToCart from '@/modules/products/[id]/components/ButtonAddToCart'
 import ProductCard from '@/modules/products/components/ProductCard'
 import { productAPI } from '@/modules/products/services/productApi'
 import { ProductType } from '@/modules/products/types/productType'
-import Error from '@/shared/ui/error/Error'
+import Error from '@/shared/components/feedback/error/Error'
 import Image from 'next/image'
 
 
@@ -57,7 +57,7 @@ export default async function ProductDetail({ params }: { params: { id: string }
                 </div>
 
                 {/* Thông tin sản phẩm */}
-                <div className="px-4 flex flex-col justify-between h-full">
+                <div className="px-4 flex flex-col h-full">
                     <div>
                         {/* Thông tin sản phẩm */}
                         <div>

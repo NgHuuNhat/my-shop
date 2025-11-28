@@ -1,9 +1,9 @@
-import Error from '@/shared/ui/error/Error'
+import Error from '@/shared/components/feedback/error/Error'
 import { ProductType } from '../types/productType'
 import ProductCard from './ProductCard'
 
-export default function ProductList({ products }: {products: ProductType[]}) {
-  
+export default function ProductList({ products }: { products: ProductType[] }) {
+
   if (!products.length) return <Error />
 
   return (

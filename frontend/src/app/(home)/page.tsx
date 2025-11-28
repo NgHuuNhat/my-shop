@@ -1,6 +1,6 @@
 import { productAPI } from '@/modules/products/services/productApi';
 import { ProductType } from '@/modules/products/types/productType';
-import Footer from '@/shared/layouts/footer/Footer';
+import Footer from '@/shared/components/layout/footer/Footer';
 import { API_URL } from '@/shared/services/api';
 import Image from 'next/image';
 import Link from 'next/link';

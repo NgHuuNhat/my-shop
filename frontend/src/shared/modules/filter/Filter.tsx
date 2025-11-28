@@ -1,9 +1,9 @@
 'use client'
 
 import { FaSliders } from 'react-icons/fa6'
-import Draw from '../draw/Draw'
-import { useFilter } from './hooks/useFilter'
-import FilterContent from './components/FilterContent'
+import Draw from '../../components/ui/draw/Draw'
+import { useFilter } from './useFilter'
+import FilterContent from './FilterContent'
 
 export default function Filter() {
   const { open, setOpen, sort, price, reset, handleSelect, } = useFilter()
@@ -12,6 +12,11 @@ export default function Filter() {
 
   return (
     <div>
+      {/* desktop */}
+      <div className="hidden lg:block">
+        <FilterContent {...props} />
+      </div>
+
       {/* mobile button */}
       <div className="lg:hidden px-4 pb-5">
         <button
@@ -23,11 +28,6 @@ export default function Filter() {
           </span>
           <FaSliders />
         </button>
-      </div>
-
-      {/* desktop */}
-      <div className="hidden lg:block">
-        <FilterContent {...props} />
       </div>
 
       {/* mobile drawer */}

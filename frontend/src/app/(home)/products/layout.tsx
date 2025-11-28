@@ -1,4 +1,4 @@
-import Footer from '@/shared/layouts/footer/Footer'
+import Footer from '@/shared/components/layout/footer/Footer'
 
 export default function layout({ children }: any) {
     return (

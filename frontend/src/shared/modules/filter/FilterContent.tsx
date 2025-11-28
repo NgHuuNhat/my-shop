@@ -1,7 +1,7 @@
 'use client'
 
 import { FaSliders } from 'react-icons/fa6'
-import { PRICES, SORTS } from '../hooks/useFilter'
+import { PRICES, SORTS } from './useFilter'
 
 export default function FilterContent({ sort, price, reset, handleSelect, }: any) {
 
