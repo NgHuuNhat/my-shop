@@ -1,21 +1,17 @@
 'use client'
 
 import { useCart } from '@/modules/cart/hooks/useCart'
+import { ShippingInfo } from '@/modules/cart/types/cartType'
+import { useOrder } from '@/modules/order/hooks/useOrder'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useMemo, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useMemo, useState } from 'react'
 import { FaTrash, FaMinus, FaPlus } from 'react-icons/fa'
 
-interface ShippingInfo {
-    province: string
-    district: string
-    address: string,
-    name: string
-    phone: string
-    note: string
-}
-
 export default function CartPage() {
+    const { addOrder } = useOrder()
+    const router = useRouter();
     const { cart, clearCart, removeItem, updateQty } = useCart()
     const [shippingInfo, setShippingInfo] = useState<ShippingInfo>({
         province: '',
@@ -25,10 +21,22 @@ export default function CartPage() {
         phone: '',
         note: '',
     })
-    const [paymentMethod, setPaymentMethod] = useState<'COD' | 'Banking' | null>(null)
+    const [paymentMethod, setPaymentMethod] = useState<'COD' | 'BANKING' | null>(null)
 
     const total = useMemo(() => cart.reduce((s, it) => s + it.totalPrice, 0), [cart])
     const totalQty = useMemo(() => cart.reduce((s, it) => s + it.qty, 0), [cart])
+
+    // Lưu mỗi khi thay đổi
+    useEffect(() => {
+        localStorage.setItem('shippingInfo', JSON.stringify(shippingInfo));
+    }, [shippingInfo]);
+
+    // Khi mount component, đọc lại
+    useEffect(() => {
+        const stored = localStorage.getItem('shippingInfo');
+        if (stored) setShippingInfo(JSON.parse(stored));
+    }, []);
+
 
     return (
         <div className="flex-1 py-6 sm:py-8 relative bg-gray-100">
@@ -118,9 +126,9 @@ export default function CartPage() {
                                 }
                             >
                                 <option value="">Tỉnh / Thành phố</option>
-                                <option value="Thủ đôHà Nội">Thủ đô Hà Nội</option>
-                                <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-                                <option value="TP. Đà Nẵng">TP. Đà Nẵng</option>
+                                <option value="Hà Nội">Hà Nội</option>
+                                <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                                <option value="Đà Nẵng">Đà Nẵng</option>
                             </select>
 
                             <select
@@ -134,21 +142,21 @@ export default function CartPage() {
                                 disabled={!shippingInfo.province}
                             >
                                 <option value="">Phường</option>
-                                {shippingInfo.province === 'Thủ đô Hà Nội' && (
+                                {shippingInfo.province === 'Hà Nội' && (
                                     <>
                                         <option value="Phường Ba Đình">Ba Đình</option>
                                         <option value="Phường Hoàn Kiếm">Hoàn Kiếm</option>
                                         <option value="Phường Đống Đa">Đống Đa</option>
                                     </>
                                 )}
-                                {shippingInfo.province === 'TP. Hồ Chí Minh' && (
+                                {shippingInfo.province === 'Hồ Chí Minh' && (
                                     <>
                                         <option value="Phường Sài Gòn">Phường Sài Gòn</option>
                                         <option value="Phường An Hội Tây">Phường An Hội Tây</option>
                                         <option value="Phường Gia Định">Phường Gia Định</option>
                                     </>
                                 )}
-                                {shippingInfo.province === 'TP. Đà Nẵng' && (
+                                {shippingInfo.province === 'Đà Nẵng' && (
                                     <>
                                         <option value="Phường Hải Châu">Hải Châu</option>
                                         <option value="Phường Thanh Khê">Thanh Khê</option>
@@ -194,7 +202,7 @@ export default function CartPage() {
                                 ${paymentMethod && 'text-black'}
                                 `}
                                 value={paymentMethod || ''}
-                                onChange={(e) => setPaymentMethod(e.target.value as 'COD' | 'Banking')}
+                                onChange={(e) => setPaymentMethod(e.target.value as 'COD' | 'BANKING')}
                             >
                                 <option value="">Chọn phương thức thanh toán</option>
                                 <option value="COD">Thanh toán khi nhận hàng</option>
@@ -205,6 +213,10 @@ export default function CartPage() {
                         {/* Đặt hàng */}
                         <button
                             onClick={() => {
+                                if (cart.length === 0) {
+                                    alert('Giỏ hàng trống. Vui lòng thêm sản phẩm trước khi đặt hàng.')
+                                    return
+                                }
                                 if (!shippingInfo.province || !shippingInfo.district || !shippingInfo.name || !shippingInfo.phone || !shippingInfo.address) {
                                     alert('Vui lòng điền đầy đủ thông tin nhận hàng.')
                                     return
@@ -217,17 +229,42 @@ export default function CartPage() {
                                 // Xác minh OTP
                                 const userOtp = prompt('Nhập mã OTP (demo: 1234)')
                                 if (userOtp === '1234') {
+                                    // 👉 Tạo đơn hàng
+                                    addOrder({
+                                        id: Date.now().toString(),
+                                        products: cart.map(c => ({
+                                            id: c.id,
+                                            name: c.name,
+                                            qty: c.qty,
+                                            price: c.price,
+                                            totalPrice: c.totalPrice,
+                                            image: c.image
+                                        })),
+                                        totalOrderItem: total,
+                                        shippingInfo: {
+                                            name: shippingInfo.name,
+                                            phone: shippingInfo.phone,
+                                            province: shippingInfo.province,
+                                            district: shippingInfo.district,
+                                            address: shippingInfo.address,
+                                            note: shippingInfo.note,
+                                        },
+                                        paymentMethod,
+                                        createdAt: new Date().toISOString()
+                                    });
                                     alert('Đặt hàng thành công! Người gửi đang chuẩn bị hàng.')
                                     clearCart()
-                                    setShippingInfo({
-                                        province: '',
-                                        district: '',
-                                        address: '',
-                                        name: '',
-                                        phone: '',
-                                        note: '',
-                                    })
+                                    // setShippingInfo({
+                                    //     province: '',
+                                    //     district: '',
+                                    //     address: '',
+                                    //     name: '',
+                                    //     phone: '',
+                                    //     note: '',
+                                    // })
                                     setPaymentMethod(null)
+                                    router.push("/order");
+
                                 } else {
                                     alert('OTP không đúng.')
                                 }
@@ -237,7 +274,6 @@ export default function CartPage() {
                             Đặt hàng
                         </button>
                     </aside>
-
 
                 </div>
             </div>

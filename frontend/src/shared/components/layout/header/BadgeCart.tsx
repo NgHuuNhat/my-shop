@@ -6,7 +6,7 @@ interface Props {
   value: number
 }
 
-export default function Badge({ value }: Props) {
+export default function BadgeCart({ value }: Props) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {

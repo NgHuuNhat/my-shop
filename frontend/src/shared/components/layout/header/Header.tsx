@@ -8,10 +8,12 @@ import DesktopNav from './DesktopNav'
 import MobileNav from './MobileNav'
 import HeaderContent from './HeaderContent'
 import Draw from '../../ui/draw/Draw'
+import { useOrder } from '@/modules/order/hooks/useOrder'
 
 export default function Header() {
     const [open, setOpen] = useState(false)
     const { cartLength } = useCart()
+    const { ordersLength } = useOrder()
 
     useEffect(() => {
         document.body.classList.toggle("overflow-hidden", open)
@@ -40,10 +42,10 @@ export default function Header() {
                     </div>
 
                     {/* Actions desktop */}
-                    <DesktopNav cartLength={cartLength()} />
+                    <DesktopNav cartLength={cartLength()} ordersLength={ordersLength()} />
 
                     {/* Mobile */}
-                    <MobileNav cartLength={cartLength()} onOpen={() => setOpen(true)} />
+                    <MobileNav cartLength={cartLength()} onOpen={() => setOpen(true)} ordersLength={ordersLength()} />
 
                 </nav>
             </header>

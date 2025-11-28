@@ -1,14 +1,16 @@
 'use client'
 import Link from "next/link"
 import { FaBars, FaClipboardList, FaShoppingCart, FaUser } from "react-icons/fa"
-import Badge from "./Badge"
+import BadgeCart from "./BadgeCart"
+import BadgeOrder from "./BadgeOrder"
 
 interface Props {
     cartLength: number
     onOpen: () => void
+    ordersLength: number
 }
 
-export default function MobileNav({ cartLength, onOpen }: Props) {
+export default function MobileNav({ cartLength, onOpen, ordersLength }: Props) {
     return (
         <main className="lg:hidden w-full max-w-7xl mx-auto flex items-center justify-between text-base">
             <Link href="/" className="w-16 h-16 flex items-center text-[#111] hover:text-[#707072] transition-colors">
@@ -25,14 +27,12 @@ export default function MobileNav({ cartLength, onOpen }: Props) {
             <div className="flex items-center justify-between text-2xl gap-10">
                 <Link href="/order" className="relative text-[#111] hover:text-[#707072] transition-colors">
                     <FaClipboardList />
-                    <span className="absolute -top-1 -right-2 bg-blue-600 text-white w-3 h-3 text-sm flex items-center justify-center rounded-full">
-                        0
-                    </span>
+                    <BadgeOrder value={ordersLength} />
                 </Link>
 
                 <Link href="/cart" className="relative text-[#111] hover:text-[#707072] transition-colors">
                     <FaShoppingCart />
-                    <Badge value={cartLength} />
+                    <BadgeCart value={cartLength} />
                 </Link>
 
                 <Link href="/auth" className="text-[#111] hover:text-[#707072] transition-colors">

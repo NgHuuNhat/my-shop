@@ -1,16 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { CartItem } from "../types/CartType";
-import { ProductType } from "@/modules/products/types/productType";
-
-type CartStore = {
-    cart: CartItem[];
-    addToCart: (product: ProductType) => void;
-    clearCart: () => void;
-    cartLength: () => number;
-    removeItem: (id: string) => void;
-    updateQty: (id: string, delta: number) => void
-};
+import { CartItem, CartStore } from "../types/cartType";
 
 export const useCart = create<CartStore>()(
     persist((set, get) => ({
