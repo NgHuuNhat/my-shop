@@ -3,6 +3,7 @@
 import { CartItem } from '@/modules/cart/types/xartType'
 import { useOrder } from '@/modules/order/hooks/useOrder'
 import { OrderItem } from '@/modules/order/types/orderType'
+import Link from 'next/link'
 import React, { useState, useMemo } from 'react'
 import { FaClipboardList } from 'react-icons/fa'
 
@@ -182,7 +183,11 @@ export default function OrderPage() {
     }
 
     const getPaymentStatus = (order: OrderItem) => {
-        if (order.paymentMethod === 'BANKING') return { text: '', color: paymentColors.paid }
+        if (order.paymentMethod === 'BANKING') {
+            return order.paid
+                ? { text: '', color: paymentColors.paid }
+                : { text: 'Chưa thanh toán', color: paymentColors.unpaid }
+        }
         if (order.paymentMethod === 'COD') {
             return order.paid
                 ? { text: '', color: paymentColors.paid }
@@ -215,27 +220,27 @@ export default function OrderPage() {
     // }, [search, orders])
 
     return (
-        <div className="flex-1 py-6 px-3 sm:py-8 sm:px-4 min-h-screen">
+        <div className="flex-1 py-6 px-3 sm:py-8 sm:px-4 min-h-screen bg-gray-100">
             <div className="max-w-7xl mx-auto px-4">
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
-                    <h1 className="text-xl lg:text-2xl font-semibold flex gap-2 items-center justify-center"><FaClipboardList />Đơn hàng của bạn</h1>
+                    <h3 className="text-xl  font-semibold flex gap-2 items-center justify-center">Đơn hàng</h3>
                     {/* <p className="ml-auto text-sm text-gray-500">Bạn có {filteredOrders.length} đơn hàng</p> */}
                 </div>
 
                 {/* Search */}
-                <div className="mb-6">
+                <div className="mb-6 bg-white rounded-2xl overflow-hidden">
                     <input
                         type="text"
                         placeholder="Tìm theo mã đơn, SĐT, sản phẩm..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="w-full px-4 py-2 border rounded-2xl focus:outline-none"
+                        className="w-full px-4 py-2 focus:outline-none"
                     />
                 </div>
 
                 {/* list don hang */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-1 gap-6 md:max-w-xl mx-auto">
                     {sortedOrders.length === 0 ? (
                         <div className="text-center py-16 text-gray-500 text-lg col-span-full">
                             Không tìm thấy đơn hàng nào.
@@ -249,12 +254,12 @@ export default function OrderPage() {
                             return (
                                 <li
                                     key={order.id}
-                                    className="p-6 border rounded-2xl bg-white transition duration-300 col-span-1 list-none"
+                                    className="p-6 rounded-2xl bg-white transition duration-300 col-span-1 list-none"
                                 >
                                     {/* Header */}
                                     <div className="flex justify-between items-center mb-3 flex-wrap gap-2">
-                                        <h3 className="font-medium text-lg">
-                                            {index + 1}. Mã đơn: {order.id}
+                                        <h3 className="font-bold text-sm">
+                                            STT:{index + 1} - Mã đơn:{order.id}
                                         </h3>
                                         <span className={`px-2 py-1 rounded-full text-sm font-medium ${payment.color}`}>
                                             {payment.text} ({order.paymentMethod})
@@ -262,9 +267,21 @@ export default function OrderPage() {
                                     </div>
 
                                     {/* Info */}
-                                    <div className="flex flex-col sm:flex-row sm:justify-between text-gray-600 text-sm mb-3 gap-2">
+                                    <div className="flex flex-col sm:flex-row sm:justify-between text-gray-600 text-xs mb-3 gap-2">
                                         <div className=''>
-                                            <span>Ngày đặt: {order.createdAt}</span>
+                                            {/* <span>Ngày đặt: {order.createdAt}</span> */}
+                                            <span>
+                                                Ngày đặt: {new Date(order.createdAt).toLocaleString('vi-VN', {
+                                                    hour: '2-digit',
+                                                    minute: '2-digit',
+                                                    second: '2-digit',
+                                                    day: '2-digit',
+                                                    month: '2-digit',
+                                                    year: 'numeric',
+                                                })}
+                                            </span>
+
+
                                             {/* <span>
                                                 {order.shippingStatus === 'Đã giao' && order.deliveredAt && (
                                                     <p>Ngày giao: {order.deliveredAt}</p>
@@ -280,16 +297,23 @@ export default function OrderPage() {
 
                                     {/* Products */}
                                     <div className="border-t pt-3">
-                                        {/* <h4 className="font-medium mb-2 text-gray-700">
+                                        <h4 className="font-medium mb-2 text-gray-700 text-xs">
                                             Sản phẩm: {order.products.length} - Số lượng: {totalQty}
-                                        </h4> */}
+                                        </h4>
                                         <ul className="space-y-1">
-                                            {order.products.map((p) => (
+                                            {order.products.map((p, index) => (
                                                 <li key={p.id} className="flex justify-between text-gray-700">
-                                                    <span>
-                                                        {p.name} x {p.qty}
-                                                    </span>
-                                                    <span>${(p.totalPrice).toFixed(2)}</span>
+                                                    <div className='flex items-center text-sm w-full'>
+                                                        <Link
+                                                            href={`/products/${p.id}`}
+                                                            className="border-b text-blue-500 flex items-center justify-between w-full border-b-0"
+                                                        >
+                                                            <span className="flex items-center gap-1">
+                                                                <span className="text-[10px]">{index + 1}</span>- {p.name} x{p.qty}
+                                                            </span>
+                                                            <span className="text-sm">${p.totalPrice.toFixed(2)}</span>
+                                                        </Link>
+                                                    </div>
                                                 </li>
                                             ))}
                                         </ul>
@@ -297,10 +321,10 @@ export default function OrderPage() {
 
                                     {/* Footer */}
                                     <div className="border-t pt-3 mt-3 text-gray-600 text-sm space-y-1">
-                                        <p>Tổng thanh toán: ${totalAmount.toFixed(2)}</p>
+                                        <p className='font-bold'>Tổng thanh toán: ${totalAmount.toFixed(2)}</p>
                                         <p>Người nhận: {order.shippingInfo.name}</p>
-                                        <p>SĐT người nhận: {order.shippingInfo.phone}</p>
-                                        <p>Địa chỉ nhận: {order.shippingInfo.address}</p>
+                                        <p>SĐT: {order.shippingInfo.phone}</p>
+                                        <p>Địa chỉ: {order.shippingInfo.address}, {order.shippingInfo.district}, {order.shippingInfo.province}</p>
                                         {order.shippingInfo.note && <p>Ghi chú: {order.shippingInfo.note}</p>}
                                     </div>
 
