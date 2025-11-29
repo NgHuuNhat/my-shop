@@ -2,7 +2,7 @@
 
 import { useCart } from '@/modules/cart/hooks/useCart'
 //
-import { ShippingInfo } from '@/modules/cart/types/cartType'
+import { ShippingInfo } from '@/modules/cart/types/xartType'
 import { useOrder } from '@/modules/order/hooks/useOrder'
 import Image from 'next/image'
 import Link from 'next/link'

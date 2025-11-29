@@ -1,6 +1,6 @@
 'use client'
 
-import { CartItem } from '@/modules/cart/types/cartType'
+import { CartItem } from '@/modules/cart/types/xartType'
 import { useOrder } from '@/modules/order/hooks/useOrder'
 import { OrderItem } from '@/modules/order/types/orderType'
 import React, { useState, useMemo } from 'react'

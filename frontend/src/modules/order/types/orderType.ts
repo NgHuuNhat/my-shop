@@ -1,4 +1,4 @@
-import { CartItem, ShippingInfo } from "@/modules/cart/types/cartType";
+import { CartItem, ShippingInfo } from "@/modules/cart/types/xartType";
 
 export interface OrderItem {
     id: string;
