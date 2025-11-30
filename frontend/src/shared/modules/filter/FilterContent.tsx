@@ -55,7 +55,7 @@ export default function FilterContent({ sort, price, reset, handleSelect, }: any
                     e.preventDefault()
                     reset()
                 }}
-                className="border border-gray-200 hover:border-gray-950 w-full py-2 rounded-2xl"
+                className="cursor-pointer border border-gray-200 hover:border-gray-950 w-full py-2 rounded-2xl"
             >
                 Xoá bộ lọc
             </button>
