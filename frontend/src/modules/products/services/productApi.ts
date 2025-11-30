@@ -1,6 +1,7 @@
 import { API_URL } from "@/shared/services/api"
 import { ProductType, searchParams } from "../types/productType"
-import { awaitParams, awaitQueryParams, filterByPrice, filterBySort } from "./productLib";
+import { filterByPrice, filterBySort } from "@/shared/modules/filter/libFilter";
+import { awaitParams, awaitQueryParams } from "@/shared/services/params";
 
 export const productAPI = {
     getList: async ({ searchParams }: { searchParams?: searchParams } = {}) => {

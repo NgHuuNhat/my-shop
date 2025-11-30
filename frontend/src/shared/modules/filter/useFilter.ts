@@ -1,10 +1,13 @@
 'use client'
 
+import { ProductType } from '@/modules/products/types/productType'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 
 export const SORTS = ['Mới nhất', 'Cũ nhất', 'Giá tăng dần', 'Giá giảm dần']
 export const PRICES = ['0 - 400', '400 - 800', '800 - 1000']
+
+
 
 export function useFilter() {
     const router = useRouter()
