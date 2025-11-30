@@ -42,9 +42,9 @@ export default function CartPage() {
     return (
         <div className="flex-1 py-6 sm:py-8 relative bg-gray-100">
             <div className="max-w-7xl mx-auto px-4">
-                <div className="flex items-center gap-3 mb-6">
+                {/* <div className="flex items-center gap-3 mb-6">
                     <h3 className="text-xl font-semibold flex gap-2 items-center justify-center">Giỏ hàng</h3>
-                </div>
+                </div> */}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                     {/* Cart Items */}
@@ -121,7 +121,7 @@ export default function CartPage() {
                     <div className="text-center font-semibold">Thông tin người nhận</div>
                     <div className="flex flex-col gap-2 text-sm">
                         <select
-                            className={`px-2 py-2 rounded bg-gray-50 focus:outline-none 
+                            className={`px-2 py-2 rounded bg-gray-50 focus:outline-none cursor-pointer
                                     ${shippingInfo.province === '' ? 'text-gray-400' : 'text-black'}
                                     `}
                             value={shippingInfo.province}
@@ -136,7 +136,7 @@ export default function CartPage() {
                         </select>
 
                         <select
-                            className={`px-2 py-2 rounded bg-gray-50 focus:outline-none
+                            className={`px-2 py-2 rounded bg-gray-50 focus:outline-none cursor-pointer
                                     ${shippingInfo.district === '' ? 'text-gray-400' : 'text-black'}
                                     `}
                             value={shippingInfo.district}
@@ -202,7 +202,7 @@ export default function CartPage() {
 
                         {/* Phương thức thanh toán */}
                         <select
-                            className={`w-full px-2 py-2 rounded bg-gray-50 focus:outline-none
+                            className={`w-full px-2 py-2 rounded bg-gray-50 focus:outline-none cursor-pointer
                                 ${paymentMethod ? 'text-black' : 'text-gray-400'}
                                 `}
                             value={paymentMethod || ''}

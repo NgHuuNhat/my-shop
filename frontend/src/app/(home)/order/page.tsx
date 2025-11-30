@@ -221,12 +221,11 @@ export default function OrderPage() {
 
     return (
         <div className="flex-1 py-6 px-3 sm:py-8 sm:px-4 min-h-screen bg-gray-100">
-            <div className="max-w-7xl mx-auto px-4">
+            <div className="px-4 md:max-w-xl mx-auto">
                 {/* Header */}
-                <div className="flex items-center gap-3 mb-6">
+                {/* <div className="flex items-center gap-3 mb-6">
                     <h3 className="text-xl  font-semibold flex gap-2 items-center justify-center">Đơn hàng</h3>
-                    {/* <p className="ml-auto text-sm text-gray-500">Bạn có {filteredOrders.length} đơn hàng</p> */}
-                </div>
+                </div> */}
 
                 {/* Search */}
                 <div className="mb-6 bg-white rounded-2xl overflow-hidden">
@@ -306,10 +305,10 @@ export default function OrderPage() {
                                                     <div className='flex items-center text-sm w-full'>
                                                         <Link
                                                             href={`/products/${p.id}`}
-                                                            className="border-b text-blue-500 flex items-center justify-between w-full border-b-0"
+                                                            className=" text-blue-500 flex items-center justify-between w-full border-b border-b-white hover:border-b-blue-500 transition-all"
                                                         >
-                                                            <span className="flex items-center gap-1">
-                                                                <span className="text-[10px]">{index + 1}</span>- {p.name} x{p.qty}
+                                                            <span className="flex items-center">
+                                                                <span className="text-[10px]">{index + 1}</span>-{p.name} x{p.qty}
                                                             </span>
                                                             <span className="text-sm">${p.totalPrice.toFixed(2)}</span>
                                                         </Link>

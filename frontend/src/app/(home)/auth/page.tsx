@@ -30,8 +30,8 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="flex-1 flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white p-8">
+    <div className="flex-1 flex items-center justify-center px-4 bg-gray-100">
+      <div className="max-w-md w-full bg-white p-8 rounded-2xl overflow-hidden mb-20 shadow">
         <h1 className="text-2xl font-semibold mb-6 text-center">
           {isLogin ? 'Đăng nhập' : 'Đăng ký'}
         </h1>
@@ -42,7 +42,7 @@ export default function AuthPage() {
             placeholder="Số điện thoại"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring"
+            className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring bg-gray-100"
           />
 
           <input
@@ -50,7 +50,7 @@ export default function AuthPage() {
             placeholder="Mật khẩu"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring"
+            className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring bg-gray-100"
           />
 
           {!isLogin && (
@@ -59,7 +59,7 @@ export default function AuthPage() {
               placeholder="Xác nhận mật khẩu"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring"
+              className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring bg-gray-100"
             />
           )}
 
@@ -71,7 +71,7 @@ export default function AuthPage() {
 
           <button
             onClick={isLogin ? handleLogin : handleRegister}
-            className="w-full py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700"
+            className="cursor-pointer w-full py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700"
           >
             {isLogin ? 'Đăng nhập' : 'Đăng ký'}
           </button>
@@ -88,7 +88,7 @@ export default function AuthPage() {
           {isLogin ? 'Chưa có tài khoản?' : 'Đã có tài khoản?'}{' '}
           <button
             onClick={() => setIsLogin(!isLogin)}
-            className="text-blue-600 hover:underline"
+            className="text-blue-600 hover:underline cursor-pointer"
           >
             {isLogin ? 'Đăng ký' : 'Đăng nhập'}
           </button>
